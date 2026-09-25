@@ -1,0 +1,308 @@
+[
+  {
+    "problem": "A",
+    "file": "A_data_value/domain_mapping_guide.csv",
+    "bytes": 1296
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_domain_sample.jsonl.xz",
+    "bytes": 165293312
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_domain_summary.csv",
+    "bytes": 1265,
+    "source": "https://huggingface.co/datasets/sail/regmix-data",
+    "note": "Domain-level sampling summary for optional raw RegMix text."
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/est_mixture_10b.csv",
+    "bytes": 6113
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/est_mixture_70b.csv",
+    "bytes": 6113
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/est_pile_loss_10b.csv",
+    "bytes": 6467
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/est_pile_loss_70b.csv",
+    "bytes": 6467
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/test_mixture_1B.csv",
+    "bytes": 6393,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/test_mixture_1B.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/test_mixture_1m.csv",
+    "bytes": 23537,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/test_mixture_1m.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/test_mixture_60m.csv",
+    "bytes": 23537,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/test_mixture_60m.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/test_pile_loss_1B.csv",
+    "bytes": 10639,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/test_pile_loss_1B.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/test_pile_loss_1m.csv",
+    "bytes": 61175,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/test_pile_loss_1m.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/test_pile_loss_60m.csv",
+    "bytes": 61827,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/test_pile_loss_60m.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/train_mixture_1m.csv",
+    "bytes": 46412,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/train_mixture_1m.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/regmix_tables/train_pile_loss_1m.csv",
+    "bytes": 121898,
+    "source": "https://raw.githubusercontent.com/sail-sg/regmix/main/data/train_pile_loss_1m.csv"
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/slimpajama_quality_extended/arxiv_part-6777d8857c6e-000486.jsonl.xz",
+    "bytes": 3652724
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/slimpajama_quality_extended/github_part-6777d8857c6e-000275.jsonl.xz",
+    "bytes": 37618172
+  },
+  {
+    "problem": "A",
+    "file": "A_data_value/slimpajama_quality_signal_sample.jsonl.xz",
+    "bytes": 103349792,
+    "source": "https://huggingface.co/datasets/opendatalab/SlimPajama-Meta-rater",
+    "note": "Range-sampled quality-signal records from one file per domain."
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/cerebras_training_log.csv",
+    "bytes": 89643,
+    "source": "Semi-synthetic, calibrated from Pythia scaling law; Cerebras-GPT trained on Pile 2.05T tokens",
+    "note": "V5.29: Cerebras-GPT 7个模型的半合成训练轨迹，1029条记录，D_tokens_B范围约14-2050B tokens；D_tokens_B单位已统一为十亿tokens。"
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/open_model_family_metadata.csv",
+    "bytes": 1975,
+    "source": "Hugging Face model repository APIs for Pythia, Cerebras-GPT, and OLMo"
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/published_scaling_data.csv",
+    "bytes": 1967
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/pythia_checkpoint_index.csv",
+    "bytes": 117698,
+    "source": "https://huggingface.co/collections/EleutherAI/pythia-scaling-suite-64fb5dfa8c21ebb3db7ad2e1"
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/pythia_training_log_existing.csv",
+    "bytes": 111459,
+    "source": "EleutherAI Pythia Scaling Suite; retained from current contest data"
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/scaling_baseline.csv",
+    "bytes": 1421,
+    "source": "Curated convergence snapshots from open model family documentation and papers",
+    "note": "V5.29: 57 convergence points across 12 model families (added Cerebras-GPT 7 points)"
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/supplementary_NQ_experiment.csv",
+    "bytes": 13670,
+    "source": "Semi-synthetic, calibrated from Pythia training log + RegMix quality signals",
+    "note": "V5.29: 360 points (9N × 5D × 8Q); semi-synthetic supplement for N-D-Q interaction analysis."
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/supplementary_NQ_experiment_expanded.csv",
+    "bytes": 17154
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/supplementary_NQ_experiment_large.csv",
+    "bytes": 81268
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/supplementary_large_baseline.csv",
+    "bytes": 4744
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/supplementary_large_models.csv",
+    "bytes": 13400
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_0.070542B_trajectory.csv",
+    "bytes": 14040
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_0.162405B_trajectory.csv",
+    "bytes": 14040
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_0.409009B_trajectory.csv",
+    "bytes": 14040
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_1.040867B_trajectory.csv",
+    "bytes": 14040
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_1.416184B_trajectory.csv",
+    "bytes": 14040
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_11.965825B_trajectory.csv",
+    "bytes": 14540
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_2.782831B_trajectory.csv",
+    "bytes": 14040
+  },
+  {
+    "problem": "B",
+    "file": "B_scaling_laws/training_trajectories/pythia_6.86104B_trajectory.csv",
+    "bytes": 13540
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/data/train-00000-of-00001.parquet",
+    "bytes": 1109997,
+    "source": "https://huggingface.co/datasets/open-llm-leaderboard-old/results",
+    "note": "Original parquet export retained for reference."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/detailed_results/",
+    "bytes": 228862701,
+    "source": "https://huggingface.co/datasets/open-llm-leaderboard/results",
+    "note": "1863 model directories, 1958 JSON files; aggregated entry."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/epoch_all_ai_models.csv",
+    "bytes": 6671403,
+    "source": "https://epoch.ai/data/all_ai_models.csv"
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/leaderboard_cleaned.csv",
+    "bytes": 1011558,
+    "source": "https://huggingface.co/datasets/open-llm-leaderboard-old/results",
+    "note": "Cleaned CSV export; HTML tags removed and -1 parameter values replaced by missing values."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/leaderboard_enhanced.csv",
+    "bytes": 1036749,
+    "source": "https://huggingface.co/datasets/open-llm-leaderboard-old/results and https://epoch.ai/data/all_ai_models.csv",
+    "note": "Cleaned leaderboard with fuzzy-matched Epoch AI publication metadata."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/leaderboard_extended_timeseries.csv",
+    "bytes": 826723
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/loss_benchmark_bridge.csv",
+    "bytes": 11807,
+    "source": "Pythia training log (Attachment B) + published model technical reports + Open LLM Leaderboard v2",
+    "note": "V5.29: 43 models with Loss and Benchmark scores; 7 high-comparability Pythia records and 36 medium-comparability report-derived records."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/loss_benchmark_bridge_expanded.csv",
+    "bytes": 19124
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/model_architecture_metadata.csv",
+    "bytes": 2357,
+    "source": "Model config files from HuggingFace + technical reports",
+    "note": "V5.29新增：45个主流开源模型的架构元数据(层数/头数/维度/词表/上下文长度/训练数据量)"
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_1.4b_eval_details/README.md",
+    "bytes": 63450,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_12b_eval_details/README.md",
+    "bytes": 72327,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_160m_eval_details/README.md",
+    "bytes": 72028,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_2.8b_eval_details/README.md",
+    "bytes": 72145,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_410m_eval_details/README.md",
+    "bytes": 72065,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_6.9b_eval_details/README.md",
+    "bytes": 72470,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  },
+  {
+    "problem": "C",
+    "file": "C_efficiency_evolution/pythia_eval_details/README.md",
+    "bytes": 63185,
+    "note": "Dataset card / README only; no per-task JSON in current package."
+  }
+]

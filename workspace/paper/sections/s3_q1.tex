@@ -1,0 +1,98 @@
+\section{问题一：数据质量评价、冲突消解与配比--损失关系}
+
+本章刻画数据本身，输出三样东西：域级综合质量 $Q$、质量冲突的判据与消解结果、领域配比与损失的定量关系。三者分别对应质量信号数据的评价、稳健化，以及配比实验数据的回归建模，其产物是问题二广义标度律的直接输入。整体数据处理流程如图~\ref{fig:pipeline_q1} 所示，从原始质量信号出发，依次经列表型压缩、方向统一归一化、客观赋权合成与样本到域的聚合，最终产出可向下游传递的域级质量与配比关系。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth,keepaspectratio]{fig_pipeline_q1.pdf}
+  \caption{问题一质量评价数据处理流程}
+  \label{fig:pipeline_q1}
+\end{figure}
+
+该流程在主样本上计算样本级指标与 $Q$，扩展集沿用同一归一化基准。冲突降权产生单独的对照分数；配比回归使用独立实验表，其变量口径不与质量指标共享归一化参数。
+
+\subsection{列表型压缩、方向统一与综合质量}
+高质量语料的筛选与配比对预训练效果有显著影响，已有工作从网页清洗、去重到质量打分提出了多种数据构造范式\cite{fineweb2024,slimpajama2023,pile2020}。质量信号覆盖七个来源域，含 $22$ 个指标，其中若干为逐句或逐段的打分向量；这些指标按语义可归纳为若干层次，其体系结构见图~\ref{fig:index_hierarchy}。设文档 $i$ 在列表型指标 $j$ 上的打分序列为 $\bm v_{ij}=(v_{ij}^{(1)},\dots,v_{ij}^{(m_{ij})})$，先用文档级均值压缩为标量
+\begin{equation}
+x_{ij}=\frac{1}{m_{ij}}\sum_{t=1}^{m_{ij}} v_{ij}^{(t)},\qquad j\in\mathcal J_{\mathrm{list}},
+\label{eq:q1-listagg}
+\end{equation}
+稳健性另用截尾均值与中位数对照。各指标优劣方向不同，须先做 Min--Max 归一化，再对负向指标（如广告含量，越低越好）取补转换 $1-x$，使全部指标统一为“越高越好”：
+\begin{equation}
+\tilde x_{ij}=\operatorname{clip}_{[0,1]}\!\left(\frac{x_{ij}-m_j^{\mathrm{A1}}}{M_j^{\mathrm{A1}}-m_j^{\mathrm{A1}}}\right),\qquad
+r_{ij}=\begin{cases}\tilde x_{ij}, & j\in\mathcal J_{+},\\[2pt] 1-\tilde x_{ij}, & j\in\mathcal J_{-}.\end{cases}
+\label{eq:q1-norm}
+\end{equation}
+
+质量打分本身也可由模型学习得到，如以质量评级指导数据选择\cite{qurating2024}；本文则采用可解释的客观赋权路线。综合质量的权重采用熵权法客观赋权，其原理是信息量越大的指标（取值越分散、区分度越高）权重越大，可避免主观拍定，该类客观赋权在多指标综合评价中应用广泛\cite{entropy_topsis}。记归一化矩阵 $R=(r_{ij})_{n\times 22}$，指标 $j$ 的比重、信息熵与权重为
+\begin{equation}
+p_{ij}=\frac{r_{ij}}{\sum_{i=1}^{n} r_{ij}},\qquad
+e_j=-\frac{1}{\ln n}\sum_{i=1}^{n} p_{ij}\ln p_{ij},\qquad
+w_j=\frac{1-e_j}{\sum_{k=1}^{22}(1-e_k)}.
+\label{eq:q1-entropy}
+\end{equation}
+样本级综合质量与由样本到域的聚合为
+\begin{equation}
+Q_i=\sum_{j=1}^{22} w_j\, r_{ij}\in(0,1],\qquad
+Q^{\mathrm{dom}}_d=\frac{1}{|\mathcal S_d|}\sum_{i\in\mathcal S_d} Q_i,
+\label{eq:q1-Q}
+\end{equation}
+其中 $\mathcal S_d$ 为域 $d$ 的样本集。$m_j^{\mathrm{A1}}$、$M_j^{\mathrm{A1}}$ 是主样本的最小值和最大值；缺失值以主样本中位数填充。权重和归一化基准只在全部 $51230$ 条主样本上拟合，扩展集沿用这套基准，超出主样本范围的值截到 $[0,1]$，使跨集合分数可比。
+
+\textbf{求解与结果。}熵权由式~\eqref{eq:q1-entropy} 在全样本上计算，并用 CRITIC 与主成分两种客观赋权交叉核对，三法所得质量排序的 Kendall 秩相关分别为 $0.827$（熵权--CRITIC）与 $0.802$（熵权--主成分），排序高度一致。全样本综合质量落在 $(0.038,0.796]$、均值约 $0.080$，域级质量中位数为 $0.079$，该中位数作为问题三基线质量 $Q_0$ 向下游传递。表~\ref{tab:q1_weights} 列出两种客观赋权对 $22$ 个指标的权重。
+
+\input{../figures/TABLE_q1_weights.tex}
+
+熵权把最大权重给了词数、句子数等区分度极高的规模型指标（二者合计权重超过 $0.8$），而 DSIR 类指标因取值集中权重接近于零；CRITIC 因同时考虑对比强度与冲突性，权重分布更均匀（表~\ref{tab:q1_weights}）。两法排序一致但权重形态不同，说明综合质量的稳健性主要来自高区分度指标，这一点在后文冲突分析中还会用到。须诚实指出，规模型指标主导意味着熵权综合质量在很大程度上反映了文档规模：仅以教育价值这一语义指标重排七个来源域，其域级序与全指标 $Q$ 的秩相关接近零，二者仅在书籍域同居高位。因此本文对 $Q$ 的定位是“含规模信息的综合可用性评分”而非纯语义质量，其作为下游相对质量信号的意义仍成立，但把它单独解读为语义质量并不稳妥，这一口径边界在问题二取用质量时会再次强调。$22$ 个指标可按来源与语义组织成层次体系（图~\ref{fig:index_hierarchy}），其相关结构见图~\ref{fig:q1_quality_corr}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth,keepaspectratio]{fig_index_hierarchy.pdf}
+  \caption{质量指标体系层次结构}
+  \label{fig:index_hierarchy}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_quality_corr.pdf}
+  \caption{质量指标相关性聚类热力图}
+  \label{fig:q1_quality_corr}
+\end{figure}
+
+按层次聚类重排相关矩阵后可见指标簇（图~\ref{fig:q1_quality_corr}）。下一节关注的冲突是\emph{同一文档同时具有高教育价值与高广告含量}的局部现象；它不要求两指标在全样本上负相关。
+
+\subsection{质量冲突的可计算定义与消解}
+“冲突”须给出可判定的量化定义。对强正向指标 $j_+$（教育价值）与强负向原始指标 $j_-$（广告含量），若同一文档同时落入两者的高分位，则判为冲突样本：
+\begin{equation}
+\mathrm{Conflict}(i)=\mathbb 1\!\left[\,r_{i,j_+}\ge \tau^{+}_{0.8}\ \wedge\ \tilde x_{i,j_-}\ge \tau^{-}_{0.8}\,\right].
+\label{eq:q1-conflict}
+\end{equation}
+其中 $\tau_{0.8}$ 为对应指标的 $0.8$ 分位阈值，冲突率取 $\frac1n\sum_i \mathrm{Conflict}(i)$。以降权因子 $\delta\in(0,1)$ 构造稳健性对照分数：
+\begin{equation}
+Q_i^{\mathrm{adj}}=\bigl[1-(1-\delta)\,\mathrm{Conflict}(i)\bigr]\,Q_i .
+\label{eq:q1-resolve}
+\end{equation}
+
+\textbf{求解与结果。}在全部主样本上，由式~\eqref{eq:q1-conflict} 识别出冲突样本 $2542$ 条，冲突率 $4.96\%$。教育价值与\emph{原始广告含量}的全样本 Spearman 相关约为 $+0.139$，双高是局部共现而非总体负相关。取 $\delta=0.5$ 作降权对照，并扫描 $\delta\in\{0.3,0.5,0.7,1.0\}$；前三档的域级排序与原评分的 Kendall 相关均为 $0.905$，说明排序大体稳定但并非完全不变。下游使用的 $Q$ 与基线质量 $Q_0$ 仍是未降权主评分。图~\ref{fig:q1_conflict_scatter} 展示冲突区。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_conflict_scatter.pdf}
+  \caption{教育价值与广告含量的冲突区}
+  \label{fig:q1_conflict_scatter}
+\end{figure}
+
+双高分位冲突区落在教育价值--广告含量散点的右上角（图~\ref{fig:q1_conflict_scatter}）。该图只证明指标共现，不能单凭散点推断文档体裁或广告成因。调整分数用于检验域级排序对冲突处理的敏感性；两个扩展集用于检验评分的跨集合可比性。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_domain_Q_dumbbell.pdf}
+  \caption{抽样集与扩展集域级质量对照}
+  \label{fig:q1_domain_Q}
+\end{figure}
+
+沿用主样本归一化基准和权重后，扩展集 arxiv 的域级质量为 $0.07932$，主样本同名域为 $0.07893$；扩展集 github 为 $0.07088$，主样本为 $0.07090$（图~\ref{fig:q1_domain_Q}、表~\ref{tab:q1_domain_Q}）。这支持这两个域在当前口径下的跨集合数值一致性；不能据此推断全部领域或冲突降权方案都具有同等稳定性。
+
+\input{../figures/TABLE_q1_domain_Q.tex}
+
+各域的样本量、域级质量与自助法区间见表~\ref{tab:q1_domain_Q}。书籍域质量最高（约 $0.227$），但书籍域主样本仅 $171$ 条，且评分受文档长度主导，不宜把这一排序直接解释为语义质量。区间由 $2000$ 次文档级自助重采样的百分位给出，只反映当前样本内的抽样波动。

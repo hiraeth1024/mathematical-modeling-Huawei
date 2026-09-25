@@ -1,0 +1,30 @@
+\section{附录：核心算法代码摘录}
+\label{app:core-code}
+
+下列代码直接摘自随文提交的四个计算脚本，展示模型计算的关键步骤；批量数据处理、绘图、结果写出和重复性检查等实现细节不在纸质附录中展开。完整可运行程序见电子材料的 \texttt{code/problem1.py}--\texttt{code/problem4.py}，参数定义见 \texttt{code/params.py}。
+
+% 以下 firstline/lastline 对应随文提交的源文件；修改源文件时须同步核对范围。
+
+\subsection{问题一：质量评分与配比回归}
+
+\lstinputlisting[style=pythonstyle,firstline=88,lastline=132,caption={主样本归一化基准与熵权计算},label={code:q1-score}]{../code/problem1.py}
+
+\lstinputlisting[style=pythonstyle,firstline=146,lastline=151,caption={综合质量评分},label={code:q1-quality}]{../code/problem1.py}
+
+\lstinputlisting[style=pythonstyle,firstline=290,lastline=320,caption={单纯形配比回归及可识别系数编码},label={code:q1-mixture}]{../code/problem1.py}
+
+\subsection{问题二：经典与广义标度律}
+
+\lstinputlisting[style=pythonstyle,firstline=24,lastline=61,caption={经典标度律的对数域稳健拟合},label={code:q2-classic}]{../code/problem2.py}
+
+\lstinputlisting[style=pythonstyle,firstline=64,lastline=104,caption={广义标度律及质量指数拟合},label={code:q2-generalized}]{../code/problem2.py}
+
+\subsection{问题三：预算约束下的资源配置}
+
+\lstinputlisting[style=pythonstyle,firstline=42,lastline=111,caption={损失、物理算力与多起点约束求解},label={code:q3-solver}]{../code/problem3.py}
+
+\subsection{问题四：能力前沿与情景预测}
+
+\lstinputlisting[style=pythonstyle,firstline=186,lastline=197,caption={月度能力前沿的构造},label={code:q4-frontier}]{../code/problem4.py}
+
+\lstinputlisting[style=pythonstyle,firstline=213,lastline=271,caption={一步回测与残差自助情景预测},label={code:q4-forecast}]{../code/problem4.py}

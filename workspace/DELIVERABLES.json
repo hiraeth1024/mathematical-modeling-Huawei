@@ -1,0 +1,16 @@
+{
+  "deliverables": [
+    {"path": "output/q1_quality_scores.csv", "desc": "问题一：A1全量51230条样本级综合质量Q(域标注)"},
+    {"path": "output/q1_mixture_model.json", "desc": "问题一：17域配比-Loss单纯形回归模型与重要性"},
+    {"path": "output/q2_classic_scaling.json", "desc": "问题二：经典标度律拟合参数(E,A,alpha,B,beta)与泛化验证"},
+    {"path": "output/q3_optimal_allocation.json", "desc": "问题三：三档预算最优N*,D*,Q*,L*与算力份额(三型g)"},
+    {"path": "output/q3_lctx_sensitivity.json", "desc": "问题三：L_ctx敏感性(C7五取值)与临界值核验"},
+    {"path": "output/q4_bridge_model.json", "desc": "问题四：Loss-Benchmark分层单调sigmoid桥接模型"},
+    {"path": "output/q4_task_aggregation.csv", "desc": "问题四：C8逐任务六维聚合(1860目录)"},
+    {"path": "figures/problem_1_results.json", "desc": "问题一完整结果"},
+    {"path": "figures/problem_2_results.json", "desc": "问题二完整结果"},
+    {"path": "figures/problem_3_results.json", "desc": "问题三完整结果"},
+    {"path": "figures/problem_4_results.json", "desc": "问题四完整结果"},
+    {"path": "figures/all_results.json", "desc": "四问汇总(供paper-figure/审计)"}
+  ]
+}

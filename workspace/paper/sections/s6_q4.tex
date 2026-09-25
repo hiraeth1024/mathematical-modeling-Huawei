@@ -1,0 +1,97 @@
+\section{问题四：规模与非规模贡献分解、损失--基准桥接与能力前沿预测}
+
+本章分析规模和年份与基准能力的关联，建立损失到基准的探索性桥接，最后在三档能力趋势假设下预测有许可证记录模型的经验前沿。
+
+\subsection{综合能力度量与口径声明}
+综合能力取六维基准均分（指令遵循、综合推理、数学、研究生级问答、多步推理与专业知识）：
+\begin{equation}
+\mathrm{Cap}=\frac{1}{6}\sum_{k=1}^{6} B_k,\qquad k\in\{\text{IFEval, BBH, MATH, GPQA, MUSR, MMLU-PRO}\}.
+\label{eq:q4-cap}
+\end{equation}
+口径显式声明：前沿样本按榜单中许可证字段非空筛选；这只能视作“有许可证记录”的操作性代理，不能据此核实每个模型是否满足严格的开源定义\cite{llama2023,bloom2023}。时间轴用榜单年份，六维均分口径可复现。
+
+\subsection{规模与年份项的描述性分解}
+以榜单数据回归综合能力对规模变量与时间，检查两项在所选样本窗中的统计关联：
+\begin{equation}
+\mathrm{Cap}_i=f(\ln N_i)+h(t_i)+\varepsilon_i,
+\label{eq:q4-decomp}
+\end{equation}
+其中规模项 $f$ 和时间项 $h$ 分别给出规模、年份与能力的统计关联。年份项可能同时吸收数据、训练配方、模型组成和评测变化，不能直接解释为纯技术进步。在时间窗 $[t_0,t_1]$ 上两项回归增量的形式占比为
+\begin{equation}
+\text{scale\%}=\frac{\Delta f}{\Delta f+\Delta h},\qquad
+\text{nonscale\%}=\frac{\Delta h}{\Delta f+\Delta h},\qquad
+\text{scale\%}+\text{nonscale\%}=100\% .
+\label{eq:q4-share}
+\end{equation}
+
+\textbf{结果与识别假设。}在 $4561$ 个有效模型上回归得 $\mathrm{Cap}=-24576+6.27\ln N+12.14\,t$，决定系数 $0.462$；年份系数是控制参数量后的条件关联，不具因果解释。两变量之外仍有大量系统性变异。所选时间窗内平均参数规模下降，使回归规模项增量为负；按式~\eqref{eq:q4-share} 计算的两项份额约为 $-25\%$ 与 $125\%$。超出 $0$--$100\%$ 只是负增量下的比值结果，且分母由拟合增量而非观测到的能力变化构成。它只能描述这套回归与样本窗，不能据此证明非规模技术进步的因果份额。占比随时间的演化见图~\ref{fig:q4_contribution}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_contribution_decomp.pdf}
+  \caption{规模与年份项的回归增量分解}
+  \label{fig:q4_contribution}
+\end{figure}
+
+图~\ref{fig:q4_contribution} 用零线标明规模项在所选窗口内的负增量。该结果对时间窗、样本组成和回归设定敏感，适合作为描述性分解，不宜称规模为能力提升的净拖累。
+
+\subsection{损失--基准桥接映射}
+用同时含验证损失与六维基准的桥接样本建立损失到能力的单调映射，按可比性分层（高可比来自可与训练轨迹对照的模型，其余为中可比）。用单调递减的 sigmoid 型回归
+\begin{equation}
+\widehat{\mathrm{Cap}}=\frac{S_{\max}}{1+\exp\bigl(a(L-L_0)\bigr)}+c,\qquad a>0\ (\text{损失}\uparrow\Rightarrow\text{能力}\downarrow),
+\label{eq:q4-bridge}
+\end{equation}
+分层拟合参数，并分别报告样本量与拟合误差。
+
+\textbf{结果与不确定性。}高可比层样本仅 $7$ 条，决定系数约 $0.40$；中可比层 $68$ 条，决定系数约 $0.36$。映射只能作为损失到基准能力的探索性桥梁，不能给出可靠的模型外推精度。下一节的前沿直接由榜单能力值计算，不经过这条桥接，因此其预测区间不含桥接误差。图~\ref{fig:q4_bridge} 展示分层样本与拟合曲线。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_bridge_scatter.pdf}
+  \caption{损失到能力的分层桥接}
+  \label{fig:q4_bridge}
+\end{figure}
+
+分层拟合的函数按约束随损失单调下降，但散点仍有较大离散（图~\ref{fig:q4_bridge}）。若用问题三的最优损失推算能力，必须另行传播桥接参数与残差的不确定性；此处未给出那类能力预测。
+
+\subsection{能力趋势情景下的经验前沿预测}
+将有许可证记录的模型按月分箱，至少有两条记录的月份取六维均分的第 $90$ 百分位作为经验前沿。实际有效月份仅 $10$ 个，覆盖约 $2024.46$ 至 $2025.21$。在这些月度点上拟合线性趋势；残差自助重采样后重新拟合斜率，并加入一次月度预测残差。以历史末值 $F_T$ 为锚，情景系数 $s\in\{0,0.5,1\}$ 缩放历史能力前沿斜率。第 $b$ 次自助样本在 $\Delta$ 个月后的预测为
+\begin{equation}
+F^{(b)}_{s,\Delta}=\operatorname{clip}_{[0,100]}
+\left(F_T+s\,\hat\beta^{(b)}\frac{\Delta}{12}+\epsilon^{(b)}\right),
+\qquad \Delta\in\{12,24\}.
+\label{eq:q4-bootstrap}
+\end{equation}
+其中 $\hat\beta^{(b)}$ 是以重采样残差重新拟合的年斜率，$\epsilon^{(b)}$ 从同次残差样本抽取；共进行 $2000$ 次。对 $F^{(b)}_{s,\Delta}$ 取经验分位数，得到\emph{相对样本末点}约 $2026.21$ 和 $2027.21$ 的预测区间：
+\begin{equation}
+\mathrm{Frontier}(t+\Delta)\in\bigl[\hat F_{10}(t+\Delta),\ \hat F_{90}(t+\Delta)\bigr],\qquad \Delta\in\{12,24\}\ \text{月}.
+\label{eq:q4-frontier}
+\end{equation}
+历史训练算力中位数约以每年 $5.1$ 倍增长，只为情景提供背景；数据并未估计训练算力增速与能力前沿斜率之间的弹性，因此三档系数是明确的假设。每个情景内的 $P_{10}$--$P_{90}$ 区间包含趋势估计和月度残差的不确定性；不同情景之间的差异须单独比较，桥接误差不参与计算。表~\ref{tab:q4_frontier} 汇总三情景结果。
+
+\textbf{短期回测。}为检验线性趋势是否至少优于简单基线，从前 $5$ 个有效月度点开始，每次只用已观测点重新拟合并预测下一点，共得 $5$ 次一步预测。趋势模型的平均绝对误差为 $1.89$ 个能力点，平均误差（预测减实际）为 $+1.50$ 点；直接沿用上一月前沿的平均绝对误差为 $1.28$ 点。趋势模型在这一小样本回测中\emph{没有}优于末值延续，表明斜率外推存在乐观偏差风险。一步回测既不能校准 $12$--$24$ 个月区间，也无法覆盖未来模型组成变化；下表的远期数值仅作条件情景计算。
+
+\input{../figures/TABLE_q4_frontier.tex}
+
+按上述假设，$24$ 个月中位数在系数 $1$、$0.5$、$0$ 下分别约为 $81$、$61$、$42$（表~\ref{tab:q4_frontier}）。零斜率情景的 $12$ 与 $24$ 个月分布相同；其余情景随时间上升是线性趋势和正系数的模型结果，不是已验证的能力不倒退规律。历史末值约 $42$、拟合斜率约 $20$ 点每年；以不足一年数据外推两年，绝对数值应谨慎使用。前沿分位带见图~\ref{fig:q4_frontier}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_frontier_fan.pdf}
+  \caption{能力前沿情景预测区间}
+  \label{fig:q4_frontier}
+\end{figure}
+
+图~\ref{fig:q4_frontier} 展示各情景内的 $10\%$--$90\%$ 分位带；零斜率情景的区间不随期限扩大，另两档随斜率估计误差扩大。图中超出历史范围的部分均为情景外推，纵轴为六维基准均分 $0$--$100$。有限月度点、样本组成变化和情景映射假设均未被区间充分覆盖。
+
+\subsection{逐任务聚合分析}
+仅用榜单汇总列不足以刻画能力短板，本文遍历逐任务评测记录，按目录取最新可解析记录、跳过损坏文件做逐任务聚合。共解析 $1860$ 个目录（六维完整 $1854$、损坏跳过 $7$），覆盖满足要求。各任务难度均值为：指令遵循 $40.2$、综合推理 $47.5$、数学 $11.4$、研究生级问答 $29.8$、多步推理 $40.0$、专业知识 $32.0$，其中数学最难。图~\ref{fig:q4_task_radar} 展示前沿模型的六维剖面。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_task_radar.pdf}
+  \caption{前沿模型逐任务能力剖面}
+  \label{fig:q4_task_radar}
+\end{figure}
+
+前沿模型在综合推理与指令遵循维度较强，而在数学与研究生级问答维度普遍偏弱，六维剖面的不均衡揭示了当前能力短板集中在高难推理任务上（图~\ref{fig:q4_task_radar}）\cite{mmlu2020}。这与式~\eqref{eq:q4-cap} 均分口径下的综合能力互为补充：均分给出总体水平，逐任务剖面给出结构短板。
