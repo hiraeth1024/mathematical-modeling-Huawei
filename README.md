@@ -1,1 +1,0 @@
-# mathematical-modeling-Huawei

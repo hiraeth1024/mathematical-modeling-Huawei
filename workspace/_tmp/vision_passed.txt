@@ -1,4 +1,0 @@
-fig_roadmap PASS
-fig_pipeline_q1 PASS
-fig_index_hierarchy PASS
-tikz_q3_feasible PASS

@@ -1,6 +1,0 @@
-numpy==2.4.6
-scipy==1.17.1
-pandas==2.3.3
-scikit-learn==1.8.0
-statsmodels==0.14.6
-lightgbm==4.6.0
