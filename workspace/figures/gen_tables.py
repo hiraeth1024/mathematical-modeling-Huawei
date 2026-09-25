@@ -44,23 +44,23 @@ p4 = load("problem_4_results.json")
 pre1 = load("_prep_q1.json")
 
 # ===================== TABLE_q1_weights =====================
-w_e, w_c = p1["weights"], p1["weights_critic"]
+w_main, w_c = p1["weights"], p1["weights_critic"]
 short = dict(zip(pre1["indicators"], pre1["short_labels"]))
-items = sorted(w_e, key=lambda k: -w_e[k])
+items = sorted(w_main, key=lambda k: -w_main[k])
 half = (len(items) + 1) // 2
 L = [r"\begin{table}[H]", r"  \centering",
-     r"  \caption{质量指标主权重与 CRITIC 对照}", r"  \label{tab:q1_weights}",
+     r"  \caption{三组平衡主权重与 CRITIC 对照}", r"  \label{tab:q1_weights}",
      r"  \small",
      r"  \begin{tabular}{rlcc@{\hspace{2.2em}}rlcc}", r"    \toprule",
      r"    \# & 指标 & 主权重 $w_j$ & CRITIC & \# & 指标 & 主权重 $w_j$ & CRITIC \\",
      r"    \midrule"]
 for i in range(half):
     a = items[i]
-    row = f"    {i + 1} & {esc(short[a])} & {w_e[a]:.4f} & {w_c[a]:.4f}"
+    row = f"    {i + 1} & {esc(short[a])} & {w_main[a]:.4f} & {w_c[a]:.4f}"
     j = i + half
     if j < len(items):
         b = items[j]
-        row += f" & {j + 1} & {esc(short[b])} & {w_e[b]:.4f} & {w_c[b]:.4f} \\\\"
+        row += f" & {j + 1} & {esc(short[b])} & {w_main[b]:.4f} & {w_c[b]:.4f} \\\\"
     else:
         row += r" & & & & \\"
     L.append(row)

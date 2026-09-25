@@ -1,18 +1,7 @@
 # -*- coding: utf-8 -*-
-"""fig_q3_transition_line — 最优份额随 logC 的演化与结构转移点（配方 basic #3）。
+"""Q3 optimal share trajectories and the current derivative-peak candidate.
 
-本图讲什么：在 logC∈[18,25] 的 36 点网格上求最优配置，画三项算力份额随预算的
-  连续轨迹。s_Q 单调下降、s_train 单调上升、s_attn 近乎平稳；结构转移定义为
-  份额对 logC 导数的峰值处（式18）并与 KKT 活跃集切换对齐，落在 logC=22.4。
-  右轴叠加 |ds_Q/dlogC| 的绝对值曲线，其峰值即转移点的判据来源。
-  本图是确定性优化的解轨迹，不存在重复抽样，故不画置信带——区间表达仅适用于
-  随机实验，此处若加带会是虚构的不确定性。
-数据来源：figures/problem_3_results.json['structural_transition']
-  （logC_grid / s_train / s_Q / s_attn / d_sQ_dlogC / transition_logC）
-  ← SLSQP 逐点求解，g(Q)=指数型，L_ctx=2048。
-关键数值：transition_logC=22.4（C=2.51e22 FLOPs）；s_train 0.774→0.931；
-  s_Q 0.173→0.005；s_attn 0.053→0.064；|ds_Q/dlogC| 峰值 0.0608。
-版式：原生 6.4×4.0in，左轴份额（%），右轴导数绝对值，双轴刻度都不密集。
+Values come from problem_3_results.json; visual design is unchanged.
 """
 import sys
 import os

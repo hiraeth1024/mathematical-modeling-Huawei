@@ -1,0 +1,454 @@
+{
+  "primary": {
+    "group_weights": {
+      "model": 0.3333333333333333,
+      "dsir": 0.3333333333333333,
+      "structure": 0.3333333333333333
+    },
+    "Q0": 0.48787609721064545
+  },
+  "grouped_critic": {
+    "Q0": 0.4864800441367807,
+    "domain_kendall": 1.0,
+    "sample_spearman": 0.9977753345153075,
+    "weights": {
+      "fluency_en": 0.039039222888095575,
+      "qurater": 0.0379324855750286,
+      "ad_en": 0.04649749045149396,
+      "fineweb_edu": 0.04218009790943502,
+      "modernbert_cleanliness": 0.03870452342100094,
+      "modernbert_reasoning": 0.04160429055159364,
+      "modernbert_professionalism": 0.04729425042395058,
+      "modernbert_readability": 0.04008097211273501,
+      "dsir_books": 0.11082740528894032,
+      "dsir_math": 0.11154400372906637,
+      "dsir_wiki": 0.11096192431532666,
+      "rps_lines_ending_with_terminal_punctution_mark": 0.028518267594978344,
+      "rps_doc_num_sentences": 0.03095091348519507,
+      "rps_doc_word_count": 0.029739080421014464,
+      "rps_doc_frac_no_alph_words": 0.02772116142822928,
+      "rps_doc_frac_chars_top_2gram": 0.02906965387936419,
+      "rps_lines_uppercase_letter_fraction": 0.030016931982631365,
+      "rps_doc_frac_unique_words": 0.033485947224042696,
+      "rps_lines_numerical_chars_fraction": 0.030596485438251917,
+      "rps_doc_mean_word_length": 0.03488065435099762,
+      "rps_doc_frac_chars_top_3gram": 0.029335835123528917,
+      "rps_doc_unigram_entropy": 0.029018402405099484
+    }
+  },
+  "group_weight_grid": {
+    "min_weight": 0.2,
+    "max_weight": 0.5,
+    "step": 0.05,
+    "n_scenarios": 36,
+    "min_domain_kendall": 0.4285714285714286,
+    "min_Q0": 0.4551409443825824,
+    "max_Q0": 0.511386826046133,
+    "highest_counts": {
+      "c4": 28,
+      "arxiv": 8
+    },
+    "lowest_counts": {
+      "book": 31,
+      "github": 5
+    }
+  },
+  "scenarios": [
+    {
+      "group_weights": {
+        "model": 0.2,
+        "dsir": 0.3,
+        "structure": 0.5
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.4848138951564247,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.2,
+        "dsir": 0.35,
+        "structure": 0.45
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.4828476908099113,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.2,
+        "dsir": 0.4,
+        "structure": 0.4
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.47166148202477576,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.2,
+        "dsir": 0.45,
+        "structure": 0.35
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.46092144951910285,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.2,
+        "dsir": 0.5,
+        "structure": 0.3
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.4621421120688636,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.25,
+        "dsir": 0.25,
+        "structure": 0.5
+      },
+      "domain_kendall": 0.5238095238095238,
+      "Q0": 0.4908752192291227,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.25,
+        "dsir": 0.3,
+        "structure": 0.45
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.49255241305587105,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.25,
+        "dsir": 0.35,
+        "structure": 0.4
+      },
+      "domain_kendall": 0.8095238095238096,
+      "Q0": 0.48184379258607424,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.25,
+        "dsir": 0.4,
+        "structure": 0.35
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.4706575838009387,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.25,
+        "dsir": 0.45,
+        "structure": 0.3
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.45947137501580326,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.25,
+        "dsir": 0.5,
+        "structure": 0.25
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.458641528225723,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.2,
+        "structure": 0.5
+      },
+      "domain_kendall": 0.5238095238095238,
+      "Q0": 0.4944170921357337,
+      "highest": "c4",
+      "lowest": "github"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.25,
+        "structure": 0.45
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.4973540115455255,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.3,
+        "structure": 0.4
+      },
+      "domain_kendall": 1.0,
+      "Q0": 0.4964686001182369,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.35,
+        "structure": 0.35
+      },
+      "domain_kendall": 0.8095238095238096,
+      "Q0": 0.4808398943622373,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.4,
+        "structure": 0.3
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.46965368557710185,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.45,
+        "structure": 0.25
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.4584674767919663,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.3,
+        "dsir": 0.5,
+        "structure": 0.2
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.4551409443825824,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.35,
+        "dsir": 0.2,
+        "structure": 0.45
+      },
+      "domain_kendall": 0.4285714285714286,
+      "Q0": 0.5021556100351801,
+      "highest": "arxiv",
+      "lowest": "github"
+    },
+    {
+      "group_weights": {
+        "model": 0.35,
+        "dsir": 0.25,
+        "structure": 0.4
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.5022084137086714,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.35,
+        "dsir": 0.3,
+        "structure": 0.35
+      },
+      "domain_kendall": 0.8095238095238096,
+      "Q0": 0.49952146462754865,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.35,
+        "dsir": 0.35,
+        "structure": 0.3
+      },
+      "domain_kendall": 1.0,
+      "Q0": 0.48357984575684976,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.35,
+        "dsir": 0.4,
+        "structure": 0.25
+      },
+      "domain_kendall": 0.8095238095238096,
+      "Q0": 0.46864978735326485,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.35,
+        "dsir": 0.45,
+        "structure": 0.2
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.45746357856812936,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.4,
+        "dsir": 0.2,
+        "structure": 0.4
+      },
+      "domain_kendall": 0.4285714285714286,
+      "Q0": 0.5098941279346265,
+      "highest": "arxiv",
+      "lowest": "github"
+    },
+    {
+      "group_weights": {
+        "model": 0.4,
+        "dsir": 0.25,
+        "structure": 0.35
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.5012045154848345,
+      "highest": "arxiv",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.4,
+        "dsir": 0.3,
+        "structure": 0.3
+      },
+      "domain_kendall": 0.8095238095238096,
+      "Q0": 0.4998389010389864,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.4,
+        "dsir": 0.35,
+        "structure": 0.25
+      },
+      "domain_kendall": 1.0,
+      "Q0": 0.4977707894205809,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.4,
+        "dsir": 0.4,
+        "structure": 0.2
+      },
+      "domain_kendall": 1.0,
+      "Q0": 0.4706910913954626,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.45,
+        "dsir": 0.2,
+        "structure": 0.35
+      },
+      "domain_kendall": 0.5238095238095238,
+      "Q0": 0.511386826046133,
+      "highest": "arxiv",
+      "lowest": "github"
+    },
+    {
+      "group_weights": {
+        "model": 0.45,
+        "dsir": 0.25,
+        "structure": 0.3
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.5002006172609974,
+      "highest": "arxiv",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.45,
+        "dsir": 0.3,
+        "structure": 0.25
+      },
+      "domain_kendall": 0.8095238095238096,
+      "Q0": 0.5001563374504241,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.45,
+        "dsir": 0.35,
+        "structure": 0.2
+      },
+      "domain_kendall": 0.9047619047619049,
+      "Q0": 0.5081677100259747,
+      "highest": "c4",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.5,
+        "dsir": 0.2,
+        "structure": 0.3
+      },
+      "domain_kendall": 0.5238095238095238,
+      "Q0": 0.510382927822296,
+      "highest": "arxiv",
+      "lowest": "github"
+    },
+    {
+      "group_weights": {
+        "model": 0.5,
+        "dsir": 0.25,
+        "structure": 0.25
+      },
+      "domain_kendall": 0.6190476190476191,
+      "Q0": 0.49919671903716045,
+      "highest": "arxiv",
+      "lowest": "book"
+    },
+    {
+      "group_weights": {
+        "model": 0.5,
+        "dsir": 0.3,
+        "structure": 0.2
+      },
+      "domain_kendall": 0.7142857142857143,
+      "Q0": 0.5004737738618618,
+      "highest": "arxiv",
+      "lowest": "book"
+    }
+  ]
+}

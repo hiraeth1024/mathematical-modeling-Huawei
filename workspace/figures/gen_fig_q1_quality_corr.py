@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-"""fig_q1_quality_corr — 22 维质量指标的聚类热力图（配方 advanced #14）。
+"""Clustered Spearman correlations of the 22 semantically decoded A1 quality signals.
 
-本图讲什么：A1 全量 51230 文档上，22 个质量指标方向统一后两两 Spearman 相关，
-  按层次聚类重排，显示"指标并非同质、可归并为若干信息簇"——这是熵权法给出
-  极端不均权重（词数 0.419 + 句子数 0.399 占 82%）的结构性原因。
-数据来源：figures/_prep_q1.npz['corr'] ← A1 全量，口径同 code/problem1.py 式1-3。
-关键数值：相关系数范围 [-0.913, 1.0]；聚类距离 d = 1 - ρ，average linkage。
-版式：原生 6.4×6.3in（近方图），上页按插图分档显示；顶部列树状图与热力图同列等宽对齐。
+The plot retains its original layout; the scoring method uses balanced groups.
 """
 import sys
 import os

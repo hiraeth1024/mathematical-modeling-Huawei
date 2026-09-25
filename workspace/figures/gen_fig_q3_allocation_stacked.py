@@ -1,17 +1,7 @@
 # -*- coding: utf-8 -*-
-"""fig_q3_allocation_stacked — 三档预算下的算力份额堆叠柱状图（配方 basic #2）。
+"""Q3 compute share stacked bars; values read from current problem_3_results.json.
 
-本图讲什么：C∈{1e19,1e22,1e24} FLOPs 三档预算、三种质量成本函数 g(Q)（指数/幂/
-  对数）下的最优算力分配结构 C_train:C_Q:C_attn，并列 Chinchilla 等分基线
-  （N=D、Q=Q0、无质量投入）作对照。随预算上升，质量投入份额 s_Q 单调收缩、训练
-  份额 s_train 扩张；三种 g(Q) 形式下方向一致，说明结构性结论对成本函数形式不
-  敏感。柱顶数字为该配置达到的最优损失 L*。
-数据来源：figures/problem_3_results.json['optimal_allocation']（by_gtype 的
-  shares/L + baseline_chinchilla）← SLSQP 多起点 + KKT 校验，L_ctx=2048。
-关键数值：exp 型 s_Q 从 14.34%(1e19) → 8.57%(1e22) → 1.51%(1e24)；
-  对应 L* 3.098 → 2.151 → 1.914；基线 1e22 的 L=2.424 劣于最优 2.151。
-版式：原生 6.6×4.5in；顶部 GridSpec 专用行放公共图例，主轴双层 x 轴（柱=方案、
-  组=预算），柱顶 L* 竖排数值留 28% 净空，互不遮挡。
+Preserves the original layout, palette, marks, and dimensions.
 """
 import sys
 import os

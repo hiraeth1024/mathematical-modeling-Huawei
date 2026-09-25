@@ -1,17 +1,19 @@
 \section{附录：核心算法代码摘录}
 \label{app:core-code}
 
-下列代码直接摘自随文提交的四个计算脚本，展示模型计算的关键步骤；批量数据处理、绘图、结果写出和重复性检查等实现细节不在纸质附录中展开。完整可运行程序见电子材料的 \texttt{code/problem1.py}--\texttt{code/problem4.py}，参数定义见 \texttt{code/params.py}。
+下列代码摘自随文提交的计算脚本，仅展示关键算法；数据摄入、绘图和结果写出等实现不在纸质附录展开。完整程序见电子材料的 \texttt{code/}，问题一的语义解码和固定参照评分见 \texttt{quality\_scoring.py} 与 \texttt{q1\_pipeline.py}。
 
 % 以下 firstline/lastline 对应随文提交的源文件；修改源文件时须同步核对范围。
 
 \subsection{问题一：质量评分与配比回归}
 
-\lstinputlisting[style=pythonstyle,firstline=88,lastline=132,caption={主样本归一化基准与熵权计算},label={code:q1-score}]{../code/problem1.py}
+\lstinputlisting[style=pythonstyle,firstline=41,lastline=75,caption={二分类与六分类信号的语义解码},label={code:q1-score}]{../code/quality_scoring.py}
 
-\lstinputlisting[style=pythonstyle,firstline=146,lastline=151,caption={综合质量评分},label={code:q1-quality}]{../code/problem1.py}
+\lstinputlisting[style=pythonstyle,firstline=117,lastline=142,caption={A1 固定百分位与三组平衡评分},label={code:q1-quality}]{../code/quality_scoring.py}
 
-\lstinputlisting[style=pythonstyle,firstline=290,lastline=320,caption={单纯形配比回归及可识别系数编码},label={code:q1-mixture}]{../code/problem1.py}
+\lstinputlisting[style=pythonstyle,firstline=54,lastline=59,caption={高教育价值与广告判定的冲突条件},label={code:q1-conflict}]{../code/q1_pipeline.py}
+
+\lstinputlisting[style=pythonstyle,firstline=55,lastline=72,caption={单纯形配比回归及可识别系数编码},label={code:q1-mixture}]{../code/problem1.py}
 
 \subsection{问题二：经典与广义标度律}
 

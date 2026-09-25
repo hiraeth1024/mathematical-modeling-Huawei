@@ -129,6 +129,7 @@ def normalize(df: pd.DataFrame, reference: dict) -> pd.DataFrame:
 
 
 def balanced_weights() -> dict[str, float]:
+    """Predeclared equal group shares and equal within-group shares, not entropy weights."""
     return {name: 1 / (len(GROUPS) * len(members))
             for members in GROUPS.values() for name in members}
 

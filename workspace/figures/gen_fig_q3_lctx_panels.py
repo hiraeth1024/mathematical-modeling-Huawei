@@ -1,19 +1,7 @@
 # -*- coding: utf-8 -*-
-"""fig_q3_lctx_panels — 最优配置随上下文长度的敏感性 [4-panel]（配方 basic #12）。
+"""Q3 context-length sensitivity panels using current recomputed values.
 
-本图讲什么：固定预算 C=1e22 FLOPs、g(Q)=指数型，把 L_ctx 从 2048 扫到 131072
-  （C7 实际取值集合），看最优解如何被注意力开销挤压：
-  (a) N* 与 D* 同步下降（算力被 C_attn 抽走）；
-  (b) Q* 反而上升并顶到上界 1.0（质量是相对更便宜的降损手段）；
-  (c) 最优损失 L* 单调恶化；
-  (d) 三项份额重组，s_attn 从 5.8% 涨到 77.6% 并在 L_ctx≥32768 时超过 s_train。
-  各面板竖线为解析临界值 L_ctx^crit=6/η=30000 tokens，恰落在 8192 与 32768 之间。
-数据来源：figures/problem_3_results.json['lctx_sensitivity']（panels 5 点 +
-  Lctx_crit）← 与 output/q3_lctx_sensitivity.json 同源，SLSQP 逐点求解。
-关键数值：N* 5.516→2.553；D* 258.6→115.9；Q* 0.968→1.0；L* 2.151→2.275；
-  s_attn 5.84%→77.58%；L_ctx^crit=30000（解析=数值，check 通过）。
-版式：原生 5.9×5.4in，2×2 面板；各面板纵轴含义不同故分别标注，横轴同为
-  L_ctx（对数）只在下排标注。
+The original four-panel layout and styling are preserved.
 """
 import sys
 import os

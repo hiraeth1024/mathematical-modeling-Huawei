@@ -1,3 +1,5 @@
+> **更新（2026-09-25）：** 本文以下为旧评分口径的历史结果，问题一及依赖它的问题三数值已由本轮重算取代。当前结果见 [问题一评审](../question1/REVIEW_2026-09-25.md)、`figures/problem_1_results.json` 与 `figures/problem_3_results.json`。新 Q0=0.487876，A1 冲突率=0.303%，质量份额候选转移约 1e19 FLOPs。
+
 # 计算结果报告：算力约束下提升大语言模型能力的资源配置建模（华为杯 F 题）
 
 > 本报告汇总 comp-code 阶段四个子问题的方法、真实计算结果与验证结论。所有数值由 `code/*.py` 在全量附件数据上运行产出，结果落盘 `figures/problem_*_results.json` 与 `output/*`。随机种子 `seed=42`；运行环境 Python 3.11.9 / numpy 2.4.6 / scipy 1.17.1 / pandas 2.3.3 / scikit-learn 1.8.0 / statsmodels 0.14.6 / lightgbm 4.6.0。
