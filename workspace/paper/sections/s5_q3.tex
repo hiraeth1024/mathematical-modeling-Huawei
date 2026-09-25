@@ -1,0 +1,107 @@
+\section{问题三：算力约束下的资源配置优化与结构性转移}
+
+本章在总算力预算有限时，求使损失最小的参数量、数据量与质量配置，并分析预算跨量级时最优策略是否发生质变。目标函数取自问题二的广义标度律，约束为三部分算力之和不超预算。
+
+\subsection{优化模型}
+决策变量为参数量 $N>0$、数据量 $\Dt>0$ 与质量 $Q\in(0,1]$。$N,\Dt$ 分别以十亿参数、十亿 token 为单位；记 $U=10^9$，则物理计数为 $UN,U\Dt$。上下文长度 $\Lctx$ 为外生参数，配比在当前数值模型中固定。目标与 FLOPs 约束为
+\begin{align}
+\min_{N,\Dt,Q}\ & L(N,\Dt,Q)=E+A\,N^{-\alpha}+B\,\bigl(Q^{\theta}\Dt\bigr)^{-\beta},
+\label{eq:q3-obj}\\
+\text{s.t.}\ & \underbrace{6U^2N\Dt}_{\Ctrain}
++\underbrace{U\Dt\,[g(Q)-g(Q_0)]_+}_{C_Q}
++\underbrace{\eta U^2N\Dt\Lctx}_{\Cattn}\ \le\ C,
+\label{eq:q3-budget}\\
+& 0<Q\le 1,\qquad N>0,\ \Dt>0,
+\label{eq:q3-dom}
+\end{align}
+其中基础训练开销取 Chinchilla 系数 $6$（每参数每 token 约 $6$ FLOPs，仅在标准 dense transformer 下成立）。注意力开销是工程一阶近似，$\eta=2\times10^{-4}$。$g(Q)$ 为每个物理 token 的质量成本，取指数、幂、对数三型之一；$[\cdot]_+$ 表示仅当质量超过基线 $Q_0$ 时计增量成本。重新评分后，问题一七域中位数给出 $Q_0=0.48788$。此基线取决于 A1 百分位评分口径，不能与旧评分数值直接比较。显式写出 $U$ 可避免把“十亿”为单位的标度律变量直接代入物理 FLOPs 公式。
+
+\subsection{KKT 解析刻画}
+预算约束在最优处通常取等号，因为增大任一因素都降损失、必用尽预算。在 $Q>Q_0$ 的活跃段构造 Lagrange 函数
+\begin{equation}
+\mathcal L=E+A N^{-\alpha}+B(Q^{\theta}\Dt)^{-\beta}
++\mu\bigl(U^2N\Dt(6+\eta\Lctx)+U\Dt[g(Q)-g(Q_0)]-C\bigr),
+\label{eq:q3-lagr}
+\end{equation}
+其一阶条件为
+\begin{align}
+\partial_N\mathcal L&=-\alpha A N^{-\alpha-1}+\mu U^2\Dt(6+\eta\Lctx)=0,
+\label{eq:q3-kkt-n}\\
+\partial_D\mathcal L&=-\beta B Q^{-\theta\beta}\Dt^{-\beta-1}
++\mu\bigl(U^2N(6+\eta\Lctx)+U[g(Q)-g(Q_0)]\bigr)=0,
+\label{eq:q3-kkt-d}\\
+\partial_Q\mathcal L&=-\theta\beta B Q^{-\theta\beta-1}\Dt^{-\beta}
++\mu U\Dt\,g'(Q)=0 .
+\label{eq:q3-kkt-q}
+\end{align}
+由式~\eqref{eq:q3-kkt-n}--\eqref{eq:q3-kkt-d} 可消去乘子 $\mu$，得到参数量与数据量的边际平衡关系\cite{hoffmann2022}。质量条件须分段理解：$Q<Q_0$ 时提高质量不增加 $C_Q$ 却降低损失，故候选最优解不会停在该段；在 $Q=Q_0$ 处比较铰链两侧的单边导数，在 $Q_0<Q<1$ 的内点使用式~\eqref{eq:q3-kkt-q} 的边际收益等于边际成本条件，在 $Q=1$ 时检查上界条件。以上均为局部必要条件，不能单独证明全局最优。
+
+\subsection{数值求解}
+KKT 给出候选解的局部条件；数值上用序列二次规划配合多起点搜索\cite{sqp1995}。为避免变量尺度悬殊，对参数量与数据量取对数尺度 $(\ln N,\ln\Dt,Q)$，预算约束以非线性约束形式送入求解器；每档预算取不少于 $20$ 个初值，报告其中损失最低的可行解；多起点搜索不能证明全局最优。三档预算 $C\in\{10^{19},10^{22},10^{24}\}$，并在预算对数区间连续扫描以刻画转移；三型质量成本分别求解以比较其对最优解的影响。表~\ref{tab:q3_allocation} 汇总结果。
+
+\textbf{可复现求解步骤。}
+\begin{enumerate}[leftmargin=2em,itemsep=0pt,topsep=0.2em]
+  \item 固定预算 $C$、成本函数 $g$ 与上下文长度；以式~\eqref{eq:q3-budget} 构造归一化可行余量 $(C-C_{\mathrm{tot}})/C\ge0$。
+  \item 在 $(\ln N,\ln\Dt,Q)$ 空间取一个近似规模--数据平衡初值和其余随机初值，随机种子固定为 $42$；数值边界取 $N\in[10^{-3},10^5]$、$\Dt\in[10^{-2},10^6]$、$Q\in[10^{-3},1]$。三档主预算各用 $20$ 个初值，连续预算扫描用 $12$ 个。
+  \item 对每个初值运行 SLSQP（最多 $500$ 次迭代，目标容差 $10^{-12}$）；只保留重算后满足 $C_{\mathrm{tot}}\le C(1+10^{-6})$ 的候选，按损失选最低者。该可行性筛选不等于全局最优证书。
+\end{enumerate}
+结构转移计算在 $\log_{10}C\in[18,25]$ 的 $36$ 个网格点上重复搜索，再对质量算力份额作数值差分；网格峰值应视作候选位置而非精确物理阈值。
+以指数型质量成本和 $C=10^{22}$ FLOPs 为例，候选配置为约 $5.483$B 参数、$261.4$B token、$Q=0.9665$。代回物理成本式，基础训练、质量与注意力开销分别约占预算的 $0.860$、$0.081$、$0.059$，三项之和约为 $1$。这一回代检验能发现单位错误或越预算解，但不能检验损失模型在该配置处的外推精度。
+
+\input{../figures/TABLE_q3_allocation.tex}
+
+预算增大时指数型下的候选最低损失从 $3.073$ 经 $2.151$ 降至 $1.914$，逐步趋近不可约损失 $1.69$，参数量与数据量单调增，预算利用率约 $100\%$。相对质量固定为当前 $Q_0$、规模等分的 Chinchilla 对照方案，三档损失改善依次为 $0.234$、$0.131$、$0.080$。低预算时幂型与对数型的候选 $Q$ 均停在 $Q_0$，指数型略升至 $0.506$；成本函数的区别仍会改变中档资源配置（表~\ref{tab:q3_allocation}）。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q3_allocation_stacked.pdf}
+  \caption{三档预算下的算力份额构成}
+  \label{fig:q3_allocation}
+\end{figure}
+
+指数型三档中的基础训练份额为 $0.920$、$0.860$、$0.923$；质量份额为 $0.017$、$0.081$、$0.015$，并非单调变化（图~\ref{fig:q3_allocation}）。因此用连续预算扫描寻找候选结构转移位置。
+
+\subsection{结构性转移的定义与识别}
+给出可判定定义：以各部分算力份额 $s_X(C)=C_X^\ast/C$ 对预算对数的导数峰值定位转移点，
+\begin{equation}
+C^{\dagger}=\arg\max_{C}\ \left|\frac{\mathrm d\,s_X(C)}{\mathrm d\,\log C}\right| ,
+\label{eq:q3-transition}
+\end{equation}
+并检查数值解是否触及质量边界或质量成本铰链。连续扫描预算对数区间、数值差分求份额导数可给出候选转移点；离散网格和成本函数选择会影响其位置。
+
+\textbf{结果。}在 $\theta=0.5$、指数型质量成本和当前 $36$ 点扫描网格下，质量份额导数的最大绝对值约在 $10^{19}$ FLOPs，作为模型内候选转移点；质量成本首次激活约在 $3.98\times10^{18}$ FLOPs。位置依赖评分基线、成本函数、网格与多起点搜索，不是纯数据驱动的物理阈值。转移点见图~\ref{fig:q3_transition}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q3_transition_line.pdf}
+  \caption{最优份额演化与结构性转移点}
+  \label{fig:q3_transition}
+\end{figure}
+
+份额随预算对数演化曲线上叠加的份额导数，其峰值位置即由式~\eqref{eq:q3-transition} 定位的转移点（图~\ref{fig:q3_transition}）。由于该最优轨迹来自确定性优化、不存在重复抽样，图中不画置信带，而以份额导数曲线的峰值给出结构判据，当前实现未计算 KKT 残差，不能用一阶条件数值精度为转移位置背书。
+
+\subsection{上下文长度的临界值与敏感性}
+上下文长度为外生参数。令注意力开销等于训练开销 $\eta N\Dt\Lctx=6N\Dt$，与参数量、数据量无关，解得临界上下文
+\begin{equation}
+\Lctx^{\mathrm{crit}}=\frac{6}{\eta}=\frac{6}{2\times10^{-4}}=3\times10^{4}\ \text{tokens}.
+\label{eq:q3-lctxcrit}
+\end{equation}
+当上下文长度达到该值时注意力开销与训练开销相当，超过它长上下文将显著挤压训练预算。敏感性扫描的取值严格取自模型架构元数据的实测集，即 $2048$、$4096$、$8192$、$32768$ 与 $131072$。图~\ref{fig:q3_lctx} 展示最优配置随上下文长度的变化。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q3_lctx_panels.pdf}
+  \caption{最优配置随上下文长度的变化}
+  \label{fig:q3_lctx}
+\end{figure}
+
+在中档预算下，上下文由 $2048$ 增至 $131072$ 时，注意力份额从约 $0.059$ 升至约 $0.777$（图~\ref{fig:q3_lctx}）。临界值 $3\times10^{4}$ 位于 $8192$ 与 $32768$ 之间；上下文不小于 $32768$ 时，按当前成本模型，注意力开销超过基础训练开销。可行域见图~\ref{fig:tikz_q3_feasible}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{tikz_q3_feasible.pdf}
+  \caption{算力预算可行域与结构转移}
+  \label{fig:tikz_q3_feasible}
+\end{figure}
+
+在参数量--数据量--质量空间中，式~\eqref{eq:q3-budget} 的预算面与候选解位置表明预算约束活跃（图~\ref{fig:tikz_q3_feasible}）。综合本章：预算增大使候选最小损失下降；当前扫描显示约 $10^{19}$ FLOPs 的质量份额变化峰值，长上下文在 $3\times10^{4}$ tokens 附近使注意力开销赶上基础训练开销。

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><title>r</title><style>
+html,body{margin:0;padding:0;width:fit-content;height:fit-content;background:transparent}
+.fig,.fig *{font-family:"Times New Roman","SimSun","Songti SC","Microsoft YaHei",serif;
+  font-style:normal!important;-webkit-font-smoothing:antialiased;box-sizing:border-box}
+.fig{width:fit-content;height:fit-content;background:transparent;padding:20px 26px;
+  display:grid;grid-template-columns:210px 34px 196px;column-gap:12px;row-gap:5px;
+  align-items:center;--e:#000;--t:#000}
+/* ---- 节点：纯白底、直角、黑细线；层次靠线型与字重，不靠灰阶 ---- */
+.n{border:1px solid var(--e);background:#fff;color:var(--t);padding:6px 9px;text-align:center;
+  line-height:1.34;width:100%}
+.n .a{display:block;font-size:12.5px;font-weight:600}
+.n .b{display:block;font-size:12px;font-weight:500}
+.sup{border:0.9px dashed var(--e)}
+.out{border:1px solid var(--e);border-left:2px solid var(--e);padding:7px 10px}
+.out .a{font-size:13px;font-weight:700}
+/* ---- 中轴：刻度徽标 + 粗实竖箭头 ---- */
+.ax{grid-column:2;display:flex;flex-direction:column;align-items:center;justify-self:center}
+.bd{border:1px solid var(--e);background:#fff;padding:3px 0;width:34px;text-align:center}
+.bd .st{display:block;font-size:11px;font-weight:700;line-height:1.2}
+.ar{display:flex;flex-direction:column;align-items:center;justify-self:center}
+.ar i{display:block;width:1.8px;height:9px;background:var(--e)}
+.ar u{display:block;width:0;height:0;border-top:7px solid var(--e);
+  border-left:4.5px solid transparent;border-right:4.5px solid transparent}
+/* ---- 输入基座：三源并列，细虚线分组 ---- */
+.base{grid-column:1/4;display:grid;grid-template-columns:repeat(3,1fr);column-gap:12px;
+  border:0.9px dashed var(--e);padding:8px 10px}
+.tag{display:inline-block;border:0.9px solid var(--e);padding:1px 5px;font-size:11px;
+  font-weight:600;margin-bottom:4px}
+/* ---- 反馈：由问题二回指问题一的虚线上行边（真实存在的方向反校） ---- */
+.fb{grid-column:3;display:flex;align-items:center;justify-content:center;gap:5px;
+  font-size:11px;font-weight:500;line-height:1.2}
+.fb .up{display:flex;flex-direction:column;align-items:center}
+.fb .up u{display:block;width:0;height:0;border-bottom:6px solid var(--e);
+  border-left:4px solid transparent;border-right:4px solid transparent}
+.fb .up i{display:block;width:0;height:11px;border-left:1.4px dashed var(--e)}
+.span{grid-column:1/4;display:flex;justify-content:center}
+.span .n{width:auto;max-width:430px}
+@page{size:5.4033in 4.7767in;margin:0}</style></head>
+<body><div class="fig" data-mh-palette="mono" data-mh-quality="roadmap-v2">
+
+  <!-- 行1 数据基座 -->
+  <div class="base" style="grid-row:1">
+    <div class="n sup" data-mh-node="true" data-mh-role="input" data-mh-row="1">
+      <span class="a">A 组　质量信号与域配比实验</span></div>
+    <div class="n sup" data-mh-node="true" data-mh-role="input" data-mh-row="1">
+      <span class="a">B 组　参数—数据轨迹与质量分</span></div>
+    <div class="n sup" data-mh-node="true" data-mh-role="input" data-mh-row="1">
+      <span class="a">C 组　开源榜单与逐任务明细</span></div>
+  </div>
+
+  <div class="ar" style="grid-row:2;grid-column:2" data-mh-col="2"><i></i><u></u></div>
+
+  <!-- 行3 问题一 -->
+  <div class="n" style="grid-row:3;grid-column:1" data-mh-node="true" data-mh-col="1">
+    <span class="a">多指标综合评价与配比回归</span>
+    <span class="b">列表压缩 · 方向统一 · 熵权赋权</span></div>
+  <div class="ax" style="grid-row:3" data-mh-col="2">
+    <div class="bd" data-mh-role="stage"><span class="st">问题一</span></div></div>
+  <div class="n" style="grid-row:3;grid-column:3" data-mh-node="true" data-mh-col="3">
+    <span class="a">域级质量 Q</span><span class="b">配比 → 域损失系数</span></div>
+
+  <div class="ar" style="grid-row:4;grid-column:2" data-mh-col="2"><i></i><u></u></div>
+  <div class="fb" style="grid-row:4"><span class="up"><u></u><i></i></span><span>质量标度口径校验</span></div>
+
+  <!-- 行5 问题二 -->
+  <div class="n" style="grid-row:5;grid-column:1" data-mh-node="true" data-mh-col="1">
+    <span class="a">标度律拟合与推广</span>
+    <span class="b">对数域稳健拟合 · 质量折算有效数据</span></div>
+  <div class="ax" style="grid-row:5" data-mh-col="2">
+    <div class="bd" data-mh-role="stage"><span class="st">问题二</span></div></div>
+  <div class="n" style="grid-row:5;grid-column:3" data-mh-node="true" data-mh-col="3">
+    <span class="a">广义标度律 L(N,D,Q)</span><span class="b">弹性与质量—参数替代条件</span></div>
+
+  <div class="ar" style="grid-row:6;grid-column:2" data-mh-col="2"><i></i><u></u></div>
+
+  <!-- 行7 问题三 -->
+  <div class="n" style="grid-row:7;grid-column:1" data-mh-node="true" data-mh-col="1">
+    <span class="a">预算约束下的配置优化</span>
+    <span class="b">训练 · 质量 · 注意力三项开销求和</span></div>
+  <div class="ax" style="grid-row:7" data-mh-col="2">
+    <div class="bd" data-mh-role="stage"><span class="st">问题三</span></div></div>
+  <div class="n" style="grid-row:7;grid-column:3" data-mh-node="true" data-mh-col="3">
+    <span class="a">可行配置 N · D · Q 与转移点</span><span class="b">份额拐点 · 上下文临界长度</span></div>
+
+  <div class="ar" style="grid-row:8;grid-column:2" data-mh-col="2"><i></i><u></u></div>
+
+  <!-- 行9 问题四 -->
+  <div class="n" style="grid-row:9;grid-column:1" data-mh-node="true" data-mh-col="1">
+    <span class="a">贡献分解与能力桥接</span>
+    <span class="b">控制规模的时间趋势 · 分层单调映射</span></div>
+  <div class="ax" style="grid-row:9" data-mh-col="2">
+    <div class="bd" data-mh-role="stage"><span class="st">问题四</span></div></div>
+  <div class="n" style="grid-row:9;grid-column:3" data-mh-node="true" data-mh-col="3">
+    <span class="a">能力前沿分位带</span><span class="b">规模/年份回归份额 · 逐任务短板</span></div>
+
+  <div class="ar" style="grid-row:10;grid-column:2" data-mh-col="2"><i></i><u></u></div>
+
+  <!-- 行11 综合输出（唯一焦点） -->
+  <div class="span" style="grid-row:11">
+    <div class="n out" data-mh-node="true" data-mh-focus="true" data-mh-role="output">
+      <span class="a">算力受限下的资源配置准则与能力前沿判断</span></div>
+  </div>
+
+</div></body></html>

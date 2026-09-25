@@ -1,0 +1,2624 @@
+{
+  "results": {
+    "leaderboard": {
+      "acc_norm,none": 0.38656116227785703,
+      "acc_norm_stderr,none": 0.005250874283470342,
+      "prompt_level_strict_acc,none": 0.678373382624769,
+      "prompt_level_strict_acc_stderr,none": 0.020100807813645375,
+      "inst_level_strict_acc,none": 0.7601918465227818,
+      "inst_level_strict_acc_stderr,none": "N/A",
+      "acc,none": 0.35771276595744683,
+      "acc_stderr,none": 0.004369995617046206,
+      "prompt_level_loose_acc,none": 0.7375231053604436,
+      "prompt_level_loose_acc_stderr,none": 0.0189337428760446,
+      "exact_match,none": 0.0445619335347432,
+      "exact_match_stderr,none": 0.0055164122456554,
+      "inst_level_loose_acc,none": 0.8069544364508393,
+      "inst_level_loose_acc_stderr,none": "N/A",
+      "alias": "leaderboard"
+    },
+    "leaderboard_bbh": {
+      "acc_norm,none": 0.41433778857837184,
+      "acc_norm_stderr,none": 0.006112605498758442,
+      "alias": " - leaderboard_bbh"
+    },
+    "leaderboard_bbh_boolean_expressions": {
+      "acc_norm,none": 0.788,
+      "acc_norm_stderr,none": 0.025901884690541117,
+      "alias": "  - leaderboard_bbh_boolean_expressions"
+    },
+    "leaderboard_bbh_causal_judgement": {
+      "acc_norm,none": 0.5828877005347594,
+      "acc_norm_stderr,none": 0.0361545093114083,
+      "alias": "  - leaderboard_bbh_causal_judgement"
+    },
+    "leaderboard_bbh_date_understanding": {
+      "acc_norm,none": 0.26,
+      "acc_norm_stderr,none": 0.027797315752644335,
+      "alias": "  - leaderboard_bbh_date_understanding"
+    },
+    "leaderboard_bbh_disambiguation_qa": {
+      "acc_norm,none": 0.304,
+      "acc_norm_stderr,none": 0.02915021337415965,
+      "alias": "  - leaderboard_bbh_disambiguation_qa"
+    },
+    "leaderboard_bbh_formal_fallacies": {
+      "acc_norm,none": 0.528,
+      "acc_norm_stderr,none": 0.031636489531544396,
+      "alias": "  - leaderboard_bbh_formal_fallacies"
+    },
+    "leaderboard_bbh_geometric_shapes": {
+      "acc_norm,none": 0.272,
+      "acc_norm_stderr,none": 0.028200088296309975,
+      "alias": "  - leaderboard_bbh_geometric_shapes"
+    },
+    "leaderboard_bbh_hyperbaton": {
+      "acc_norm,none": 0.516,
+      "acc_norm_stderr,none": 0.03166998503010743,
+      "alias": "  - leaderboard_bbh_hyperbaton"
+    },
+    "leaderboard_bbh_logical_deduction_five_objects": {
+      "acc_norm,none": 0.3,
+      "acc_norm_stderr,none": 0.029040893477575783,
+      "alias": "  - leaderboard_bbh_logical_deduction_five_objects"
+    },
+    "leaderboard_bbh_logical_deduction_seven_objects": {
+      "acc_norm,none": 0.192,
+      "acc_norm_stderr,none": 0.024960691989171963,
+      "alias": "  - leaderboard_bbh_logical_deduction_seven_objects"
+    },
+    "leaderboard_bbh_logical_deduction_three_objects": {
+      "acc_norm,none": 0.54,
+      "acc_norm_stderr,none": 0.031584653891499004,
+      "alias": "  - leaderboard_bbh_logical_deduction_three_objects"
+    },
+    "leaderboard_bbh_movie_recommendation": {
+      "acc_norm,none": 0.56,
+      "acc_norm_stderr,none": 0.03145724452223569,
+      "alias": "  - leaderboard_bbh_movie_recommendation"
+    },
+    "leaderboard_bbh_navigate": {
+      "acc_norm,none": 0.624,
+      "acc_norm_stderr,none": 0.03069633626739458,
+      "alias": "  - leaderboard_bbh_navigate"
+    },
+    "leaderboard_bbh_object_counting": {
+      "acc_norm,none": 0.332,
+      "acc_norm_stderr,none": 0.029844039047465857,
+      "alias": "  - leaderboard_bbh_object_counting"
+    },
+    "leaderboard_bbh_penguins_in_a_table": {
+      "acc_norm,none": 0.3698630136986301,
+      "acc_norm_stderr,none": 0.04009165058801775,
+      "alias": "  - leaderboard_bbh_penguins_in_a_table"
+    },
+    "leaderboard_bbh_reasoning_about_colored_objects": {
+      "acc_norm,none": 0.44,
+      "acc_norm_stderr,none": 0.03145724452223569,
+      "alias": "  - leaderboard_bbh_reasoning_about_colored_objects"
+    },
+    "leaderboard_bbh_ruin_names": {
+      "acc_norm,none": 0.348,
+      "acc_norm_stderr,none": 0.030186568464511673,
+      "alias": "  - leaderboard_bbh_ruin_names"
+    },
+    "leaderboard_bbh_salient_translation_error_detection": {
+      "acc_norm,none": 0.368,
+      "acc_norm_stderr,none": 0.03056207062099311,
+      "alias": "  - leaderboard_bbh_salient_translation_error_detection"
+    },
+    "leaderboard_bbh_snarks": {
+      "acc_norm,none": 0.5898876404494382,
+      "acc_norm_stderr,none": 0.03696999944942627,
+      "alias": "  - leaderboard_bbh_snarks"
+    },
+    "leaderboard_bbh_sports_understanding": {
+      "acc_norm,none": 0.68,
+      "acc_norm_stderr,none": 0.02956172495524098,
+      "alias": "  - leaderboard_bbh_sports_understanding"
+    },
+    "leaderboard_bbh_temporal_sequences": {
+      "acc_norm,none": 0.224,
+      "acc_norm_stderr,none": 0.026421361687347884,
+      "alias": "  - leaderboard_bbh_temporal_sequences"
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": {
+      "acc_norm,none": 0.216,
+      "acc_norm_stderr,none": 0.02607865766373279,
+      "alias": "  - leaderboard_bbh_tracking_shuffled_objects_five_objects"
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": {
+      "acc_norm,none": 0.14,
+      "acc_norm_stderr,none": 0.021989409645240245,
+      "alias": "  - leaderboard_bbh_tracking_shuffled_objects_seven_objects"
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": {
+      "acc_norm,none": 0.352,
+      "acc_norm_stderr,none": 0.030266288057359866,
+      "alias": "  - leaderboard_bbh_tracking_shuffled_objects_three_objects"
+    },
+    "leaderboard_bbh_web_of_lies": {
+      "acc_norm,none": 0.492,
+      "acc_norm_stderr,none": 0.03168215643141386,
+      "alias": "  - leaderboard_bbh_web_of_lies"
+    },
+    "leaderboard_gpqa": {
+      "acc_norm,none": 0.26593959731543626,
+      "acc_norm_stderr,none": 0.012807139451402908,
+      "alias": " - leaderboard_gpqa"
+    },
+    "leaderboard_gpqa_diamond": {
+      "acc_norm,none": 0.29292929292929293,
+      "acc_norm_stderr,none": 0.032424979581788145,
+      "alias": "  - leaderboard_gpqa_diamond"
+    },
+    "leaderboard_gpqa_extended": {
+      "acc_norm,none": 0.2673992673992674,
+      "acc_norm_stderr,none": 0.018959004502646776,
+      "alias": "  - leaderboard_gpqa_extended"
+    },
+    "leaderboard_gpqa_main": {
+      "acc_norm,none": 0.25223214285714285,
+      "acc_norm_stderr,none": 0.02054139101648796,
+      "alias": "  - leaderboard_gpqa_main"
+    },
+    "leaderboard_ifeval": {
+      "prompt_level_strict_acc,none": 0.678373382624769,
+      "prompt_level_strict_acc_stderr,none": 0.020100807813645375,
+      "inst_level_strict_acc,none": 0.7601918465227818,
+      "inst_level_strict_acc_stderr,none": "N/A",
+      "prompt_level_loose_acc,none": 0.7375231053604436,
+      "prompt_level_loose_acc_stderr,none": 0.0189337428760446,
+      "inst_level_loose_acc,none": 0.8069544364508393,
+      "inst_level_loose_acc_stderr,none": "N/A",
+      "alias": " - leaderboard_ifeval"
+    },
+    "leaderboard_math_hard": {
+      "exact_match,none": 0.30438066465256797,
+      "exact_match_stderr,none": 0.0055164122456554,
+      "alias": " - leaderboard_math_hard"
+    },
+    "leaderboard_math_algebra_hard": {
+      "exact_match,none": 0.5570032573289903,
+      "exact_match_stderr,none": 0.013774440126929627,
+      "alias": "  - leaderboard_math_algebra_hard"
+    },
+    "leaderboard_math_counting_and_prob_hard": {
+      "exact_match,none": 0.2764227642276423,
+      "exact_match_stderr,none": 0.01950219655858808,
+      "alias": "  - leaderboard_math_counting_and_prob_hard"
+    },
+    "leaderboard_math_geometry_hard": {
+      "exact_match,none": 0.1893939393939394,
+      "exact_match_stderr,none": 0.007575757575757577,
+      "alias": "  - leaderboard_math_geometry_hard"
+    },
+    "leaderboard_math_intermediate_algebra_hard": {
+      "exact_match,none": 0.06785714285714285,
+      "exact_match_stderr,none": 0.0,
+      "alias": "  - leaderboard_math_intermediate_algebra_hard"
+    },
+    "leaderboard_math_num_theory_hard": {
+      "exact_match,none": 0.2727272727272727,
+      "exact_match_stderr,none": 0.012859058999697068,
+      "alias": "  - leaderboard_math_num_theory_hard"
+    },
+    "leaderboard_math_prealgebra_hard": {
+      "exact_match,none": 0.5129533678756477,
+      "exact_match_stderr,none": 0.025787723180723855,
+      "alias": "  - leaderboard_math_prealgebra_hard"
+    },
+    "leaderboard_math_precalculus_hard": {
+      "exact_match,none": 0.0962962962962963,
+      "exact_match_stderr,none": 0.0,
+      "alias": "  - leaderboard_math_precalculus_hard"
+    },
+    "leaderboard_mmlu_pro": {
+      "acc,none": 0.35771276595744683,
+      "acc_stderr,none": 0.004369995617046206,
+      "alias": " - leaderboard_mmlu_pro"
+    },
+    "leaderboard_musr": {
+      "acc_norm,none": 0.36507936507936506,
+      "acc_norm_stderr,none": 0.01701213964075616,
+      "alias": " - leaderboard_musr"
+    },
+    "leaderboard_musr_murder_mysteries": {
+      "acc_norm,none": 0.52,
+      "acc_norm_stderr,none": 0.03166085340849512,
+      "alias": "  - leaderboard_musr_murder_mysteries"
+    },
+    "leaderboard_musr_object_placements": {
+      "acc_norm,none": 0.234375,
+      "acc_norm_stderr,none": 0.02652733398834892,
+      "alias": "  - leaderboard_musr_object_placements"
+    },
+    "leaderboard_musr_team_allocation": {
+      "acc_norm,none": 0.344,
+      "acc_norm_stderr,none": 0.03010450339231644,
+      "alias": "  - leaderboard_musr_team_allocation"
+    }
+  },
+  "groups": {
+    "leaderboard": {
+      "acc_norm,none": 0.38656116227785703,
+      "acc_norm_stderr,none": 0.005250874283470342,
+      "prompt_level_strict_acc,none": 0.678373382624769,
+      "prompt_level_strict_acc_stderr,none": 0.020100807813645375,
+      "inst_level_strict_acc,none": 0.7601918465227818,
+      "inst_level_strict_acc_stderr,none": "N/A",
+      "acc,none": 0.35771276595744683,
+      "acc_stderr,none": 0.004369995617046206,
+      "prompt_level_loose_acc,none": 0.7375231053604436,
+      "prompt_level_loose_acc_stderr,none": 0.0189337428760446,
+      "exact_match,none": 0.0445619335347432,
+      "exact_match_stderr,none": 0.0055164122456554,
+      "inst_level_loose_acc,none": 0.8069544364508393,
+      "inst_level_loose_acc_stderr,none": "N/A",
+      "alias": "leaderboard"
+    },
+    "leaderboard_bbh": {
+      "acc_norm,none": 0.41433778857837184,
+      "acc_norm_stderr,none": 0.006112605498758442,
+      "alias": " - leaderboard_bbh"
+    },
+    "leaderboard_gpqa": {
+      "acc_norm,none": 0.26593959731543626,
+      "acc_norm_stderr,none": 0.012807139451402908,
+      "alias": " - leaderboard_gpqa"
+    },
+    "leaderboard_math_hard": {
+      "exact_match,none": 0.0445619335347432,
+      "exact_match_stderr,none": 0.0055164122456554,
+      "alias": " - leaderboard_math_hard"
+    },
+    "leaderboard_musr": {
+      "acc_norm,none": 0.36507936507936506,
+      "acc_norm_stderr,none": 0.01701213964075616,
+      "alias": " - leaderboard_musr"
+    }
+  },
+  "group_subtasks": {
+    "leaderboard_bbh": [
+      "leaderboard_bbh_navigate",
+      "leaderboard_bbh_tracking_shuffled_objects_seven_objects",
+      "leaderboard_bbh_geometric_shapes",
+      "leaderboard_bbh_sports_understanding",
+      "leaderboard_bbh_hyperbaton",
+      "leaderboard_bbh_causal_judgement",
+      "leaderboard_bbh_tracking_shuffled_objects_five_objects",
+      "leaderboard_bbh_snarks",
+      "leaderboard_bbh_penguins_in_a_table",
+      "leaderboard_bbh_formal_fallacies",
+      "leaderboard_bbh_logical_deduction_seven_objects",
+      "leaderboard_bbh_reasoning_about_colored_objects",
+      "leaderboard_bbh_boolean_expressions",
+      "leaderboard_bbh_logical_deduction_five_objects",
+      "leaderboard_bbh_temporal_sequences",
+      "leaderboard_bbh_ruin_names",
+      "leaderboard_bbh_web_of_lies",
+      "leaderboard_bbh_movie_recommendation",
+      "leaderboard_bbh_date_understanding",
+      "leaderboard_bbh_logical_deduction_three_objects",
+      "leaderboard_bbh_object_counting",
+      "leaderboard_bbh_tracking_shuffled_objects_three_objects",
+      "leaderboard_bbh_disambiguation_qa",
+      "leaderboard_bbh_salient_translation_error_detection"
+    ],
+    "leaderboard_gpqa": [
+      "leaderboard_gpqa_main",
+      "leaderboard_gpqa_diamond",
+      "leaderboard_gpqa_extended"
+    ],
+    "leaderboard_math_hard": [
+      "leaderboard_math_intermediate_algebra_hard",
+      "leaderboard_math_algebra_hard",
+      "leaderboard_math_prealgebra_hard",
+      "leaderboard_math_geometry_hard",
+      "leaderboard_math_precalculus_hard",
+      "leaderboard_math_num_theory_hard",
+      "leaderboard_math_counting_and_prob_hard"
+    ],
+    "leaderboard_musr": [
+      "leaderboard_musr_murder_mysteries",
+      "leaderboard_musr_team_allocation",
+      "leaderboard_musr_object_placements"
+    ],
+    "leaderboard": [
+      "leaderboard_musr",
+      "leaderboard_ifeval",
+      "leaderboard_math_hard",
+      "leaderboard_gpqa",
+      "leaderboard_bbh",
+      "leaderboard_mmlu_pro"
+    ]
+  },
+  "configs": {
+    "leaderboard_bbh_boolean_expressions": {
+      "task": "leaderboard_bbh_boolean_expressions",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "boolean_expressions",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "False",
+        "True"
+      ],
+      "description": "Evaluate the result of a random Boolean expression.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "not ( ( not not True ) ) is",
+            "target": "False"
+          },
+          {
+            "input": "True and False and not True and True is",
+            "target": "False"
+          },
+          {
+            "input": "not not ( not ( False ) ) is",
+            "target": "True"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_causal_judgement": {
+      "task": "leaderboard_bbh_causal_judgement",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "causal_judgement",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "Yes",
+        "No"
+      ],
+      "description": "Answer questions about causal attribution.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "How would a typical person answer each of the following questions about causation?\nFrank T., had an ongoing dispute with his neighbor over a stretch of land and one day decided to shoot his neighbor in the body. Frank T. had no experience with guns, his hand slipped on the barrel of the gun, and the shot went wild. Nonetheless, the bullet bounced off a large boulder several feet away and hit the neighbor's body, causing significant injury. Did Frank T. intentionally shoot his neighbor in the body?\nOptions:\n- Yes\n- No",
+            "target": "No"
+          },
+          {
+            "input": "How would a typical person answer each of the following questions about causation?\nSuzy and Billy are working on a project that is very important for our nation's security. The boss tells them both: \"Be sure that you are here at exactly 9 am. It is absolutely essential that you arrive at that time.\" Both Billy and Suzy arrive at 9 am. As it happens, there was a motion detector installed in the room where they arrived. The motion detector was set up to be triggered if at least one person appeared in the room at the same time. So the motion detector went off. Did Billy cause the motion detector to go off?\nOptions:\n- Yes\n- No",
+            "target": "Yes"
+          },
+          {
+            "input": "How would a typical person answer each of the following questions about causation?\nGeorge and his sister Lena reunite at their parents' house for Thanksgiving. Whereas George just got into medical school, Lena is unhappy in her marriage and recently lost her job. Over the course of the day, George and Lena get into a number of heated arguments. Later in the afternoon they play a game of darts. They split the first two games, and the third game is close until the end. Who will win comes down to George's last shot. If he hits a high point region, he wins; if he hits a low point region, Lena wins. George thinks of the difficult time Lena is having, and he really wants to let her win. He aims the dart at the low point region. He sets up his shot and the dart lands in the low point region. After his shot, Lena wins the game and is very happy. Did George hit the low point region intentionally?\nOptions:\n- Yes\n- No",
+            "target": "Yes"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_date_understanding": {
+      "task": "leaderboard_bbh_date_understanding",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "date_understanding",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)"
+      ],
+      "description": "Infer the date from context.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Today is Christmas Eve of 1937. What is the date 10 days ago in MM/DD/YYYY?\nOptions:\n(A) 12/14/2026\n(B) 12/14/1950\n(C) 12/14/2007\n(D) 12/14/1937\n(E) 07/14/1938\n(F) 12/14/1988",
+            "target": "(D)"
+          },
+          {
+            "input": "Tomorrow is 11/12/2019. What is the date one year ago from today in MM/DD/YYYY?\nOptions:\n(A) 09/04/2018\n(B) 11/11/2018\n(C) 08/25/2018\n(D) 11/02/2018\n(E) 11/04/2018",
+            "target": "(B)"
+          },
+          {
+            "input": "Jane and John married on Jan 2, 1958. It is their 5-year anniversary today. What is the date tomorrow in MM/DD/YYYY?\nOptions:\n(A) 01/11/1961\n(B) 01/03/1963\n(C) 01/18/1961\n(D) 10/14/1960\n(E) 01/03/1982\n(F) 12/03/1960",
+            "target": "(B)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_disambiguation_qa": {
+      "task": "leaderboard_bbh_disambiguation_qa",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "disambiguation_qa",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)"
+      ],
+      "description": "Clarify the meaning of sentences with ambiguous pronouns.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "In the following sentences, explain the antecedent of the pronoun (which thing the pronoun refers to), or state that it is ambiguous.\nSentence: The chief told the counselor that they took the day off.\nOptions:\n(A) The chief took the day off\n(B) The counselor took the day off\n(C) Ambiguous",
+            "target": "(A)"
+          },
+          {
+            "input": "In the following sentences, explain the antecedent of the pronoun (which thing the pronoun refers to), or state that it is ambiguous.\nSentence: The manager sent a message to the secretary, but he didn't reply yet.\nOptions:\n(A) The secretary didn't reply yet\n(B) The manager didn't reply yet\n(C) Ambiguous",
+            "target": "(A)"
+          },
+          {
+            "input": "In the following sentences, explain the antecedent of the pronoun (which thing the pronoun refers to), or state that it is ambiguous.\nSentence: Bailey will plan to meet the director at his office\nOptions:\n(A) It will be Bailey's office\n(B) It will be the director's office\n(C) Ambiguous",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_formal_fallacies": {
+      "task": "leaderboard_bbh_formal_fallacies",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "formal_fallacies",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "valid",
+        "invalid"
+      ],
+      "description": "Distinguish deductively valid arguments from formal fallacies.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "\"It is not always easy to see who is related to whom -- and in which ways. The following argument pertains to this question: To begin with, Lesley is a close friend of Fernando. Moreover, being a close friend of Fernando or a schoolmate of Lowell is sufficient for being a great-grandfather of Leroy. It follows that Lesley is a great-grandfather of Leroy.\"\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\nOptions:\n- valid\n- invalid",
+            "target": "valid"
+          },
+          {
+            "input": "\"It is not always easy to see who is related to whom -- and in which ways. The following argument pertains to this question: Whoever is not a great-grandfather of Clyde is a stepbrother of Brian. Being an ancestor of Dana is sufficient for not being a great-grandfather of Clyde. We may conclude: Everyone who is an ancestor of Dana is a stepbrother of Brian, too.\"\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\nOptions:\n- valid\n- invalid",
+            "target": "valid"
+          },
+          {
+            "input": "\"It is not always easy to grasp who is consuming which products. The following argument pertains to this question: Every infrequent user of Paul Mitchell shampoo is either a rare consumer of Nioxin shampoo or a loyal buyer of Caress soap, or both. No regular consumer of Lush soap is a rare consumer of Nioxin shampoo and, in the same time, a loyal buyer of Caress soap. It follows that whoever is an infrequent user of Paul Mitchell shampoo is not a regular consumer of Lush soap.\"\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\nOptions:\n- valid\n- invalid",
+            "target": "invalid"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_geometric_shapes": {
+      "task": "leaderboard_bbh_geometric_shapes",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "geometric_shapes",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)",
+        "(G)",
+        "(H)",
+        "(I)",
+        "(J)",
+        "(K)"
+      ],
+      "description": "Name geometric shapes from their SVG paths.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "This SVG path element <path d=\"M 31.00,73.00 L 32.00,59.00 L 44.00,50.00 L 49.00,41.00 L 64.00,37.00 L 71.00,55.00 L 64.00,76.00 L 52.00,61.00 L 31.00,73.00\"/> draws a\nOptions:\n(A) circle\n(B) heptagon\n(C) hexagon\n(D) kite\n(E) line\n(F) octagon\n(G) pentagon\n(H) rectangle\n(I) sector\n(J) triangle",
+            "target": "(F)"
+          },
+          {
+            "input": "This SVG path element <path d=\"M 14.19,26.04 L 51.43,39.21 L 58.44,36.69 L 56.63,30.17 L 48.53,26.66 L 14.19,26.04\"/> draws a\nOptions:\n(A) circle\n(B) heptagon\n(C) hexagon\n(D) kite\n(E) line\n(F) octagon\n(G) pentagon\n(H) rectangle\n(I) sector\n(J) triangle",
+            "target": "(G)"
+          },
+          {
+            "input": "This SVG path element <path d=\"M 41.00,43.00 L 37.00,34.00 L 41.00,33.00 L 45.00,34.00 L 41.00,43.00\"/> draws a\nOptions:\n(A) circle\n(B) heptagon\n(C) hexagon\n(D) kite\n(E) line\n(F) octagon\n(G) pentagon\n(H) rectangle\n(I) sector\n(J) triangle",
+            "target": "(D)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_hyperbaton": {
+      "task": "leaderboard_bbh_hyperbaton",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "hyperbaton",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)"
+      ],
+      "description": "Order adjectives correctly in English sentences.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Which sentence has the correct adjective order:\nOptions:\n(A) rubber terrible ship\n(B) terrible rubber ship",
+            "target": "(B)"
+          },
+          {
+            "input": "Which sentence has the correct adjective order:\nOptions:\n(A) repulsive small Brazilian exercise ship\n(B) Brazilian repulsive exercise small ship",
+            "target": "(A)"
+          },
+          {
+            "input": "Which sentence has the correct adjective order:\nOptions:\n(A) blue gold wonderful square shoe\n(B) wonderful square blue gold shoe",
+            "target": "(B)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_logical_deduction_five_objects": {
+      "task": "leaderboard_bbh_logical_deduction_five_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "logical_deduction_five_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)"
+      ],
+      "description": "A logical deduction task which requires deducing the order of a sequence of objects.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Amy, Eli, and Eve. Eve finished above Amy. Eli finished below Amy.\nOptions:\n(A) Amy finished last\n(B) Eli finished last\n(C) Eve finished last",
+            "target": "(B)"
+          },
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a white book, a green book, and an orange book. The green book is to the right of the white book. The orange book is the rightmost.\nOptions:\n(A) The white book is the leftmost\n(B) The green book is the leftmost\n(C) The orange book is the leftmost",
+            "target": "(A)"
+          },
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a red book, a gray book, and a white book. The white book is to the left of the gray book. The red book is the second from the left.\nOptions:\n(A) The red book is the leftmost\n(B) The gray book is the leftmost\n(C) The white book is the leftmost",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_logical_deduction_seven_objects": {
+      "task": "leaderboard_bbh_logical_deduction_seven_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "logical_deduction_seven_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)",
+        "(G)"
+      ],
+      "description": "A logical deduction task which requires deducing the order of a sequence of objects.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Amy, Eli, and Eve. Eve finished above Amy. Eli finished below Amy.\nOptions:\n(A) Amy finished last\n(B) Eli finished last\n(C) Eve finished last",
+            "target": "(B)"
+          },
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a white book, a green book, and an orange book. The green book is to the right of the white book. The orange book is the rightmost.\nOptions:\n(A) The white book is the leftmost\n(B) The green book is the leftmost\n(C) The orange book is the leftmost",
+            "target": "(A)"
+          },
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a red book, a gray book, and a white book. The white book is to the left of the gray book. The red book is the second from the left.\nOptions:\n(A) The red book is the leftmost\n(B) The gray book is the leftmost\n(C) The white book is the leftmost",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_logical_deduction_three_objects": {
+      "task": "leaderboard_bbh_logical_deduction_three_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "logical_deduction_three_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)"
+      ],
+      "description": "A logical deduction task which requires deducing the order of a sequence of objects.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Amy, Eli, and Eve. Eve finished above Amy. Eli finished below Amy.\nOptions:\n(A) Amy finished last\n(B) Eli finished last\n(C) Eve finished last",
+            "target": "(B)"
+          },
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a white book, a green book, and an orange book. The green book is to the right of the white book. The orange book is the rightmost.\nOptions:\n(A) The white book is the leftmost\n(B) The green book is the leftmost\n(C) The orange book is the leftmost",
+            "target": "(A)"
+          },
+          {
+            "input": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a red book, a gray book, and a white book. The white book is to the left of the gray book. The red book is the second from the left.\nOptions:\n(A) The red book is the leftmost\n(B) The gray book is the leftmost\n(C) The white book is the leftmost",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_movie_recommendation": {
+      "task": "leaderboard_bbh_movie_recommendation",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "movie_recommendation",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)"
+      ],
+      "description": "Recommend movies similar to the given list of movies.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Find a movie similar to Star Wars Episode IV - A New Hope, Indiana Jones and the Last Crusade, Star Wars Episode V - The Empire Strikes Back, The Big Lebowski:\nOptions:\n(A) Tetsuo\n(B) the Ironman\n(C) The Princess Bride\n(D) The Barkley Marathons The Race That Eats Its Young\n(E) Bug",
+            "target": "(C)"
+          },
+          {
+            "input": "Find a movie similar to Twister, The Silence of the Lambs, Independence Day, Braveheart:\nOptions:\n(A) They Shoot Horses\n(B) Don't They\n(C) Forrest Gump\n(D) The Salton Sea\n(E) Extreme Days",
+            "target": "(C)"
+          },
+          {
+            "input": "Find a movie similar to Minority Report, Total Recall, Inside Out, Forrest Gump:\nOptions:\n(A) Phenomena\n(B) Lilting\n(C) Catwoman\n(D) Edge of Tomorrow",
+            "target": "(D)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_navigate": {
+      "task": "leaderboard_bbh_navigate",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "navigate",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "Yes",
+        "No"
+      ],
+      "description": "Given a series of navigation instructions, determine whether one would end up back at the starting point.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "If you follow these instructions, do you return to the starting point? Turn left. Turn around. Turn left. Take 7 steps. Take 2 steps. Take 4 steps. Take 8 steps.\nOptions:\n- Yes\n- No",
+            "target": "No"
+          },
+          {
+            "input": "If you follow these instructions, do you return to the starting point? Turn around. Take 1 step. Take 6 steps. Turn around. Take 6 steps. Take 9 steps. Take 1 step.\nOptions:\n- Yes\n- No",
+            "target": "No"
+          },
+          {
+            "input": "If you follow these instructions, do you return to the starting point? Always face forward. Take 2 steps right. Take 9 steps left. Take 7 steps right.\nOptions:\n- Yes\n- No",
+            "target": "Yes"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_object_counting": {
+      "task": "leaderboard_bbh_object_counting",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "object_counting",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "description": "Questions that involve enumerating objects and asking the model to count them.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "I have a blackberry, a clarinet, a nectarine, a plum, a strawberry, a banana, a flute, an orange, and a violin. How many fruits do I have?",
+            "target": "6"
+          },
+          {
+            "input": "I have an orange, a raspberry, two peaches, a blackberry, an apple, a grape, a nectarine, and three plums. How many fruits do I have?",
+            "target": "11"
+          },
+          {
+            "input": "I have a lettuce head, a head of broccoli, an onion, a stalk of celery, two carrots, a garlic, and a yam. How many vegetables do I have?",
+            "target": "8"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_penguins_in_a_table": {
+      "task": "leaderboard_bbh_penguins_in_a_table",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "penguins_in_a_table",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)"
+      ],
+      "description": "Answer questions about a table of penguins and their attributes.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  We now add a penguin to the table:\nJames, 12, 90, 12\nHow many penguins are less than 8 years old?\nOptions:\n(A) 1\n(B) 2\n(C) 3\n(D) 4\n(E) 5",
+            "target": "(B)"
+          },
+          {
+            "input": "Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  Which is the youngest penguin?\nOptions:\n(A) Louis\n(B) Bernard\n(C) Vincent\n(D) Gwen\n(E) James",
+            "target": "(B)"
+          },
+          {
+            "input": "Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  What is the name of the second penguin sorted by alphabetic order?\nOptions:\n(A) Louis\n(B) Bernard\n(C) Vincent\n(D) Gwen\n(E) James",
+            "target": "(D)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_reasoning_about_colored_objects": {
+      "task": "leaderboard_bbh_reasoning_about_colored_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "reasoning_about_colored_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)",
+        "(G)",
+        "(H)",
+        "(I)",
+        "(J)",
+        "(K)",
+        "(L)",
+        "(M)",
+        "(N)",
+        "(O)",
+        "(P)",
+        "(Q)",
+        "(R)"
+      ],
+      "description": "Answer extremely simple questions about the colors of objects on a surface.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "On the nightstand, there is a red pencil, a purple mug, a burgundy keychain, a fuchsia teddy bear, a black plate, and a blue stress ball. What color is the stress ball?\nOptions:\n(A) red\n(B) orange\n(C) yellow\n(D) green\n(E) blue\n(F) brown\n(G) magenta\n(H) fuchsia\n(I) mauve\n(J) teal\n(K) turquoise\n(L) burgundy\n(M) silver\n(N) gold\n(O) black\n(P) grey\n(Q) purple\n(R) pink",
+            "target": "(E)"
+          },
+          {
+            "input": "On the table, you see a bunch of objects arranged in a row: a purple paperclip, a pink stress ball, a brown keychain, a green scrunchiephone charger, a mauve fidget spinner, and a burgundy pen. What is the color of the object directly to the right of the stress ball?\nOptions:\n(A) red\n(B) orange\n(C) yellow\n(D) green\n(E) blue\n(F) brown\n(G) magenta\n(H) fuchsia\n(I) mauve\n(J) teal\n(K) turquoise\n(L) burgundy\n(M) silver\n(N) gold\n(O) black\n(P) grey\n(Q) purple\n(R) pink",
+            "target": "(F)"
+          },
+          {
+            "input": "On the nightstand, you see the following items arranged in a row: a teal plate, a burgundy keychain, a yellow scrunchiephone charger, an orange mug, a pink notebook, and a grey cup. How many non-orange items do you see to the left of the teal item?\nOptions:\n(A) zero\n(B) one\n(C) two\n(D) three\n(E) four\n(F) five\n(G) six",
+            "target": "(A)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_ruin_names": {
+      "task": "leaderboard_bbh_ruin_names",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "ruin_names",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)"
+      ],
+      "description": "Select the humorous edit that 'ruins' the input movie or musical artist name.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Which of the following is a humorous edit of this artist or movie name: 'whitesnake'?\nOptions:\n(A) whitesnape\n(B) whitesnapke\n(C) whitesnuake\n(D) mwhitesnake",
+            "target": "(A)"
+          },
+          {
+            "input": "Which of the following is a humorous edit of this artist or movie name: 'one of our dinosaurs is missing'?\nOptions:\n(A) ofne of our dinosaurs is missing\n(B) one af our dinosaurs is missing\n(C) one of our dinosaurs is pissing\n(D) one of our dinosaur is missing",
+            "target": "(C)"
+          },
+          {
+            "input": "Which of the following is a humorous edit of this artist or movie name: 'counting crows'?\nOptions:\n(A) countingy crows\n(B) counting cows\n(C) courting crows\n(D) coutnting crows",
+            "target": "(B)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_salient_translation_error_detection": {
+      "task": "leaderboard_bbh_salient_translation_error_detection",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "salient_translation_error_detection",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)"
+      ],
+      "description": "Detect the type of error in an English translation of a German source sentence.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "The following translations from German to English contain a particular error. That error will be one of the following types: Named Entities: An entity (names, places, locations, etc.) is changed to a different entity. Numerical Values: Numerical values (ordinals or cardinals), dates, and/or units are changed. Modifiers or Adjectives: The modifiers and adjectives pertaining to a noun are changed. Negation or Antonyms: Introduce or remove a negation or change comparatives to their antonyms. Facts: Trivial factual errors not pertaining to the above classes are introduced in the translations. Dropped Content: A significant clause in the translation is removed. Please identify that error.  Source: In der Liste der Baudenkmale in Lenzen (Elbe) sind alle Baudenkmale der brandenburgischen Stadt Lenzen (Elbe) und ihrer Ortsteile aufgelistet.\nTranslation: In the list of architectural monuments in Lenzen all architectural monuments of the Brandenburg city of Lenzen and its districts are listed.\nThe translation contains an error pertaining to\nOptions:\n(A) Modifiers or Adjectives\n(B) Numerical Values\n(C) Negation or Antonyms\n(D) Named Entities\n(E) Dropped Content\n(F) Facts",
+            "target": "(D)"
+          },
+          {
+            "input": "The following translations from German to English contain a particular error. That error will be one of the following types: Named Entities: An entity (names, places, locations, etc.) is changed to a different entity. Numerical Values: Numerical values (ordinals or cardinals), dates, and/or units are changed. Modifiers or Adjectives: The modifiers and adjectives pertaining to a noun are changed. Negation or Antonyms: Introduce or remove a negation or change comparatives to their antonyms. Facts: Trivial factual errors not pertaining to the above classes are introduced in the translations. Dropped Content: A significant clause in the translation is removed. Please identify that error.  Source: Auf dieser Seite sind die Baudenkm\u00e4ler der oberbayerischen Gro\u00dfen Kreisstadt Landsberg am Lech zusammengestellt.\nTranslation: On this page are compiled the architectural monuments of the town of Landsberg am Lech.\nThe translation contains an error pertaining to\nOptions:\n(A) Modifiers or Adjectives\n(B) Numerical Values\n(C) Negation or Antonyms\n(D) Named Entities\n(E) Dropped Content\n(F) Facts",
+            "target": "(E)"
+          },
+          {
+            "input": "The following translations from German to English contain a particular error. That error will be one of the following types: Named Entities: An entity (names, places, locations, etc.) is changed to a different entity. Numerical Values: Numerical values (ordinals or cardinals), dates, and/or units are changed. Modifiers or Adjectives: The modifiers and adjectives pertaining to a noun are changed. Negation or Antonyms: Introduce or remove a negation or change comparatives to their antonyms. Facts: Trivial factual errors not pertaining to the above classes are introduced in the translations. Dropped Content: A significant clause in the translation is removed. Please identify that error.  Source: \u0141eba ist eine Kleinstadt und ein Badeort im Powiat L\u0119borski der polnischen Woiwodschaft Pommern.\nTranslation: Eba is not a small town and seaside resort in the Powiat L\u00e9borski county of the Pomeranian Voivodeship of Poland.\nThe translation contains an error pertaining to\nOptions:\n(A) Modifiers or Adjectives\n(B) Numerical Values\n(C) Negation or Antonyms\n(D) Named Entities\n(E) Dropped Content\n(F) Facts",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_snarks": {
+      "task": "leaderboard_bbh_snarks",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "snarks",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)"
+      ],
+      "description": "Determine which of two sentences is sarcastic.\n\nAccording to Cambridge University Dictionary, sarcasm is \"the use of remarks that clearly mean the opposite of what they say, made in order to hurt someone's feelings or to criticize something in a humorous way.\" Sarcastic sentences often contain satirical or ironic utterances, hyperboles, ambivalent or witty remarks.\n\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Which statement is sarcastic?\nOptions:\n(A) Yes, because having interests and actively researching them is a huge waste\n(B) Yes, because having interests and actively researching them is a huge deal",
+            "target": "(A)"
+          },
+          {
+            "input": "Which statement is sarcastic?\nOptions:\n(A) No one is going to disagree with you on this. Avoiding ad hominem attacks really help your case\n(B) No one is going to disagree with you on this. Ad hominem attacks really help your case",
+            "target": "(B)"
+          },
+          {
+            "input": "Which statement is sarcastic?\nOptions:\n(A) Consistency in the league's punishments? What do you think this is supposed to be, politics?\n(B) Consistency in the league's punishments? What do you think this is supposed to be, moral?",
+            "target": "(A)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_sports_understanding": {
+      "task": "leaderboard_bbh_sports_understanding",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "sports_understanding",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "yes",
+        "no"
+      ],
+      "description": "Determine whether an artificially constructed sentence relating to sports is plausible or not.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Is the following sentence plausible? \"Bam Adebayo scored a reverse layup in the Western Conference Finals.\"",
+            "target": "yes"
+          },
+          {
+            "input": "Is the following sentence plausible? \"Santi Cazorla scored a touchdown.\"",
+            "target": "no"
+          },
+          {
+            "input": "Is the following sentence plausible? \"DeMar DeRozan was called for the goal tend.\"",
+            "target": "yes"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_temporal_sequences": {
+      "task": "leaderboard_bbh_temporal_sequences",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "temporal_sequences",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)"
+      ],
+      "description": "Task description: Answer questions about which times certain events could have occurred.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Today, Emily went to the museum. Between what times could they have gone?\nWe know that:\nEmily woke up at 1pm.\nElizabeth saw Emily reading at the library from 2pm to 4pm.\nJessica saw Emily watching a movie at the theater from 4pm to 5pm.\nLeslie saw Emily waiting at the airport from 5pm to 6pm.\nWilliam saw Emily buying clothes at the mall from 6pm to 7pm.\nThe museum was closed after 7pm.\nBetween what times could Emily have gone to the museum?\nOptions:\n(A) 1pm to 2pm\n(B) 6pm to 7pm\n(C) 5pm to 6pm\n(D) 2pm to 4pm",
+            "target": "(A)"
+          },
+          {
+            "input": "Today, Elizabeth went to the amusement park. Between what times could they have gone?\nWe know that:\nElizabeth woke up at 7am.\nDavid saw Elizabeth fixing their computer at the electronic store from 1pm to 2pm.\nSarah saw Elizabeth playing tennis at the tennis court from 2pm to 3pm.\nSusan saw Elizabeth walking towards the Statue of Liberty from 3pm to 6pm.\nAndrew saw Elizabeth taking photos near the Eiffel Tower from 6pm to 9pm.\nEmily saw Elizabeth getting a coffee at the cafe from 9pm to 10pm.\nThe amusement park was closed after 10pm.\nBetween what times could Elizabeth have gone to the amusement park?\nOptions:\n(A) 7am to 1pm\n(B) 9pm to 10pm\n(C) 1pm to 2pm\n(D) 3pm to 6pm",
+            "target": "(A)"
+          },
+          {
+            "input": "Today, Tiffany went to the beach. Between what times could they have gone?\nWe know that:\nTiffany woke up at 5am.\nBetty saw Tiffany getting a coffee at the cafe from 5am to 6am.\nJessica saw Tiffany working at the office from 6am to 9am.\nJohn saw Tiffany stretching at a yoga studio from 9am to 12pm.\nSean saw Tiffany sitting on a rooftop from 12pm to 2pm.\nSarah saw Tiffany playing tennis at the tennis court from 2pm to 3pm.\nThe beach was closed after 4pm.\nBetween what times could Tiffany have gone to the beach?\nOptions:\n(A) 9am to 12pm\n(B) 12pm to 2pm\n(C) 5am to 6am\n(D) 3pm to 4pm",
+            "target": "(D)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": {
+      "task": "leaderboard_bbh_tracking_shuffled_objects_five_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "tracking_shuffled_objects_five_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)"
+      ],
+      "description": "A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Alice, Bob, and Claire are playing a game. At the start of the game, they are each holding a ball: Alice has a yellow ball, Bob has a blue ball, and Claire has a pink ball.\nAs the game progresses, pairs of players trade balls. First, Claire and Alice swap balls. Then, Alice and Bob swap balls. Finally, Claire and Bob swap balls. At the end of the game, Bob has the\nOptions:\n(A) yellow ball\n(B) blue ball\n(C) pink ball",
+            "target": "(A)"
+          },
+          {
+            "input": "Alice, Bob, and Claire are playing a game. At the start of the game, they are each holding a ball: Alice has a white ball, Bob has a purple ball, and Claire has a pink ball.\nAs the game progresses, pairs of players trade balls. First, Bob and Alice swap balls. Then, Bob and Claire swap balls. Finally, Bob and Alice swap balls. At the end of the game, Alice has the\nOptions:\n(A) white ball\n(B) purple ball\n(C) pink ball",
+            "target": "(C)"
+          },
+          {
+            "input": "Alice, Bob, and Claire are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Lola, Bob is dancing with Rodrigo, and Claire is dancing with Patrick.\nThroughout the song, the dancers often trade partners. First, Alice and Bob switch partners. Then, Claire and Bob switch partners. Finally, Bob and Alice switch partners. At the end of the dance, Alice is dancing with\nOptions:\n(A) Lola\n(B) Rodrigo\n(C) Patrick",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": {
+      "task": "leaderboard_bbh_tracking_shuffled_objects_seven_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "tracking_shuffled_objects_seven_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)",
+        "(E)",
+        "(F)",
+        "(G)"
+      ],
+      "description": "A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Alice, Bob, and Claire are playing a game. At the start of the game, they are each holding a ball: Alice has a yellow ball, Bob has a blue ball, and Claire has a pink ball.\nAs the game progresses, pairs of players trade balls. First, Claire and Alice swap balls. Then, Alice and Bob swap balls. Finally, Claire and Bob swap balls. At the end of the game, Bob has the\nOptions:\n(A) yellow ball\n(B) blue ball\n(C) pink ball",
+            "target": "(A)"
+          },
+          {
+            "input": "Alice, Bob, and Claire are playing a game. At the start of the game, they are each holding a ball: Alice has a white ball, Bob has a purple ball, and Claire has a pink ball.\nAs the game progresses, pairs of players trade balls. First, Bob and Alice swap balls. Then, Bob and Claire swap balls. Finally, Bob and Alice swap balls. At the end of the game, Alice has the\nOptions:\n(A) white ball\n(B) purple ball\n(C) pink ball",
+            "target": "(C)"
+          },
+          {
+            "input": "Alice, Bob, and Claire are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Lola, Bob is dancing with Rodrigo, and Claire is dancing with Patrick.\nThroughout the song, the dancers often trade partners. First, Alice and Bob switch partners. Then, Claire and Bob switch partners. Finally, Bob and Alice switch partners. At the end of the dance, Alice is dancing with\nOptions:\n(A) Lola\n(B) Rodrigo\n(C) Patrick",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": {
+      "task": "leaderboard_bbh_tracking_shuffled_objects_three_objects",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "tracking_shuffled_objects_three_objects",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)"
+      ],
+      "description": "A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Alice, Bob, and Claire are playing a game. At the start of the game, they are each holding a ball: Alice has a yellow ball, Bob has a blue ball, and Claire has a pink ball.\nAs the game progresses, pairs of players trade balls. First, Claire and Alice swap balls. Then, Alice and Bob swap balls. Finally, Claire and Bob swap balls. At the end of the game, Bob has the\nOptions:\n(A) yellow ball\n(B) blue ball\n(C) pink ball",
+            "target": "(A)"
+          },
+          {
+            "input": "Alice, Bob, and Claire are playing a game. At the start of the game, they are each holding a ball: Alice has a white ball, Bob has a purple ball, and Claire has a pink ball.\nAs the game progresses, pairs of players trade balls. First, Bob and Alice swap balls. Then, Bob and Claire swap balls. Finally, Bob and Alice swap balls. At the end of the game, Alice has the\nOptions:\n(A) white ball\n(B) purple ball\n(C) pink ball",
+            "target": "(C)"
+          },
+          {
+            "input": "Alice, Bob, and Claire are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Lola, Bob is dancing with Rodrigo, and Claire is dancing with Patrick.\nThroughout the song, the dancers often trade partners. First, Alice and Bob switch partners. Then, Claire and Bob switch partners. Finally, Bob and Alice switch partners. At the end of the dance, Alice is dancing with\nOptions:\n(A) Lola\n(B) Rodrigo\n(C) Patrick",
+            "target": "(C)"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_bbh_web_of_lies": {
+      "task": "leaderboard_bbh_web_of_lies",
+      "group": "leaderboard_bbh",
+      "dataset_path": "SaylorTwift/bbh",
+      "dataset_name": "web_of_lies",
+      "test_split": "test",
+      "doc_to_text": "Q: {{input}}\nA:",
+      "doc_to_target": "{{target}}",
+      "doc_to_choice": [
+        "Yes",
+        "No"
+      ],
+      "description": "Evaluate a random boolean function expressed as a word problem.\n",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": [
+          {
+            "input": "Question: Fidel tells the truth. Jerry says Fidel tells the truth. Vina says Jerry tells the truth. Millicent says Vina lies. Raymond says Millicent lies. Does Raymond tell the truth?",
+            "target": "Yes"
+          },
+          {
+            "input": "Question: Kristian lies. Millie says Kristian lies. Maybelle says Millie tells the truth. Fidel says Maybelle lies. Leda says Fidel lies. Does Leda tell the truth?",
+            "target": "Yes"
+          },
+          {
+            "input": "Question: Kristian tells the truth. Michaela says Kristian lies. Raymond says Michaela tells the truth. Osvaldo says Raymond tells the truth. Jamey says Osvaldo tells the truth. Does Jamey tell the truth?",
+            "target": "No"
+          }
+        ]
+      },
+      "num_fewshot": 3,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0
+      }
+    },
+    "leaderboard_gpqa_diamond": {
+      "task": "leaderboard_gpqa_diamond",
+      "group": "leaderboard_gpqa",
+      "dataset_path": "Idavidrein/gpqa",
+      "dataset_name": "gpqa_diamond",
+      "training_split": "train",
+      "validation_split": "train",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        choices = [\n            preprocess(doc[\"Incorrect Answer 1\"]),\n            preprocess(doc[\"Incorrect Answer 2\"]),\n            preprocess(doc[\"Incorrect Answer 3\"]),\n            preprocess(doc[\"Correct Answer\"]),\n        ]\n\n        random.shuffle(choices)\n        correct_answer_index = choices.index(preprocess(doc[\"Correct Answer\"]))\n\n        out_doc = {\n            \"choice1\": choices[0],\n            \"choice2\": choices[1],\n            \"choice3\": choices[2],\n            \"choice4\": choices[3],\n            \"answer\": f\"({chr(65 + correct_answer_index)})\",\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "What is the correct answer to this question:{{Question}}\nChoices:\n(A) {{choice1}}\n(B) {{choice2}}\n(C) {{choice3}}\n(D) {{choice4}}\nAnswer: ",
+      "doc_to_target": "answer",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)"
+      ],
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n"
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_gpqa_extended": {
+      "task": "leaderboard_gpqa_extended",
+      "group": "leaderboard_gpqa",
+      "dataset_path": "Idavidrein/gpqa",
+      "dataset_name": "gpqa_extended",
+      "training_split": "train",
+      "validation_split": "train",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        choices = [\n            preprocess(doc[\"Incorrect Answer 1\"]),\n            preprocess(doc[\"Incorrect Answer 2\"]),\n            preprocess(doc[\"Incorrect Answer 3\"]),\n            preprocess(doc[\"Correct Answer\"]),\n        ]\n\n        random.shuffle(choices)\n        correct_answer_index = choices.index(preprocess(doc[\"Correct Answer\"]))\n\n        out_doc = {\n            \"choice1\": choices[0],\n            \"choice2\": choices[1],\n            \"choice3\": choices[2],\n            \"choice4\": choices[3],\n            \"answer\": f\"({chr(65 + correct_answer_index)})\",\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "What is the correct answer to this question:{{Question}}\nChoices:\n(A) {{choice1}}\n(B) {{choice2}}\n(C) {{choice3}}\n(D) {{choice4}}\nAnswer: ",
+      "doc_to_target": "answer",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)"
+      ],
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n"
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_gpqa_main": {
+      "task": "leaderboard_gpqa_main",
+      "group": "leaderboard_gpqa",
+      "dataset_path": "Idavidrein/gpqa",
+      "dataset_name": "gpqa_main",
+      "training_split": "train",
+      "validation_split": "train",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        choices = [\n            preprocess(doc[\"Incorrect Answer 1\"]),\n            preprocess(doc[\"Incorrect Answer 2\"]),\n            preprocess(doc[\"Incorrect Answer 3\"]),\n            preprocess(doc[\"Correct Answer\"]),\n        ]\n\n        random.shuffle(choices)\n        correct_answer_index = choices.index(preprocess(doc[\"Correct Answer\"]))\n\n        out_doc = {\n            \"choice1\": choices[0],\n            \"choice2\": choices[1],\n            \"choice3\": choices[2],\n            \"choice4\": choices[3],\n            \"answer\": f\"({chr(65 + correct_answer_index)})\",\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "What is the correct answer to this question:{{Question}}\nChoices:\n(A) {{choice1}}\n(B) {{choice2}}\n(C) {{choice3}}\n(D) {{choice4}}\nAnswer: ",
+      "doc_to_target": "answer",
+      "doc_to_choice": [
+        "(A)",
+        "(B)",
+        "(C)",
+        "(D)"
+      ],
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n"
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_ifeval": {
+      "task": "leaderboard_ifeval",
+      "group": "leaderboard_instruction_following",
+      "dataset_path": "wis-k/instruction-following-eval",
+      "test_split": "train",
+      "doc_to_text": "prompt",
+      "doc_to_target": 0,
+      "process_results": "def process_results(doc, results):\n    inp = InputExample(\n        key=doc[\"key\"],\n        instruction_id_list=doc[\"instruction_id_list\"],\n        prompt=doc[\"prompt\"],\n        kwargs=doc[\"kwargs\"],\n    )\n    response = results[0]\n\n    out_strict = test_instruction_following_strict(inp, response)\n    out_loose = test_instruction_following_loose(inp, response)\n\n    return {\n        \"prompt_level_strict_acc\": out_strict.follow_all_instructions,\n        \"inst_level_strict_acc\": out_strict.follow_instruction_list,\n        \"prompt_level_loose_acc\": out_loose.follow_all_instructions,\n        \"inst_level_loose_acc\": out_loose.follow_instruction_list,\n    }\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n"
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "prompt_level_strict_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_strict_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        },
+        {
+          "metric": "prompt_level_loose_acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "inst_level_loose_acc",
+          "aggregation": "def agg_inst_level_acc(items):\n    flat_items = [item for sublist in items for item in sublist]\n    inst_level_acc = sum(flat_items) / len(flat_items)\n    return inst_level_acc\n",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1280
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 2.0
+      }
+    },
+    "leaderboard_math_algebra_hard": {
+      "task": "leaderboard_math_algebra_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "algebra",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f9528720>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_math_counting_and_prob_hard": {
+      "task": "leaderboard_math_counting_and_prob_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "counting_and_probability",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f945a3e0>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_math_geometry_hard": {
+      "task": "leaderboard_math_geometry_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "geometry",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f94c7e20>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_math_intermediate_algebra_hard": {
+      "task": "leaderboard_math_intermediate_algebra_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "intermediate_algebra",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f952aac0>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_math_num_theory_hard": {
+      "task": "leaderboard_math_num_theory_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "number_theory",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f948b380>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_math_prealgebra_hard": {
+      "task": "leaderboard_math_prealgebra_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "prealgebra",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f94f63e0>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_math_precalculus_hard": {
+      "task": "leaderboard_math_precalculus_hard",
+      "group": [
+        "leaderboard_math_hard"
+      ],
+      "dataset_path": "lighteval/MATH-Hard",
+      "dataset_name": "precalculus",
+      "dataset_kwargs": {
+        "trust_remote_code": true
+      },
+      "training_split": "train",
+      "test_split": "test",
+      "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc: dict) -> dict:\n        out_doc = {\n            \"problem\": doc[\"problem\"],\n            \"solution\": doc[\"solution\"],\n            \"answer\": normalize_final_answer(\n                remove_boxed(last_boxed_only_string(doc[\"solution\"]))\n            ),\n        }\n        if getattr(doc, \"few_shot\", None) is not None:\n            out_doc[\"few_shot\"] = True\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+      "doc_to_text": "def doc_to_text(doc: dict) -> str:\n    return \"Problem:\" + \"\\n\" + doc[\"problem\"] + \"\\n\\n\" + \"Solution:\"\n",
+      "doc_to_target": "{{answer if few_shot is undefined else solution}}",
+      "process_results": "def process_results(doc: dict, results: List[str]) -> Dict[str, int]:\n    candidates = results[0]\n\n    unnormalized_answer = get_unnormalized_answer(candidates)\n    answer = normalize_final_answer(unnormalized_answer)\n\n    if is_equiv(answer, doc[\"answer\"]):\n        retval = 1\n    else:\n        retval = 0\n\n    results = {\n        \"exact_match\": retval,\n    }\n    return results\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n",
+        "samples": "<function list_fewshot_samples at 0x7fb6f94c5940>"
+      },
+      "num_fewshot": 4,
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "Problem:"
+        ],
+        "do_sample": false,
+        "temperature": 0.0,
+        "max_gen_toks": 1024
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_mmlu_pro": {
+      "task": "leaderboard_mmlu_pro",
+      "dataset_path": "TIGER-Lab/MMLU-Pro",
+      "test_split": "test",
+      "fewshot_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    doc_to_text = f\"{doc['question']}\\n\"\n\n    for i in range(len(doc[\"options\"])):\n        doc_to_text += f\"{string.ascii_uppercase[i]}. {doc['options'][i]}\\n\"\n\n    doc_to_text += \"Answer:\"\n    return doc_to_text\n",
+      "doc_to_target": "answer",
+      "doc_to_choice": "def doc_to_choice(doc):\n    return [string.ascii_uppercase[i] for i in range(len(doc[\"options\"]))]\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "first_n"
+      },
+      "num_fewshot": 5,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.1
+      }
+    },
+    "leaderboard_musr_murder_mysteries": {
+      "task": "leaderboard_musr_murder_mysteries",
+      "group": [
+        "leaderboard_musr"
+      ],
+      "dataset_path": "TAUR-Lab/MuSR",
+      "test_split": "murder_mysteries",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"\n    Convert a doc to text.\n    \"\"\"\n    choices = \"\"\n    for i, choice in enumerate(ast.literal_eval(doc[\"choices\"])):\n        choices += f\"{i+1} - {choice}\\n\"\n\n    text = DOC_TO_TEXT.format(\n        narrative=doc[\"narrative\"], question=doc[\"question\"], choices=choices\n    )\n\n    return text\n",
+      "doc_to_target": "{{answer_choice}}",
+      "doc_to_choice": "{{choices}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_musr_object_placements": {
+      "task": "leaderboard_musr_object_placements",
+      "group": [
+        "leaderboard_musr"
+      ],
+      "dataset_path": "TAUR-Lab/MuSR",
+      "test_split": "object_placements",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"\n    Convert a doc to text.\n    \"\"\"\n    choices = \"\"\n    for i, choice in enumerate(ast.literal_eval(doc[\"choices\"])):\n        choices += f\"{i+1} - {choice}\\n\"\n\n    text = DOC_TO_TEXT.format(\n        narrative=doc[\"narrative\"], question=doc[\"question\"], choices=choices\n    )\n\n    return text\n",
+      "doc_to_target": "{{answer_choice}}",
+      "doc_to_choice": "{{choices}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    },
+    "leaderboard_musr_team_allocation": {
+      "task": "leaderboard_musr_team_allocation",
+      "group": [
+        "leaderboard_musr"
+      ],
+      "dataset_path": "TAUR-Lab/MuSR",
+      "test_split": "team_allocation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"\n    Convert a doc to text.\n    \"\"\"\n    choices = \"\"\n    for i, choice in enumerate(ast.literal_eval(doc[\"choices\"])):\n        choices += f\"{i+1} - {choice}\\n\"\n\n    text = DOC_TO_TEXT.format(\n        narrative=doc[\"narrative\"], question=doc[\"question\"], choices=choices\n    )\n\n    return text\n",
+      "doc_to_target": "{{answer_choice}}",
+      "doc_to_choice": "{{choices}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc_norm",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 1.0
+      }
+    }
+  },
+  "versions": {
+    "leaderboard_bbh_boolean_expressions": 0.0,
+    "leaderboard_bbh_causal_judgement": 0.0,
+    "leaderboard_bbh_date_understanding": 0.0,
+    "leaderboard_bbh_disambiguation_qa": 0.0,
+    "leaderboard_bbh_formal_fallacies": 0.0,
+    "leaderboard_bbh_geometric_shapes": 0.0,
+    "leaderboard_bbh_hyperbaton": 0.0,
+    "leaderboard_bbh_logical_deduction_five_objects": 0.0,
+    "leaderboard_bbh_logical_deduction_seven_objects": 0.0,
+    "leaderboard_bbh_logical_deduction_three_objects": 0.0,
+    "leaderboard_bbh_movie_recommendation": 0.0,
+    "leaderboard_bbh_navigate": 0.0,
+    "leaderboard_bbh_object_counting": 0.0,
+    "leaderboard_bbh_penguins_in_a_table": 0.0,
+    "leaderboard_bbh_reasoning_about_colored_objects": 0.0,
+    "leaderboard_bbh_ruin_names": 0.0,
+    "leaderboard_bbh_salient_translation_error_detection": 0.0,
+    "leaderboard_bbh_snarks": 0.0,
+    "leaderboard_bbh_sports_understanding": 0.0,
+    "leaderboard_bbh_temporal_sequences": 0.0,
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": 0.0,
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": 0.0,
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": 0.0,
+    "leaderboard_bbh_web_of_lies": 0.0,
+    "leaderboard_gpqa_diamond": 1.0,
+    "leaderboard_gpqa_extended": 1.0,
+    "leaderboard_gpqa_main": 1.0,
+    "leaderboard_ifeval": 2.0,
+    "leaderboard_math_algebra_hard": 3.0,
+    "leaderboard_math_counting_and_prob_hard": 3.0,
+    "leaderboard_math_geometry_hard": 3.0,
+    "leaderboard_math_intermediate_algebra_hard": 3.0,
+    "leaderboard_math_num_theory_hard": 3.0,
+    "leaderboard_math_prealgebra_hard": 3.0,
+    "leaderboard_math_precalculus_hard": 3.0,
+    "leaderboard_mmlu_pro": 0.1,
+    "leaderboard_musr_murder_mysteries": 1.0,
+    "leaderboard_musr_object_placements": 1.0,
+    "leaderboard_musr_team_allocation": 1.0
+  },
+  "n-shot": {
+    "leaderboard": 0,
+    "leaderboard_bbh": 3,
+    "leaderboard_bbh_boolean_expressions": 3,
+    "leaderboard_bbh_causal_judgement": 3,
+    "leaderboard_bbh_date_understanding": 3,
+    "leaderboard_bbh_disambiguation_qa": 3,
+    "leaderboard_bbh_formal_fallacies": 3,
+    "leaderboard_bbh_geometric_shapes": 3,
+    "leaderboard_bbh_hyperbaton": 3,
+    "leaderboard_bbh_logical_deduction_five_objects": 3,
+    "leaderboard_bbh_logical_deduction_seven_objects": 3,
+    "leaderboard_bbh_logical_deduction_three_objects": 3,
+    "leaderboard_bbh_movie_recommendation": 3,
+    "leaderboard_bbh_navigate": 3,
+    "leaderboard_bbh_object_counting": 3,
+    "leaderboard_bbh_penguins_in_a_table": 3,
+    "leaderboard_bbh_reasoning_about_colored_objects": 3,
+    "leaderboard_bbh_ruin_names": 3,
+    "leaderboard_bbh_salient_translation_error_detection": 3,
+    "leaderboard_bbh_snarks": 3,
+    "leaderboard_bbh_sports_understanding": 3,
+    "leaderboard_bbh_temporal_sequences": 3,
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": 3,
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": 3,
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": 3,
+    "leaderboard_bbh_web_of_lies": 3,
+    "leaderboard_gpqa": 0,
+    "leaderboard_gpqa_diamond": 0,
+    "leaderboard_gpqa_extended": 0,
+    "leaderboard_gpqa_main": 0,
+    "leaderboard_ifeval": 0,
+    "leaderboard_math_algebra_hard": 4,
+    "leaderboard_math_counting_and_prob_hard": 4,
+    "leaderboard_math_geometry_hard": 4,
+    "leaderboard_math_hard": 4,
+    "leaderboard_math_intermediate_algebra_hard": 4,
+    "leaderboard_math_num_theory_hard": 4,
+    "leaderboard_math_prealgebra_hard": 4,
+    "leaderboard_math_precalculus_hard": 4,
+    "leaderboard_mmlu_pro": 5,
+    "leaderboard_musr": 0,
+    "leaderboard_musr_murder_mysteries": 0,
+    "leaderboard_musr_object_placements": 0,
+    "leaderboard_musr_team_allocation": 0
+  },
+  "higher_is_better": {
+    "leaderboard": {
+      "acc_norm": true,
+      "prompt_level_strict_acc": true,
+      "inst_level_strict_acc": true,
+      "prompt_level_loose_acc": true,
+      "inst_level_loose_acc": true,
+      "exact_match": true,
+      "acc": true
+    },
+    "leaderboard_bbh": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_boolean_expressions": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_causal_judgement": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_date_understanding": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_disambiguation_qa": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_formal_fallacies": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_geometric_shapes": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_hyperbaton": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_logical_deduction_five_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_logical_deduction_seven_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_logical_deduction_three_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_movie_recommendation": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_navigate": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_object_counting": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_penguins_in_a_table": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_reasoning_about_colored_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_ruin_names": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_salient_translation_error_detection": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_snarks": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_sports_understanding": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_temporal_sequences": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": {
+      "acc_norm": true
+    },
+    "leaderboard_bbh_web_of_lies": {
+      "acc_norm": true
+    },
+    "leaderboard_gpqa": {
+      "acc_norm": true
+    },
+    "leaderboard_gpqa_diamond": {
+      "acc_norm": true
+    },
+    "leaderboard_gpqa_extended": {
+      "acc_norm": true
+    },
+    "leaderboard_gpqa_main": {
+      "acc_norm": true
+    },
+    "leaderboard_ifeval": {
+      "prompt_level_strict_acc": true,
+      "inst_level_strict_acc": true,
+      "prompt_level_loose_acc": true,
+      "inst_level_loose_acc": true
+    },
+    "leaderboard_math_algebra_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_counting_and_prob_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_geometry_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_intermediate_algebra_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_num_theory_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_prealgebra_hard": {
+      "exact_match": true
+    },
+    "leaderboard_math_precalculus_hard": {
+      "exact_match": true
+    },
+    "leaderboard_mmlu_pro": {
+      "acc": true
+    },
+    "leaderboard_musr": {
+      "acc_norm": true
+    },
+    "leaderboard_musr_murder_mysteries": {
+      "acc_norm": true
+    },
+    "leaderboard_musr_object_placements": {
+      "acc_norm": true
+    },
+    "leaderboard_musr_team_allocation": {
+      "acc_norm": true
+    }
+  },
+  "n-samples": {
+    "leaderboard_musr_murder_mysteries": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_musr_team_allocation": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_musr_object_placements": {
+      "original": 256,
+      "effective": 256
+    },
+    "leaderboard_ifeval": {
+      "original": 541,
+      "effective": 541
+    },
+    "leaderboard_math_intermediate_algebra_hard": {
+      "original": 280,
+      "effective": 280
+    },
+    "leaderboard_math_algebra_hard": {
+      "original": 307,
+      "effective": 307
+    },
+    "leaderboard_math_prealgebra_hard": {
+      "original": 193,
+      "effective": 193
+    },
+    "leaderboard_math_geometry_hard": {
+      "original": 132,
+      "effective": 132
+    },
+    "leaderboard_math_precalculus_hard": {
+      "original": 135,
+      "effective": 135
+    },
+    "leaderboard_math_num_theory_hard": {
+      "original": 154,
+      "effective": 154
+    },
+    "leaderboard_math_counting_and_prob_hard": {
+      "original": 123,
+      "effective": 123
+    },
+    "leaderboard_gpqa_main": {
+      "original": 448,
+      "effective": 448
+    },
+    "leaderboard_gpqa_diamond": {
+      "original": 198,
+      "effective": 198
+    },
+    "leaderboard_gpqa_extended": {
+      "original": 546,
+      "effective": 546
+    },
+    "leaderboard_bbh_navigate": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_geometric_shapes": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_sports_understanding": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_hyperbaton": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_causal_judgement": {
+      "original": 187,
+      "effective": 187
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_snarks": {
+      "original": 178,
+      "effective": 178
+    },
+    "leaderboard_bbh_penguins_in_a_table": {
+      "original": 146,
+      "effective": 146
+    },
+    "leaderboard_bbh_formal_fallacies": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_logical_deduction_seven_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_reasoning_about_colored_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_boolean_expressions": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_logical_deduction_five_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_temporal_sequences": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_ruin_names": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_web_of_lies": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_movie_recommendation": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_date_understanding": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_logical_deduction_three_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_object_counting": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_disambiguation_qa": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_bbh_salient_translation_error_detection": {
+      "original": 250,
+      "effective": 250
+    },
+    "leaderboard_mmlu_pro": {
+      "original": 12032,
+      "effective": 12032
+    }
+  },
+  "config": {
+    "model": "hf",
+    "model_args": "pretrained=LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct,revision=7f15baedd46858153d817445aff032f4d6cf4939,trust_remote_code=True,dtype=bfloat16,parallelize=True",
+    "model_num_parameters": 7818448896,
+    "model_dtype": "torch.bfloat16",
+    "model_revision": "7f15baedd46858153d817445aff032f4d6cf4939",
+    "model_sha": "7f15baedd46858153d817445aff032f4d6cf4939",
+    "batch_size": "auto",
+    "batch_sizes": [
+      8
+    ],
+    "device": null,
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": null,
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "d4631ea6",
+  "date": 1724024972.0860612,
+  "pretty_env_info": "PyTorch version: 2.3.1+cu121\nIs debug build: False\nCUDA used to build PyTorch: 12.1\nROCM used to build PyTorch: N/A\n\nOS: Ubuntu 20.04.6 LTS (x86_64)\nGCC version: (Ubuntu 10.5.0-1ubuntu1~20.04) 10.5.0\nClang version: Could not collect\nCMake version: version 3.27.7\nLibc version: glibc-2.31\n\nPython version: 3.12.0 (main, Aug 15 2024, 13:38:52) [GCC 9.4.0] (64-bit runtime)\nPython platform: Linux-5.15.0-1048-aws-x86_64-with-glibc2.31\nIs CUDA available: True\nCUDA runtime version: 12.1.105\nCUDA_MODULE_LOADING set to: LAZY\nGPU models and configuration: \nGPU 0: NVIDIA H100 80GB HBM3\nGPU 1: NVIDIA H100 80GB HBM3\nGPU 2: NVIDIA H100 80GB HBM3\nGPU 3: NVIDIA H100 80GB HBM3\nGPU 4: NVIDIA H100 80GB HBM3\nGPU 5: NVIDIA H100 80GB HBM3\nGPU 6: NVIDIA H100 80GB HBM3\nGPU 7: NVIDIA H100 80GB HBM3\n\nNvidia driver version: 535.104.12\ncuDNN version: Could not collect\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\nArchitecture:                       x86_64\nCPU op-mode(s):                     32-bit, 64-bit\nByte Order:                         Little Endian\nAddress sizes:                      48 bits physical, 48 bits virtual\nCPU(s):                             96\nOn-line CPU(s) list:                0-95\nThread(s) per core:                 1\nCore(s) per socket:                 48\nSocket(s):                          2\nNUMA node(s):                       2\nVendor ID:                          AuthenticAMD\nCPU family:                         25\nModel:                              1\nModel name:                         AMD EPYC 7R13 Processor\nStepping:                           1\nCPU MHz:                            2649.998\nBogoMIPS:                           5299.99\nHypervisor vendor:                  KVM\nVirtualization type:                full\nL1d cache:                          3 MiB\nL1i cache:                          3 MiB\nL2 cache:                           48 MiB\nL3 cache:                           384 MiB\nNUMA node0 CPU(s):                  0-47\nNUMA node1 CPU(s):                  48-95\nVulnerability Gather data sampling: Not affected\nVulnerability Itlb multihit:        Not affected\nVulnerability L1tf:                 Not affected\nVulnerability Mds:                  Not affected\nVulnerability Meltdown:             Not affected\nVulnerability Mmio stale data:      Not affected\nVulnerability Retbleed:             Not affected\nVulnerability Spec rstack overflow: Mitigation; safe RET\nVulnerability Spec store bypass:    Mitigation; Speculative Store Bypass disabled via prctl and seccomp\nVulnerability Spectre v1:           Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:           Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP always-on, RSB filling, PBRSB-eIBRS Not affected\nVulnerability Srbds:                Not affected\nVulnerability Tsx async abort:      Not affected\nFlags:                              fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf tsc_known_freq pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch topoext perfctr_core invpcid_single ssbd ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 clzero xsaveerptr rdpru wbnoinvd arat npt nrip_save vaes vpclmulqdq rdpid\n\nVersions of relevant libraries:\n[pip3] numpy==1.26.4\n[pip3] onnx==1.16.2\n[pip3] onnxruntime==1.19.0\n[pip3] pytorch-ranger==0.1.1\n[pip3] torch==2.3.1\n[pip3] torch-optimizer==0.3.0\n[pip3] torchmetrics==1.3.2\n[pip3] torchvision==0.18.1\n[pip3] triton==3.0.0\n[conda] Could not collect",
+  "transformers_version": "4.44.0",
+  "upper_git_hash": null,
+  "tokenizer_pad_token": [
+    "[PAD]",
+    "0"
+  ],
+  "tokenizer_eos_token": [
+    "[|endofturn|]",
+    "361"
+  ],
+  "tokenizer_bos_token": [
+    "[BOS]",
+    "1"
+  ],
+  "eot_token_id": 361,
+  "max_length": 4096,
+  "task_hashes": {
+    "leaderboard_musr_murder_mysteries": "c4df7e26ed57c1ae4c8a02da5aa82b25b60e4cb9e4d9790fccc3c075fd54c548",
+    "leaderboard_musr_team_allocation": "7791f28b9a9f3e97d0b9ea0c724e43b7c952963f920c11b30d0690a0ecfc3de9",
+    "leaderboard_musr_object_placements": "18c018d4fc4618b5de3953c418bee02c38913d09c53e6c1f3067137122a1b7e4",
+    "leaderboard_ifeval": "c4cb74cbf8c7f7a617c2bb29927e1d4dcd83e7ba8571f3a8a9ad039c8209ea88",
+    "leaderboard_math_intermediate_algebra_hard": "190afd80ae98ba489afe9f24e57ac484da89dc64f6e481ae06e52214fd2bdd2b",
+    "leaderboard_math_algebra_hard": "833e20718ed73cebbc4d1e0819d7ec8298f9ce0bc20a376abadf0c455b2c5175",
+    "leaderboard_math_prealgebra_hard": "c303c917fb6f65d4c1514d758ec081800749d3105729a82d7afbc79812cde278",
+    "leaderboard_math_geometry_hard": "0233234366f6ab5b8073b6450b45c2a3fea03fed74c937f7997d0b5568111337",
+    "leaderboard_math_precalculus_hard": "ab21a2f8ff91f4bd616b0c36c870f75eec6624ad2445d5b0c99444ff7e86170b",
+    "leaderboard_math_num_theory_hard": "2a1fcec0782cbece7975f3fe9e057081f4cfa95c3fe15843f0c1e87f5881cd12",
+    "leaderboard_math_counting_and_prob_hard": "f57e1d84c47c014758366701db24034ee6bb3bd550a1b4f617771c81764c9216",
+    "leaderboard_gpqa_main": "4e12febc5469f17969e5f38cdfb34bb22a94e84afeb8b9a62b604e1e1425f1f9",
+    "leaderboard_gpqa_diamond": "bdb2dbb5bec5ad00471ebd8b52d706f3ce08c03f7e883904ac8acfd851ef0a17",
+    "leaderboard_gpqa_extended": "dbfb715f0cfc4eb1ff41edf7d62dddb33c607abe7bbffde2c6616ac846aacacc",
+    "leaderboard_bbh_navigate": "0a778a0ff70c711ef0d1728133e4dd5a6844549eed5650ad6f4198c65ed3be16",
+    "leaderboard_bbh_tracking_shuffled_objects_seven_objects": "13803ac47d510b03e49fa616eb34a148f99887437fcc9caa4db056bc76f1eae6",
+    "leaderboard_bbh_geometric_shapes": "567a8603873709ac61f9401ff635133bd0367b13eaaa1b1c9ecca6a9e693b283",
+    "leaderboard_bbh_sports_understanding": "2d192211fb02677b3bc5ccc75d4c9190ae3bee5d489754359f788d7ed77e42c0",
+    "leaderboard_bbh_hyperbaton": "666afbb8e4c2bbd8cca091ad7f878c3abd06a331a44c84972699ad5f2547e7fa",
+    "leaderboard_bbh_causal_judgement": "ae7a497a4fe1843ec4cb42767daee1cee57c448495f58275d4da8b09fdcfe64e",
+    "leaderboard_bbh_tracking_shuffled_objects_five_objects": "04d18b853cb0c91ac0235f1f1eedbdb05ac0177a358bcb17f62440436cfeea2d",
+    "leaderboard_bbh_snarks": "5cc8534d06d591cdb7562a3d71aa62aebf01b12bdd5eb89d9223c140b80d1278",
+    "leaderboard_bbh_penguins_in_a_table": "04dc2f2526238892c08c22dc2c00f2eb5c322e99579d2da7c4582f7d2a53c0aa",
+    "leaderboard_bbh_formal_fallacies": "2a665caf63aa45408b65e2efa72a0f7c8a6942a357f65b702c20e74a5f6db54f",
+    "leaderboard_bbh_logical_deduction_seven_objects": "9dccdec9aa12f8b022c61e385ff0271af18801d955d01f1468faf9e6849ab0ce",
+    "leaderboard_bbh_reasoning_about_colored_objects": "b175103e8f99c601b13dba5173fbb1d914d9d337a912b970dcd6d71cdb591cfe",
+    "leaderboard_bbh_boolean_expressions": "f145d9136f33fd069620cb7669c68fce1432f2afd0e33863736174d4908c9f0a",
+    "leaderboard_bbh_logical_deduction_five_objects": "07f10909b7cca43d5d8d1b0c66cbb473e4a82c6186563472824ec77612cd2ac2",
+    "leaderboard_bbh_temporal_sequences": "ec64996a3e4b8ac60707ce97242c6b17df75df2e9584df8a7e7158ff05d2de59",
+    "leaderboard_bbh_ruin_names": "7e20913ef2e4d317c9ad0a73383d54dfdeffb4ffd8ea4f134a6b1cab218a152f",
+    "leaderboard_bbh_web_of_lies": "dce2ec29338ebc3fb7875c07971227dae6b16769a3c171af875f5584edb898bb",
+    "leaderboard_bbh_movie_recommendation": "7fd01371372ea15dda888a73f08dc83b748650557d156a7c72be7d34893c22ba",
+    "leaderboard_bbh_date_understanding": "0acd4ece93016b4361fa4374bf8c4fb5621572b993a3490537ea6003a9b27952",
+    "leaderboard_bbh_logical_deduction_three_objects": "0f324909fc304d533d2e71a16413518a8554098c2408ceaa45ce2e7f0d77e0b7",
+    "leaderboard_bbh_object_counting": "6a57fb94a6b610ca99622735ae3761a3142c84b683643e34b625e27b02d6457c",
+    "leaderboard_bbh_tracking_shuffled_objects_three_objects": "04480a32193a497b72479b4d9611e8ba10fc485f6fd36197eb630463eca289fe",
+    "leaderboard_bbh_disambiguation_qa": "d052f164bbc51b31b95a8093521d8c297f7db664e8c4f64a78e35f836550d52c",
+    "leaderboard_bbh_salient_translation_error_detection": "7934eac30b36a74daf98c559c5f5eb28c790543c07e4c7e134d38aafc5ddd6c3",
+    "leaderboard_mmlu_pro": "343d32c0667246b56c035fd6598391b3c99766a8ce2f290d5099c1cc0f2f724a"
+  },
+  "model_source": "hf",
+  "model_name": "LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct",
+  "model_name_sanitized": "LGAI-EXAONE__EXAONE-3.0-7.8B-Instruct",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": true,
+  "chat_template": "{% for message in messages %}{% if loop.first and message['role'] != 'system' %}{{ '[|system|][|endofturn|]\n' }}{% endif %}{{ '[|' + message['role'] + '|]' + message['content'] }}{% if message['role'] == 'user' %}{{ '\n' }}{% else %}{{ '[|endofturn|]\n' }}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '[|assistant|]' }}{% endif %}",
+  "chat_template_sha": "627e212836e41c6231988b4ae595a16ddfd7814d2c39fd7bf3105651f8bbeebd",
+  "start_time": 426982.73565617,
+  "end_time": 428948.782409669,
+  "total_evaluation_time_seconds": "1966.0467534990166"
+}

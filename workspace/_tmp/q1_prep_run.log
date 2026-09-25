@@ -1,0 +1,4 @@
+[Q1] decoded A_data_value/slimpajama_quality_signal_sample.jsonl.xz: 51230 rows (softmax)
+[Q1] decoded A_data_value/slimpajama_quality_extended/arxiv_part-6777d8857c6e-000486.jsonl.xz: 17523 rows (softmax)
+[Q1] decoded A_data_value/slimpajama_quality_extended/github_part-6777d8857c6e-000275.jsonl.xz: 203752 rows (softmax)
+[prep-q1] saved /Users/hybuzhy/Developer/workspace/华为杯 F题 -算力约束下提升大语言模型能力的资源配置建模/workspace/figures/_prep_q1.npz and /Users/hybuzhy/Developer/workspace/华为杯 F题 -算力约束下提升大语言模型能力的资源配置建模/workspace/figures/_prep_q1.json

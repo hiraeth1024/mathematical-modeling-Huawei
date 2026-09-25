@@ -1,0 +1,195 @@
+% !TeX program = xelatex
+% 华为杯 F 题：算力约束下提升大语言模型能力的资源配置建模
+\documentclass[12pt,a4paper]{ctexart}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{url}
+
+% 按竞赛论文模板设置 A4 纸张和页边距
+\geometry{a4paper,left=2.25cm,right=2.25cm,top=3.0cm,bottom=1.85cm}
+\graphicspath{{figures/}{../figures/}}
+
+\captionsetup{font=small,labelsep=quad}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{2em}
+\linespread{1.0}
+\renewcommand{\arraystretch}{1.15}
+\AtBeginDocument{\zihao{-4}\songti}
+
+% 格式规范：一级标题四号黑体居中，其余正文小四号宋体
+\ctexset{
+  section={format=\centering\heiti\zihao{4},beforeskip=1.4ex,afterskip=1.0ex},
+  subsection={format=\heiti\zihao{-4},beforeskip=1.2ex,afterskip=0.8ex},
+  subsubsection={format=\heiti\zihao{-4},beforeskip=1.0ex,afterskip=0.6ex}
+}
+
+% 附录源代码的排版样式
+\renewcommand{\lstlistingname}{代码}
+\lstdefinestyle{pythonstyle}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!70!black},
+  commentstyle=\color{green!45!black},
+  stringstyle=\color{orange!70!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=8pt,
+  frame=single,
+  breaklines=true,
+  showstringspaces=false,
+  columns=fullflexible,
+  tabsize=4,
+  captionpos=b
+}
+
+\newcommand{\Dt}{D}
+\newcommand{\Lctx}{L_{\mathrm{ctx}}}
+\newcommand{\Ctrain}{C_{\mathrm{train}}}
+\newcommand{\Cattn}{C_{\mathrm{attn}}}
+\newcommand{\Deff}{D_{\mathrm{eff}}}
+
+
+
+% MH-FLOAT-TUNE 受控浮动调参（防整页空白/一页一图）
+\usepackage[section]{placeins}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\renewcommand{\dbltopfraction}{0.92}
+\renewcommand{\dblfloatpagefraction}{0.72}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\usepackage{fancyhdr}
+
+% 页面样式：无页眉，页码位于页脚正中央
+\pagestyle{fancy}
+\fancyhf{}                  % 清空页眉和页脚
+\fancyfoot[C]{\thepage}     % 页脚中央显示页码
+\renewcommand{\headrulewidth}{0pt} % 去掉页眉横线
+\renewcommand{\footrulewidth}{0pt} % 不显示页脚横线
+
+% 同时覆盖 plain 样式，防止标题页等页面恢复默认样式
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+\let\oldcite\cite
+\renewcommand{\cite}[1]{\textsuperscript{\oldcite{#1}}}
+\usepackage{etoolbox}
+
+\begin{document}
+
+% 摘要后另起一页生成目录；页码与摘要连续
+\thispagestyle{fancy}
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+% 目录后另起一页开始正文
+\clearpage
+
+\label{mh:body-start}
+
+\section{问题重述与问题分析}
+
+\subsection{问题背景与任务}
+大语言模型的能力主要通过验证集交叉熵损失（全文记为 $L$，单位 nats/token，越低越好）来度量。经典标度律
+\begin{equation}
+L(N,\Dt)=E+A\,N^{-\alpha}+B\,\Dt^{-\beta},
+\label{eq:classic-intro}
+\end{equation}
+把损失表示为参数规模 $N$ 与训练数据量 $\Dt$ 的幂律叠加，其中 $E$ 为不可约损失，$A,\alpha,B,\beta$ 为待估参数\cite{kaplan2020,hoffmann2022}。然而式~\eqref{eq:classic-intro} 未显式包含数据质量 $Q$ 与领域配比 $\bm p$，也未刻画长上下文对算力的挤占。在总算力预算 $C$ 有限时，如何在 $N,\Dt,Q,\bm p$ 与上下文长度 $\Lctx$ 之间取舍，成为决定模型能力上限的核心问题。本文需要回答四个递进的问题：刻画数据的质量与配比，把它们纳入损失预测，在预算约束下求最优配置，最后把损失翻译为真实基准能力并预测其前沿。
+
+题目提供三组真实数据：一组覆盖七个来源域、含 $22$ 个质量信号的大规模文本样本与两个扩展集；一组来自公开模型训练的标度律轨迹与跨族、文献验证点，其中仅一小组半合成实验带有质量标度；一组开源模型评测榜单、逐任务评测记录、损失—基准桥接样本与模型架构元数据。四问按数据、标度律、预算配置与能力分析组织；实际计算依赖关系在图~\ref{fig:roadmap} 中说明。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth,height=0.8\textheight,keepaspectratio]{fig_roadmap.pdf}
+  \caption{四问递进的整体技术路线}
+  \label{fig:roadmap}
+\end{figure}
+
+图~\ref{fig:roadmap} 从左至右给出数据刻画、广义标度律、预算优化与能力预测四个阶段：问题一的域级质量作为问题三基线；配比关系为独立的辅助分析，当前广义律计算固定配比因子为 $1$；标度律参数用于问题三优化目标；问题四的桥接由独立样本拟合；问题四的桥接可探索性地把损失映射到能力，但当前前沿预测直接基于榜单能力值。章节顺序对应问题的分析层次，并不意味着每一项上游量均进入下游数值模型。
+
+\subsection{问题一的分析}
+问题一先按字段语义解码二分类与六分类 logits，再用 A1 固定经验百分位、三组平衡权重合成质量；A2/A3 沿用 A1 参照。局部冲突定义为高教育价值且判有广告，降权仅作敏感性对照。配比实验另行拟合分域损失，区分观测留出集与估计值外推表。域级质量进入问题三基线；配比系数未进入广义律或预算优化的数值计算。
+
+\subsection{问题二的分析}
+问题二要在经典标度律基础上纳入质量，并讨论配比扩展，是推理密集型任务。首先以真实训练轨迹拟合经典律，并用族外、轨迹、跨族与文献数据分层验证泛化性。广义律的设计是核心：一种自然方式是让高质量数据等效于更多 token，即以有效数据量 $Q^{\theta}\Dt$ 进入数据项，并令 $Q=1$ 时退化为经典形式；半合成实验的质量标度方向与模型假设冲突，质量指数在下游取结构性假定值。弹性与替代条件由对数损失的偏导解析给出，据此可回答。本问的广义律与弹性关系是问题三优化目标的来源。
+
+\subsection{问题三的分析}
+问题三是“算力约束下的资源配置优化与结构性转移”的混合任务。目标函数取自问题二的广义标度律，约束为基础训练、质量提升与长文本注意力三部分算力之和不超预算。求解上先用 Lagrange/KKT 做解析刻画，预算约束在最优处通常取等号，据此得最优配置关于预算的标度关系；再用序列二次规划配合多起点数值优化\cite{sqp1995}在三档及连续预算上搜索最低损失的可行解。结构性转移须给出可判定定义，本文以算力份额对预算对数的导数峰值作为数值判据，并检查边界状态。上下文长度依题意为外生参数，须解析给出使注意力开销等于训练开销的临界值并在其可行取值上做敏感性分析。
+
+\subsection{问题四的分析}
+问题四是“贡献分解、桥接映射与带不确定性外推”的混合任务。能力提升既来自规模扩张也来自架构、对齐与数据工程等非规模技术进步\cite{gpt3_2020,emergent2022}。以能力对规模变量与时间回归，可作描述性分解；年份项可能混入样本组成和未观测因素，不作因果贡献解释。损失与基准的桥接用按可比性分层的单调映射建立；前沿预测直接用榜单能力值，不传播桥接误差。前沿预测在给定能力趋势系数的情景下外推能力分位带，须显式声明综合能力度量、开源筛选口径与时间轴口径\cite{helm2022,mmlu2020}。本问是全题落点，把前三问的损失语言翻译为现实基准能力。
+
+\section{模型假设}
+本文只保留会影响可行域、模型结构或结果解释的现实简化，每条附一句合理性说明。
+
+（1）$22$ 个质量字段按类别语义解码并统一方向，用 A1 经验百分位归一化；模型评分、DSIR 和结构信号三组各占 $1/3$。该权重是可检验的建模选择，$Q$ 是相对可用性评分，不是真实质量概率。
+
+（2）领域配比与损失的关系在同一训练尺度内可由配比向量单独预测，参数量与数据量由配比实验固定，分域建模后按目标域加权。数据本按域分列损失，且同配方不同域损失差异显著，支持分域刻画。
+
+（3）质量以“质量增强有效数据量”方式进入广义标度律，令有效数据量为 $Q^{\theta}\Dt$，使 $Q=1$ 时自然退化为经典形式。高质量数据等效于更多 token，物理含义清晰且退化有据。
+
+（4）问题三中配比由前两问固定、仅 $N,\Dt,Q$ 为决策变量，配比联立优化作为扩展。固定配比使规模、数据、质量三者的结构性转移更清晰，且标度律数据无逐域配比字段。
+
+（5）基线质量 $Q_0$ 取问题一七个域级评分的中位数，并在敏感性分析中扰动。题面未给该值；它是当前评分标度下质量成本铰链的起算点，随评分方法变化。
+
+（6）问题四综合能力取六维基准均分，前沿样本用许可证字段非空作为代理筛选，时间轴用榜单年份；该代理不能核实严格的开源属性。均分口径透明可复现，且题目要求显式声明这些口径。
+
+\section{符号说明}
+下表汇总全文跨章节复用、直接进入核心目标或约束的主要符号；一次性下标在首次出现处解释。
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{clcl}
+    \toprule
+    符号 & 含义 & 符号 & 含义 \\
+    \midrule
+    $L$ & 验证集交叉熵损失 (nats/token) & $C$ & 总算力预算 (FLOPs) \\
+    $N$ & 模型参数量 ($10^9$) & $\Ctrain=6N\Dt$ & 基础训练开销 \\
+    $\Dt$ & 训练 token 数 ($10^9$) & $C_Q$ & 质量提升开销 \\
+    $Q$ & 综合数据质量评分 $(0,1]$ & $\Cattn=\eta N\Dt\Lctx$ & 长文本注意力开销 \\
+    $Q_0$ & 基线质量 & $\eta$ & 注意力开销系数 $2\times10^{-4}$ \\
+    $\bm p$ & $17$ 域配比向量 & $\Lctx$ & 上下文长度 (tokens, 外生) \\
+    $E$ & 不可约损失 & $\Lctx^{\mathrm{crit}}$ & 注意力临界上下文 $6/\eta$ \\
+    $A,\alpha$ & 参数项系数与指数 & $g(Q)$ & 每 token 质量成本函数 \\
+    $B,\beta$ & 数据项系数与指数 & $\varepsilon_X$ & 因素 $X$ 的弹性 \\
+    $\theta$ & 质量放大指数 & $s_X$ & 因素 $X$ 的算力份额 \\
+    $w_j$ & 质量指标 $j$ 的权重 & $\mathrm{Cap}$ & 综合基准能力 $(0$--$100)$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\input{sections/s3_q1.tex}
+\input{sections/s4_q2.tex}
+\input{sections/s5_q3.tex}
+\input{sections/s6_q4.tex}
+\input{sections/s7_verify.tex}
+\input{sections/s8_conclusion.tex}
+
+% 参考文献、附录 A 和附录 B 分别另起一页
+\clearpage
+\input{sections/s0_refs.tex}
+\clearpage
+\input{sections/s9_appendix.tex}
+\clearpage
+\input{sections/s10_appendix.tex}
+
+\end{document}

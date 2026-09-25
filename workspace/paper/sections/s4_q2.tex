@@ -1,0 +1,88 @@
+\section{问题二：经典标度律拟合与含质量的广义标度律}
+
+本章先在真实训练轨迹上拟合经典标度律，再构造含质量的有效数据量扩展，并解析弹性与质量对规模的替代条件。配比影响在本章保留为待识别扩展，数值计算固定其因子为 $1$；问题三使用这里的损失参数，问题四的桥接由另一组损失--基准样本独立拟合。
+
+\subsection{经典标度律的对数域稳健拟合}
+采用题目给定的经典形式式~\eqref{eq:classic-intro}。以 $1176$ 行真实 Pythia 训练日志\cite{pythia2023}为主拟合集（参数量 $0.07$--$12$B、数据量至 $300$B）。由于损失跨越约 $2$ 到 $4.7$ 的量级，直接在原始尺度最小二乘会被大损失点主导，故在对数域用 Huber 损失做加权非线性最小二乘，兼顾同方差化与对离群轨迹点的稳健性：
+\begin{equation}
+\min_{E,A,\alpha,B,\beta}\ \sum_{m=1}^{M}\rho_\kappa\!\Bigl(\ln L_m-\ln\bigl(E+A N_m^{-\alpha}+B \Dt_m^{-\beta}\bigr)\Bigr),\quad
+\rho_\kappa(u)=\begin{cases}\tfrac12 u^2, & |u|\le\kappa,\\[2pt]\kappa\bigl(|u|-\tfrac12\kappa\bigr), & |u|>\kappa.\end{cases}
+\label{eq:q2-huber}
+\end{equation}
+求解用信赖域反射的非线性最小二乘并启用 Huber 稳健损失，以 $\alpha,\beta\in[0.05,0.5]$ 的网格初值多起点启动，避免落入局部解。
+
+\textbf{结果与分层验证。}拟合得 $E=1.690$、$A=0.354$、$\alpha=0.340$、$B=1.240$、$\beta=0.280$，决定系数 $R^2$ 接近 $1$，残差均值约 $-5\times10^{-8}$。两个指数落在文献常见区间 $(0,1)$ 内，且方向正确——增大参数量或数据量都使损失下降\cite{kaplan2020,hoffmann2022}。为考察泛化，在四组独立数据上分层验证：族外半合成日志、插值轨迹、$12$ 族收敛点与文献点，其中跨族基线决定系数 $0.60$、文献点 $0.73$，均方根误差随可比性下降而增大，符合预期。百亿参数以上的估算点仅用于外推讨论，不作为观测。图~\ref{fig:q2_scaling_fit} 给出拟合优度与残差。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_scaling_fit.pdf}
+  \caption{经典标度律拟合优度与残差}
+  \label{fig:q2_scaling_fit}
+\end{figure}
+
+预测--实际散点几乎落在对角线上，拟合残差 $\hat L-L$ 在零线附近无系统弯曲（残差标准差约 $1.5\times10^{-4}$ nats/token，量级远小于 $L$ 本身），说明经典幂律在真实轨迹上的拟合已相当充分，可作为广义律的可靠基底（图~\ref{fig:q2_scaling_fit}，右图横轴为残差 $\hat L-L$，单位 nats/token）。
+
+\subsection{含质量的广义标度律设计}
+经典律未含质量。本文让高质量数据等效于更多 token，即以有效数据量 $\Deff=Q^{\theta}\Dt$（$\theta>0$）进入数据项：
+\begin{equation}
+\boxed{\,L(N,\Dt,Q)=E+A\,N^{-\alpha}+B\,\bigl(Q^{\theta}\Dt\bigr)^{-\beta}\,}.
+\label{eq:q2-gen}
+\end{equation}
+当 $Q=1$ 时 $Q^{\theta}=1$、$\Deff=\Dt$，式~\eqref{eq:q2-gen} 在代数上退化为经典式~\eqref{eq:classic-intro}。问题一的 $Q$ 是 A1 相对百分位的加权评分，$1$ 是模型边界，没有经验样本被证明达到“完美质量”。评分还含文档长度信号；把 $Q^{\theta}\Dt$ 解作有效 token 数是建模假设，其独立质量效应尚缺真实质量--损失联合观测验证。配比调节项 $\phi(\bm p)$ 可作为扩展，但当前拟合和问题三计算均固定 $\phi=1$。
+
+\textbf{质量放大指数的不可识别性与结构性取值。}原则上质量放大指数 $\theta$ 应由带质量标度的半合成实验估计，这也是全部数据中唯一含质量标度的来源。但实测发现该实验的质量标度与验证损失呈\emph{正相关}（Spearman 约 $+0.446$，组内更高），即“质量标度越高损失越高”，与“高质量有益”的方向相反，且在极低质量标度处损失甚至低于经典不可约损失。这说明该实验的质量标度并非问题一的部署质量口径，而是重标定损失区间的\emph{实验设定量}（难度或多样性指标），$\theta$ 无法从该数据中识别。为避免把无根据的经验值伪装成估计结果，本文明确将 $\theta$ 定位为\textbf{结构性假定参数}而非估计量：取 $\theta=0.5$ 只是位于“质量无效”（$\theta=0$）与“质量和数据等弹性”（$\theta=1$）之间的示例设定，不是数据估计值，也没有特别的统计最优性。另以 $\{0.2,0.5,0.8\}$ 做情景敏感性分析；只在这些设定下讨论相应结果。据此所有依赖 $\theta$ 的下游结论（问题三最优配置）均在“$\theta=0.5$ 假定下成立”的限定下解读，并在 $\{0.2,0.5,0.8\}$ 上给出敏感性区间。需说明含质量广义律在留出集上的均方根误差 $0.688$ 低于同参经典基线的 $0.971$，反映的是引入质量维度后模型自由度与拟合灵活性的提升，而非对 $\theta$ 绝对值的验证。表~\ref{tab:q2_scaling} 汇总两律的参数与拟合优度。
+
+\input{../figures/TABLE_q2_scaling.tex}
+
+经典律与广义律的参数对比见表~\ref{tab:q2_scaling}：经典律以近乎完美的 $R^2$ 拟合真实轨迹；广义律行中的经验质量指数因上述设定量口径问题落在边界（不可识别），故表中明确标注为“不可识别，下游取用结构性假定值 $\theta=0.5$”，这一分列正是对数据与假设冲突的诚实呈现，而非把数据改写以迎合假设。$Q=1$ 退化的相对误差为 $0$，满足等价性要求。广义律的损失曲面见图~\ref{fig:q2_gen_surface}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_generalized_surface.pdf}
+  \caption{广义标度律损失曲面}
+  \label{fig:q2_gen_surface}
+\end{figure}
+
+固定数据量后，损失随参数量与质量的联合变化面沿任一方向增大均单调下降，质量方向的下降经 $Q^{\theta}$ 放大数据项体现，直观展示了质量与规模对损失的协同作用（图~\ref{fig:q2_gen_surface}，含 $Q=1$ 退化对照线）。
+
+\subsection{弹性、边际效用与质量--规模替代}
+定义因素 $X$ 的弹性 $\varepsilon_X=\partial\ln L/\partial\ln X$。对广义律式~\eqref{eq:q2-gen} 求偏导得
+\begin{equation}
+\frac{\partial L}{\partial N}=-\alpha A N^{-\alpha-1},\quad
+\frac{\partial L}{\partial \Dt}=-\beta B Q^{-\theta\beta}\Dt^{-\beta-1},\quad
+\frac{\partial L}{\partial Q}=-\theta\beta B Q^{-\theta\beta-1}\Dt^{-\beta},
+\label{eq:q2-partials}
+\end{equation}
+从而
+\begin{equation}
+\varepsilon_N=\frac{-\alpha A N^{-\alpha}}{L},\qquad
+\varepsilon_D=\frac{-\beta B (Q^{\theta}\Dt)^{-\beta}}{L},\qquad
+\varepsilon_Q=\theta\,\varepsilon_D .
+\label{eq:q2-elastic}
+\end{equation}
+式~\eqref{eq:q2-elastic} 表明质量弹性是数据弹性的 $\theta$ 倍：质量通过放大有效数据发挥作用，其边际效用与数据同向而幅度可调。沿等损失面 $\mathrm dL=0$，质量与规模的替代率为
+\begin{equation}
+\left.\frac{\mathrm dN}{\mathrm dQ}\right|_{L}=-\frac{\partial L/\partial Q}{\partial L/\partial N}
+=-\frac{\theta\beta B\,Q^{-\theta\beta-1}\Dt^{-\beta}}{\alpha A\,N^{-\alpha-1}} .
+\label{eq:q2-subst}
+\end{equation}
+
+\textbf{结果。}在参考点（参数量 $1$、数据量 $100$、质量 $0.5$）代入拟合参数，得 $\varepsilon_N=-0.066$、$\varepsilon_D=-0.086$、$\varepsilon_Q=-0.043$，三者均为负、方向正确，且满足 $\varepsilon_Q=\theta\varepsilon_D$。替代率 $\mathrm dN/\mathrm dQ|_L=-1.31$，即在该参考点把质量提升 $0.1$ 约等价于减少 $0.13\times10^9$ 参数而保持损失不变——质量确可在一定范围内替代规模。需强调该数值强依赖假定的质量指数，故其量级仅在参考点邻域可信，正负号由所设正质量指数的模型形式决定，不构成独立经验验证。图~\ref{fig:q2_elasticity} 与图~\ref{fig:q2_substitution} 分别展示弹性对照与替代关系。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_elasticity_diverging.pdf}
+  \caption{各因素损失弹性对照}
+  \label{fig:q2_elasticity}
+\end{figure}
+
+三个弹性中数据弹性绝对值最大、参数次之、质量最小，说明在该参考点数据量的边际效用最高；三者同为负值再次确认增大任一因素都降低损失（图~\ref{fig:q2_elasticity}）。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_substitution_contour.pdf}
+  \caption{等损失线与质量--规模替代}
+  \label{fig:q2_substitution}
+\end{figure}
+
+等损失曲线在低质量区更陡（图~\ref{fig:q2_substitution}），其斜率即式~\eqref{eq:q2-subst} 给出的质量--规模即时替代率，表明质量越低时提升质量替代规模的效率越高。这一分析为问题三在预算约束下权衡质量投入与规模扩张提供了边际依据。

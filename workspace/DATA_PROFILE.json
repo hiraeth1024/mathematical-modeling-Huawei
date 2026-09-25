@@ -1,0 +1,828 @@
+{
+  "_meta": {
+    "n_files": 47,
+    "root": "user_data/real_attachments/real_attachments"
+  },
+  "files": {
+    "A_data_value\\domain_mapping_guide.csv": {
+      "kind": "csv",
+      "total_rows": 17,
+      "n_cols": 4,
+      "cols": [
+        "mixture_domain",
+        "quality_domain",
+        "mapping_type",
+        "note"
+      ],
+      "bytes": 1296
+    },
+    "A_data_value\\regmix_domain_summary.csv": {
+      "kind": "csv",
+      "total_rows": 17,
+      "n_cols": 5,
+      "cols": [
+        "domain",
+        "source_path",
+        "sample_rows",
+        "sample_bytes_requested",
+        "avg_text_chars"
+      ],
+      "bytes": 1265
+    },
+    "A_data_value\\regmix_tables\\est_mixture_10b.csv": {
+      "kind": "csv",
+      "total_rows": 63,
+      "n_cols": 18,
+      "cols": [
+        "index",
+        "train_the_pile_arxiv",
+        "train_the_pile_freelaw",
+        "train_the_pile_nih_exporter",
+        "train_the_pile_pubmed_central",
+        "train_the_pile_wikipedia_en",
+        "train_the_pile_dm_mathematics",
+        "train_the_pile_github",
+        "train_the_pile_philpapers",
+        "train_the_pile_stackexchange",
+        "train_the_pile_enron_emails",
+        "train_the_pile_gutenberg_pg_19",
+        "train_the_pile_pile_cc",
+        "train_the_pile_ubuntu_irc",
+        "train_the_pile_europarl",
+        "train_the_pile_hackernews",
+        "train_the_pile_pubmed_abstracts",
+        "train_the_pile_uspto_backgrounds"
+      ],
+      "bytes": 6113
+    },
+    "A_data_value\\regmix_tables\\est_mixture_70b.csv": {
+      "kind": "csv",
+      "total_rows": 63,
+      "n_cols": 18,
+      "cols": [
+        "index",
+        "train_the_pile_arxiv",
+        "train_the_pile_freelaw",
+        "train_the_pile_nih_exporter",
+        "train_the_pile_pubmed_central",
+        "train_the_pile_wikipedia_en",
+        "train_the_pile_dm_mathematics",
+        "train_the_pile_github",
+        "train_the_pile_philpapers",
+        "train_the_pile_stackexchange",
+        "train_the_pile_enron_emails",
+        "train_the_pile_gutenberg_pg_19",
+        "train_the_pile_pile_cc",
+        "train_the_pile_ubuntu_irc",
+        "train_the_pile_europarl",
+        "train_the_pile_hackernews",
+        "train_the_pile_pubmed_abstracts",
+        "train_the_pile_uspto_backgrounds"
+      ],
+      "bytes": 6113
+    },
+    "A_data_value\\regmix_tables\\est_pile_loss_10b.csv": {
+      "kind": "csv",
+      "total_rows": 63,
+      "n_cols": 14,
+      "cols": [
+        "index",
+        "metric/the_pile_arxiv_val_loss",
+        "metric/the_pile_freelaw_val_loss",
+        "metric/the_pile_pubmed_central_val_loss",
+        "metric/the_pile_wikipedia_en_val_loss",
+        "metric/the_pile_dm_mathematics_val_loss",
+        "metric/the_pile_github_val_loss",
+        "metric/the_pile_stackexchange_val_loss",
+        "metric/the_pile_gutenberg_pg_19_val_loss",
+        "metric/the_pile_pile_cc_val_loss",
+        "metric/the_pile_ubuntu_irc_val_loss",
+        "metric/the_pile_hackernews_val_loss",
+        "metric/the_pile_pubmed_abstracts_val_loss",
+        "metric/the_pile_uspto_backgrounds_val_loss"
+      ],
+      "bytes": 6467
+    },
+    "A_data_value\\regmix_tables\\est_pile_loss_70b.csv": {
+      "kind": "csv",
+      "total_rows": 63,
+      "n_cols": 14,
+      "cols": [
+        "index",
+        "metric/the_pile_arxiv_val_loss",
+        "metric/the_pile_freelaw_val_loss",
+        "metric/the_pile_pubmed_central_val_loss",
+        "metric/the_pile_wikipedia_en_val_loss",
+        "metric/the_pile_dm_mathematics_val_loss",
+        "metric/the_pile_github_val_loss",
+        "metric/the_pile_stackexchange_val_loss",
+        "metric/the_pile_gutenberg_pg_19_val_loss",
+        "metric/the_pile_pile_cc_val_loss",
+        "metric/the_pile_ubuntu_irc_val_loss",
+        "metric/the_pile_hackernews_val_loss",
+        "metric/the_pile_pubmed_abstracts_val_loss",
+        "metric/the_pile_uspto_backgrounds_val_loss"
+      ],
+      "bytes": 6467
+    },
+    "A_data_value\\regmix_tables\\test_mixture_1B.csv": {
+      "kind": "csv",
+      "total_rows": 64,
+      "n_cols": 18,
+      "cols": [
+        "index",
+        "train_the_pile_arxiv",
+        "train_the_pile_freelaw",
+        "train_the_pile_nih_exporter",
+        "train_the_pile_pubmed_central",
+        "train_the_pile_wikipedia_en",
+        "train_the_pile_dm_mathematics",
+        "train_the_pile_github",
+        "train_the_pile_philpapers",
+        "train_the_pile_stackexchange",
+        "train_the_pile_enron_emails",
+        "train_the_pile_gutenberg_pg_19",
+        "train_the_pile_pile_cc",
+        "train_the_pile_ubuntu_irc",
+        "train_the_pile_europarl",
+        "train_the_pile_hackernews",
+        "train_the_pile_pubmed_abstracts",
+        "train_the_pile_uspto_backgrounds"
+      ],
+      "bytes": 6393
+    },
+    "A_data_value\\regmix_tables\\test_mixture_1m.csv": {
+      "kind": "csv",
+      "total_rows": 256,
+      "n_cols": 18,
+      "cols": [
+        "index",
+        "train_the_pile_arxiv",
+        "train_the_pile_freelaw",
+        "train_the_pile_nih_exporter",
+        "train_the_pile_pubmed_central",
+        "train_the_pile_wikipedia_en",
+        "train_the_pile_dm_mathematics",
+        "train_the_pile_github",
+        "train_the_pile_philpapers",
+        "train_the_pile_stackexchange",
+        "train_the_pile_enron_emails",
+        "train_the_pile_gutenberg_pg_19",
+        "train_the_pile_pile_cc",
+        "train_the_pile_ubuntu_irc",
+        "train_the_pile_europarl",
+        "train_the_pile_hackernews",
+        "train_the_pile_pubmed_abstracts",
+        "train_the_pile_uspto_backgrounds"
+      ],
+      "bytes": 23537
+    },
+    "A_data_value\\regmix_tables\\test_mixture_60m.csv": {
+      "kind": "csv",
+      "total_rows": 256,
+      "n_cols": 18,
+      "cols": [
+        "index",
+        "train_the_pile_arxiv",
+        "train_the_pile_freelaw",
+        "train_the_pile_nih_exporter",
+        "train_the_pile_pubmed_central",
+        "train_the_pile_wikipedia_en",
+        "train_the_pile_dm_mathematics",
+        "train_the_pile_github",
+        "train_the_pile_philpapers",
+        "train_the_pile_stackexchange",
+        "train_the_pile_enron_emails",
+        "train_the_pile_gutenberg_pg_19",
+        "train_the_pile_pile_cc",
+        "train_the_pile_ubuntu_irc",
+        "train_the_pile_europarl",
+        "train_the_pile_hackernews",
+        "train_the_pile_pubmed_abstracts",
+        "train_the_pile_uspto_backgrounds"
+      ],
+      "bytes": 23537
+    },
+    "A_data_value\\regmix_tables\\test_pile_loss_1B.csv": {
+      "kind": "csv",
+      "total_rows": 64,
+      "n_cols": 14,
+      "cols": [
+        "index",
+        "metric/the_pile_arxiv_val_loss",
+        "metric/the_pile_freelaw_val_loss",
+        "metric/the_pile_pubmed_central_val_loss",
+        "metric/the_pile_wikipedia_en_val_loss",
+        "metric/the_pile_dm_mathematics_val_loss",
+        "metric/the_pile_github_val_loss",
+        "metric/the_pile_stackexchange_val_loss",
+        "metric/the_pile_gutenberg_pg_19_val_loss",
+        "metric/the_pile_pile_cc_val_loss",
+        "metric/the_pile_ubuntu_irc_val_loss",
+        "metric/the_pile_hackernews_val_loss",
+        "metric/the_pile_pubmed_abstracts_val_loss",
+        "metric/the_pile_uspto_backgrounds_val_loss"
+      ],
+      "bytes": 10639
+    },
+    "A_data_value\\regmix_tables\\test_pile_loss_1m.csv": {
+      "kind": "csv",
+      "total_rows": 256,
+      "n_cols": 14,
+      "cols": [
+        "index",
+        "metric/the_pile_arxiv_val_loss",
+        "metric/the_pile_freelaw_val_loss",
+        "metric/the_pile_pubmed_central_val_loss",
+        "metric/the_pile_wikipedia_en_val_loss",
+        "metric/the_pile_dm_mathematics_val_loss",
+        "metric/the_pile_github_val_loss",
+        "metric/the_pile_stackexchange_val_loss",
+        "metric/the_pile_gutenberg_pg_19_val_loss",
+        "metric/the_pile_pile_cc_val_loss",
+        "metric/the_pile_ubuntu_irc_val_loss",
+        "metric/the_pile_hackernews_val_loss",
+        "metric/the_pile_pubmed_abstracts_val_loss",
+        "metric/the_pile_uspto_backgrounds_val_loss"
+      ],
+      "bytes": 61175
+    },
+    "A_data_value\\regmix_tables\\test_pile_loss_60m.csv": {
+      "kind": "csv",
+      "total_rows": 256,
+      "n_cols": 14,
+      "cols": [
+        "index",
+        "metric/the_pile_arxiv_val_loss",
+        "metric/the_pile_freelaw_val_loss",
+        "metric/the_pile_pubmed_central_val_loss",
+        "metric/the_pile_wikipedia_en_val_loss",
+        "metric/the_pile_dm_mathematics_val_loss",
+        "metric/the_pile_github_val_loss",
+        "metric/the_pile_stackexchange_val_loss",
+        "metric/the_pile_gutenberg_pg_19_val_loss",
+        "metric/the_pile_pile_cc_val_loss",
+        "metric/the_pile_ubuntu_irc_val_loss",
+        "metric/the_pile_hackernews_val_loss",
+        "metric/the_pile_pubmed_abstracts_val_loss",
+        "metric/the_pile_uspto_backgrounds_val_loss"
+      ],
+      "bytes": 61827
+    },
+    "A_data_value\\regmix_tables\\train_mixture_1m.csv": {
+      "kind": "csv",
+      "total_rows": 512,
+      "n_cols": 18,
+      "cols": [
+        "index",
+        "train_the_pile_arxiv",
+        "train_the_pile_freelaw",
+        "train_the_pile_nih_exporter",
+        "train_the_pile_pubmed_central",
+        "train_the_pile_wikipedia_en",
+        "train_the_pile_dm_mathematics",
+        "train_the_pile_github",
+        "train_the_pile_philpapers",
+        "train_the_pile_stackexchange",
+        "train_the_pile_enron_emails",
+        "train_the_pile_gutenberg_pg_19",
+        "train_the_pile_pile_cc",
+        "train_the_pile_ubuntu_irc",
+        "train_the_pile_europarl",
+        "train_the_pile_hackernews",
+        "train_the_pile_pubmed_abstracts",
+        "train_the_pile_uspto_backgrounds"
+      ],
+      "bytes": 46412
+    },
+    "A_data_value\\regmix_tables\\train_pile_loss_1m.csv": {
+      "kind": "csv",
+      "total_rows": 512,
+      "n_cols": 14,
+      "cols": [
+        "index",
+        "metric/the_pile_arxiv_val_loss",
+        "metric/the_pile_freelaw_val_loss",
+        "metric/the_pile_pubmed_central_val_loss",
+        "metric/the_pile_wikipedia_en_val_loss",
+        "metric/the_pile_dm_mathematics_val_loss",
+        "metric/the_pile_github_val_loss",
+        "metric/the_pile_stackexchange_val_loss",
+        "metric/the_pile_gutenberg_pg_19_val_loss",
+        "metric/the_pile_pile_cc_val_loss",
+        "metric/the_pile_ubuntu_irc_val_loss",
+        "metric/the_pile_hackernews_val_loss",
+        "metric/the_pile_pubmed_abstracts_val_loss",
+        "metric/the_pile_uspto_backgrounds_val_loss"
+      ],
+      "bytes": 121898
+    },
+    "B_scaling_laws\\cerebras_training_log.csv": {
+      "kind": "csv",
+      "total_rows": 1029,
+      "n_cols": 15,
+      "cols": [
+        "run_id",
+        "N_params_B",
+        "D_tokens_B",
+        "C_FLOPs_1e21",
+        "steps",
+        "batch_tokens_M",
+        "lr",
+        "wd",
+        "precision",
+        "gpu_days",
+        "step_time_ms",
+        "train_loss",
+        "val_loss",
+        "ppl",
+        "grad_norm_avg"
+      ],
+      "bytes": 89643
+    },
+    "B_scaling_laws\\open_model_family_metadata.csv": {
+      "kind": "csv",
+      "total_rows": 18,
+      "n_cols": 8,
+      "cols": [
+        "family",
+        "model_repo",
+        "config_bytes",
+        "readme_bytes",
+        "weight_file_count",
+        "weight_total_bytes",
+        "source_url",
+        "error"
+      ],
+      "bytes": 1975
+    },
+    "B_scaling_laws\\published_scaling_data.csv": {
+      "kind": "csv",
+      "total_rows": 44,
+      "n_cols": 6,
+      "cols": [
+        "family",
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "source",
+        "is_converged"
+      ],
+      "bytes": 1967
+    },
+    "B_scaling_laws\\pythia_checkpoint_index.csv": {
+      "kind": "csv",
+      "total_rows": 1386,
+      "n_cols": 5,
+      "cols": [
+        "model_repo",
+        "model_size",
+        "step",
+        "branch",
+        "commit"
+      ],
+      "bytes": 117698
+    },
+    "B_scaling_laws\\pythia_training_log_existing.csv": {
+      "kind": "csv",
+      "total_rows": 1176,
+      "n_cols": 15,
+      "cols": [
+        "run_id",
+        "N_params_B",
+        "D_tokens_B",
+        "C_FLOPs_1e21",
+        "steps",
+        "batch_tokens_M",
+        "lr",
+        "wd",
+        "precision",
+        "gpu_days",
+        "step_time_ms",
+        "train_loss",
+        "val_loss",
+        "ppl",
+        "grad_norm_avg"
+      ],
+      "bytes": 111459
+    },
+    "B_scaling_laws\\scaling_baseline.csv": {
+      "kind": "csv",
+      "total_rows": 57,
+      "n_cols": 5,
+      "cols": [
+        "family",
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "is_converged"
+      ],
+      "bytes": 1421
+    },
+    "B_scaling_laws\\supplementary_NQ_experiment.csv": {
+      "kind": "csv",
+      "total_rows": 360,
+      "n_cols": 5,
+      "cols": [
+        "experiment_id",
+        "N_params_B",
+        "D_tokens_B",
+        "Q_score",
+        "val_loss"
+      ],
+      "bytes": 13670
+    },
+    "B_scaling_laws\\supplementary_NQ_experiment_expanded.csv": {
+      "kind": "csv",
+      "total_rows": 450,
+      "n_cols": 5,
+      "cols": [
+        "experiment_id",
+        "N_params_B",
+        "D_tokens_B",
+        "Q_score",
+        "val_loss"
+      ],
+      "bytes": 17154
+    },
+    "B_scaling_laws\\supplementary_NQ_experiment_large.csv": {
+      "kind": "csv",
+      "total_rows": 1704,
+      "n_cols": 6,
+      "cols": [
+        "experiment_id",
+        "N_params_B",
+        "D_tokens_B",
+        "Q_score",
+        "val_loss",
+        "data_type"
+      ],
+      "bytes": 81268
+    },
+    "B_scaling_laws\\supplementary_large_baseline.csv": {
+      "kind": "csv",
+      "total_rows": 128,
+      "n_cols": 5,
+      "cols": [
+        "family",
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "is_converged"
+      ],
+      "bytes": 4744
+    },
+    "B_scaling_laws\\supplementary_large_models.csv": {
+      "kind": "csv",
+      "total_rows": 132,
+      "n_cols": 8,
+      "cols": [
+        "model_name",
+        "N_params_B",
+        "D_tokens_B",
+        "FLOPs",
+        "publication_date",
+        "organization",
+        "accessibility",
+        "country"
+      ],
+      "bytes": 13400
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_0.070542B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14040
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_0.162405B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14040
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_0.409009B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14040
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_1.040867B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14040
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_1.416184B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14040
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_11.965825B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14540
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_2.782831B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 14040
+    },
+    "B_scaling_laws\\training_trajectories\\pythia_6.86104B_trajectory.csv": {
+      "kind": "csv",
+      "total_rows": 500,
+      "n_cols": 5,
+      "cols": [
+        "N_params_B",
+        "D_tokens_B",
+        "val_loss",
+        "step",
+        "interpolated"
+      ],
+      "bytes": 13540
+    },
+    "C_efficiency_evolution\\epoch_all_ai_models.csv": {
+      "kind": "csv",
+      "total_rows": 3523,
+      "n_cols": 57,
+      "cols": [
+        "Model",
+        "Domain",
+        "Task",
+        "Organization",
+        "Authors",
+        "Publication date",
+        "Reference",
+        "Link",
+        "Citations",
+        "Notability criteria",
+        "Notability criteria notes",
+        "Parameters",
+        "Parameters notes",
+        "Training compute (FLOP)",
+        "Training compute notes",
+        "Training dataset size (total)",
+        "Dataset size notes",
+        "Training time (hours)",
+        "Training time notes",
+        "Training hardware",
+        "Approach",
+        "Confidence",
+        "Abstract",
+        "Epochs",
+        "WikiText and Penn Treebank data",
+        "Model accessibility",
+        "Country (of organization)",
+        "Base model",
+        "Finetune compute (FLOP)",
+        "Finetune compute notes"
+      ],
+      "bytes": 6671403
+    },
+    "C_efficiency_evolution\\leaderboard_cleaned.csv": {
+      "kind": "csv",
+      "total_rows": 4576,
+      "n_cols": 12,
+      "cols": [
+        "Model",
+        "#Params (B)",
+        "Submission Date",
+        "Hub License",
+        "Type",
+        "Average ⬆️",
+        "IFEval",
+        "BBH",
+        "MATH Lvl 5",
+        "GPQA",
+        "MUSR",
+        "MMLU-PRO"
+      ],
+      "bytes": 1011558
+    },
+    "C_efficiency_evolution\\leaderboard_enhanced.csv": {
+      "kind": "csv",
+      "total_rows": 4576,
+      "n_cols": 15,
+      "cols": [
+        "Model",
+        "#Params (B)",
+        "Submission Date",
+        "Hub License",
+        "Type",
+        "Average ⬆️",
+        "IFEval",
+        "BBH",
+        "MATH Lvl 5",
+        "GPQA",
+        "MUSR",
+        "MMLU-PRO",
+        "Epoch_AI_Publication_Date",
+        "Epoch_AI_Organization",
+        "Epoch_AI_Open_Weights"
+      ],
+      "bytes": 1036749
+    },
+    "C_efficiency_evolution\\leaderboard_extended_timeseries.csv": {
+      "kind": "csv",
+      "total_rows": 4599,
+      "n_cols": 11,
+      "cols": [
+        "Model",
+        "Year",
+        "Params_B",
+        "Average",
+        "IFEval",
+        "BBH",
+        "MATH_Lvl5",
+        "GPQA",
+        "MUSR",
+        "MMLU_PRO",
+        "Source"
+      ],
+      "bytes": 826723
+    },
+    "C_efficiency_evolution\\loss_benchmark_bridge.csv": {
+      "kind": "csv",
+      "total_rows": 43,
+      "n_cols": 13,
+      "cols": [
+        "Model",
+        "N_params_B",
+        "D_tokens_B",
+        "Val_Loss",
+        "LB_Average",
+        "LB_IFEval",
+        "LB_BBH",
+        "LB_MATH",
+        "LB_GPQA",
+        "LB_MUSR",
+        "LB_MMLU_PRO",
+        "Loss_Source",
+        "Loss_Comparability"
+      ],
+      "bytes": 11807
+    },
+    "C_efficiency_evolution\\loss_benchmark_bridge_expanded.csv": {
+      "kind": "csv",
+      "total_rows": 75,
+      "n_cols": 13,
+      "cols": [
+        "Model",
+        "N_params_B",
+        "D_tokens_B",
+        "Val_Loss",
+        "LB_Average",
+        "LB_IFEval",
+        "LB_BBH",
+        "LB_MATH",
+        "LB_GPQA",
+        "LB_MUSR",
+        "LB_MMLU_PRO",
+        "Loss_Source",
+        "Loss_Comparability"
+      ],
+      "bytes": 19124
+    },
+    "C_efficiency_evolution\\model_architecture_metadata.csv": {
+      "kind": "csv",
+      "total_rows": 45,
+      "n_cols": 7,
+      "cols": [
+        "model_name",
+        "n_layers",
+        "n_heads",
+        "d_model",
+        "vocab_size",
+        "max_position_embeddings",
+        "training_data_TB"
+      ],
+      "bytes": 2357
+    },
+    "attachment_size_summary.csv": {
+      "kind": "csv",
+      "total_rows": 2012,
+      "n_cols": 4,
+      "cols": [
+        "file",
+        "bytes",
+        "MB",
+        "GB"
+      ],
+      "bytes": 277728
+    },
+    "A_data_value\\regmix_domain_sample.jsonl.xz": {
+      "kind": "jsonl.xz",
+      "total_rows": 138034,
+      "bytes": 165293312
+    },
+    "A_data_value\\slimpajama_quality_extended\\arxiv_part-6777d8857c6e-000486.jsonl.xz": {
+      "kind": "jsonl.xz",
+      "total_rows": 17523,
+      "bytes": 3652724
+    },
+    "A_data_value\\slimpajama_quality_extended\\github_part-6777d8857c6e-000275.jsonl.xz": {
+      "kind": "jsonl.xz",
+      "total_rows": 203752,
+      "bytes": 37618172
+    },
+    "A_data_value\\slimpajama_quality_signal_sample.jsonl.xz": {
+      "kind": "jsonl.xz",
+      "total_rows": 51230,
+      "bytes": 103349792
+    },
+    "C_efficiency_evolution\\data\\train-00000-of-00001.parquet": {
+      "kind": "parquet",
+      "total_rows": 4576,
+      "n_cols": 36,
+      "cols": [
+        "eval_name",
+        "Precision",
+        "Type",
+        "T",
+        "Weight type",
+        "Architecture",
+        "Model",
+        "fullname",
+        "Model sha",
+        "Average ⬆️",
+        "Hub License",
+        "Hub ❤️",
+        "#Params (B)",
+        "Available on the hub",
+        "MoE",
+        "Flagged",
+        "Chat Template",
+        "CO₂ cost (kg)",
+        "IFEval Raw",
+        "IFEval",
+        "BBH Raw",
+        "BBH",
+        "MATH Lvl 5 Raw",
+        "MATH Lvl 5",
+        "GPQA Raw",
+        "GPQA",
+        "MUSR Raw",
+        "MUSR",
+        "MMLU-PRO Raw",
+        "MMLU-PRO"
+      ],
+      "bytes": 1109997
+    },
+    "C_efficiency_evolution/detailed_results": {
+      "kind": "dir",
+      "n_subdirs": 1863,
+      "n_json_files": 1958
+    }
+  }
+}

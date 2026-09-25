@@ -1,0 +1,49 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{ctex}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\begin{document}
+\adjustbox{max width=\textwidth}{%
+\begin{tikzpicture}[>=Stealth,line join=round,line cap=round]
+
+\def\xmax{9.6} \def\ymax{7.1}
+
+% ===== 坐标轴 =====
+\draw[->,thick] (0,0) -- (\xmax,0) node[anchor=north east] {模型规模 $\lg N$};
+\draw[->,thick] (0,0) -- (0,\ymax) node[anchor=south west] {数据量 $\lg D$};
+
+% ===== 等成本线（预算约束面截线，斜率 -1）=====
+\draw[very thick] (0,5.7) -- (5.7,0);                                 % C=1e19
+\node[anchor=west] at (5.85,0.5) {$C{=}10^{19}$};
+\draw[thick,dash pattern=on 3pt off 2.5pt] (2.4,6.4) -- (6.8,2.0);    % C=1e24
+\node[anchor=west] at (6.95,1.9) {$C{=}10^{24}$};
+
+% ===== 等损失线（凸向原点，与等成本线相切于最优点）=====
+\draw[semithick] (0.7,5.7) to[out=-66,in=156] (2.35,3.35) to[out=-24,in=114] (5.7,0.7);
+\node[anchor=east] at (0.5,5.75) {$L_1$};
+\draw[semithick] (2.55,6.3) to[out=-60,in=150] (4.4,4.4) to[out=-30,in=120] (6.3,2.55);
+\node[anchor=east] at (2.35,6.35) {$L_2$};
+
+% ===== 最优点与轨迹 =====
+\filldraw (2.35,3.35) circle (2.2pt);
+\node[anchor=north east] at (2.26,3.26) {$P_1$};
+\filldraw (4.4,4.4) circle (2.2pt);
+\node[anchor=south west] at (4.5,4.5) {$P_2$};
+\draw[->,thick,dotted] (2.35,3.35) to[out=42,in=222] (4.4,4.4);
+
+% ===== 区域语义标注（纯白底、短标签、彼此拉开）=====
+\draw[->,semithick] (1.65,1.5) -- (0.9,0.8);
+\node[anchor=west] at (1.7,1.6) {可行域};
+\node[align=center] at (3.7,2.0) {内点解 $Q^\ast{<}1$};
+\draw[->,semithick] (7.2,5.6) -- (5.0,4.7);
+\node[anchor=west] at (7.15,5.9) {结构转移区};
+\node[anchor=west] at (7.15,5.25) {$Q^\ast{\to}1$ 边界};
+
+% ===== 预算面方程（纯白底框，置于上方空白区，不增图高）=====
+\node[draw,rounded corners=1pt,anchor=north west,inner sep=4pt]
+  at (1.7,6.95) {预算面 $6ND{+}C_Q{+}C_{\mathrm{attn}}{=}C$};
+
+\end{tikzpicture}
+}%
+\end{document}

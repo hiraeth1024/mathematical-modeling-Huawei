@@ -1,0 +1,111 @@
+\section{问题一：数据质量评价、冲突识别与配比--损失关系}
+
+本章用 A1 的 $51230$ 条质量信号记录定义样本级质量，用 A2/A3 检验跨集合稳定性；另用 RegMix 配比实验建立配比--损失关系。质量评分与配比回归使用不同附件，后者的系数不进入本章的 $Q$。计算流程见图~\ref{fig:pipeline_q1}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth,keepaspectratio]{fig_pipeline_q1.pdf}
+  \caption{问题一质量评价数据处理流程}
+  \label{fig:pipeline_q1}
+\end{figure}
+
+\subsection{字段解码、归一化与综合质量}
+质量信号覆盖七个来源域、$22$ 个字段。依数据集字段说明\cite{metarater}，\texttt{fluency\_en} 和 \texttt{ad\_en} 是二分类 logits，四个 ModernBERT PRRC 字段是有序六分类 logits；直接对 logits 求均值没有类别含义。二分类取正类 softmax 概率：流畅度取 fluent 类，广告指标取 no-ad 类。六分类取等级 $0,\ldots,5$ 的 softmax 期望并除以 $5$。\texttt{fineweb\_edu} 取单一评分，\texttt{qurater} 的四个评分在字段内等权平均；后者是明确的建模选择。DSIR 与 RPS 标量按原值读入。
+
+缺失值以 A1 同字段中位数填充。词数、句数和平均词长先取 $\log(1+x)$，再截于 A1 的第 $95$ 百分位；重复率、非字母词、大写和数字占比取反向。对方向统一后的字段 $z_{ij}$，固定 A1 经验分布，以中秩百分位评分：
+\begin{equation}
+r_{ij}=\frac{\#\{z_{kj}<z_{ij}\}+\tfrac12\#\{z_{kj}=z_{ij}\}}{n_{\mathrm{A1}}},\quad k\in\mathrm{A1};\qquad
+Q_i=\sum_{j=1}^{22}w_jr_{ij}.
+\label{eq:q1-Q}
+\end{equation}
+扩展集代入同一 A1 参考分布和缺失、截断参数，所得百分位截于 $[0,1]$。模型评分 $8$ 项、DSIR $3$ 项、结构 $11$ 项各占总权重 $1/3$，组内等权，即 $w_j=1/(3n_g)$。域级分数为域内 $Q_i$ 的均值，问题三的 $Q_0$ 取七个域均值的中位数。三组平衡是预先声明的建模选择，所得 $Q$ 不是已校准的真实质量概率。
+
+A1 的 $Q$ 范围为 $0.1459$--$0.8191$，域级中位数 $Q_0=0.48788$。A1 全体均值恰为 $0.500$，是中秩百分位变换的数学性质，不能解释为质量达标率。C4 的域均值最高（$0.55822$），书籍最低（$0.38970$，仅 $171$ 条）。与全局 CRITIC、$22$ 项等权和六分类 argmax 解码相比，七域排序 Kendall 相关依次为 $0.333$、$0.238$、$0.810$。若固定三组各占 $1/3$，仅组内改用 CRITIC，域序不变（Kendall $=1$），域级中位数由 $0.48788$ 变为 $0.48648$；但三组权重各在 $0.2$--$0.5$ 的 $36$ 种网格方案下，域序相关最低为 $0.429$，中位数范围为 $0.455$--$0.511$。主要不确定性在组间权重，不能把单一域排名当作客观质量真值。表~\ref{tab:q1_weights} 给出主权重与 CRITIC 对照，指标结构和相关性见图~\ref{fig:index_hierarchy}、\ref{fig:q1_quality_corr}。
+
+\input{../figures/TABLE_q1_weights.tex}
+
+表中相同的主权重由“三组各占 $1/3$、组内等权”直接给出，并非熵权计算结果；CRITIC 列是数据驱动的对照，不能据此把主评分称作熵权法。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\textwidth,keepaspectratio]{fig_index_hierarchy.pdf}
+  \caption{质量指标体系层次结构}
+  \label{fig:index_hierarchy}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_quality_corr.pdf}
+  \caption{语义解码并归一化后质量指标的相关性}
+  \label{fig:q1_quality_corr}
+\end{figure}
+
+\subsection{质量冲突的判据与对照处理}
+冲突定义为同一文档的教育价值位于 A1 前 $20\%$，且二分类模型给出的广告概率超过 $0.5$：
+\begin{equation}
+{\mathrm{Conflict}}(i)=1\!\left[r_{i,\mathrm{edu}}\geq \tau^{\mathrm{A1}}_{0.8}\;\land\;P_i(\mathrm{has\mbox{-}ad})>0.5\right],
+\qquad Q_i^{\rm adj}=\bigl[1-(1-\delta){\mathrm{Conflict}}(i)\bigr]Q_i.
+\label{eq:q1-conflict}
+\end{equation}
+其中 $P(\mathrm{has\mbox{-}ad})=1-P(\mathrm{no\mbox{-}ad})$；$\delta=0.5$ 仅用于对照，主评分与 $Q_0$ 不降权。A2/A3 沿用 A1 的教育价值阈值。
+
+A1 检出 $155/51230$ 条，冲突率 $0.303\%$；C4 为七域最高，$103/10000=1.03\%$。A2 的 arxiv 为 $10/17523=0.057\%$，A3 的 github 为 $24/203752=0.0118\%$。教育价值与广告概率的 A1 Spearman 相关为 $-0.181$，总体负相关与少量局部共现并不矛盾。$\delta\in\{0.3,0.5,0.7,1\}$ 时七域排序不变；降权因子没有下游损失标签校准，故不能声称其提高训练性能。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_conflict_scatter.pdf}
+  \caption{高教育价值与广告判定的局部共现}
+  \label{fig:q1_conflict_scatter}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_domain_Q_dumbbell.pdf}
+  \caption{A1 抽样域与 A2/A3 扩展域的质量对照}
+  \label{fig:q1_domain_Q}
+\end{figure}
+
+同一评分参照下，arxiv 的 A1/A2 域均值为 $0.48788/0.48714$，github 的 A1/A3 为 $0.44874/0.44910$。差值分别仅 $-0.00074$ 与 $+0.00036$，说明这两个域的抽样分数较稳定；不能外推到其余五域。表~\ref{tab:q1_domain_Q} 的自助区间只表示 A1 域内抽样波动，不包括评分方案的不确定性。
+
+\input{../figures/TABLE_q1_domain_Q.tex}
+
+\subsection{配比--损失关系与跨体系域映射}
+配比实验给出 $512$ 组 $17$ 维领域配比与对应的 $13$ 域验证损失。对目标域 $k$ 建立对数域线性模型\cite{regmix2024}：
+\begin{equation}
+\ln \hat L_k(\bm p)=a_k+\sum_{i=1}^{17}b_{ki}p_i,
+\qquad p_i\geq 0,\quad \sum_i p_i=1 .
+\label{eq:q1-mix}
+\end{equation}
+单纯形使截距与全部系数不能同时唯一识别；计算中令 $\sum_i b_{ki}=0$ 并相应平移截距，预测不变。平均绝对系数仅描述相对平均配比的模型内对比，不能作因果解释。
+
+$1$m 同尺度留出的平均对数损失 $R^2=0.664$、Spearman $=0.844$；$60$m、$1$B 观测留出集的 $R^2$ 分别为 $-5.387$、$-265.290$，排序相关为 $0.842$、$0.736$。A12--A15 是估计值表，不能当真实留出测试：$10$B/$70$B 的平均 $R^2=-66.863/-81.042$，排序相关 $0.498/0.421$。这些结果表明固定 $1$m 模型不能直接预测大规模绝对损失；跨尺度排序也逐渐变弱。梯度提升模型的 $1$m 五折交叉验证 $R^2=0.977$，只检验同尺度拟合。
+
+\begin{table}[H]
+  \centering
+  \caption{配比回归分尺度检验；末两行是附件估计值}
+  \label{tab:q1-mixture-holdout}
+  \small
+  \begin{tabular}{lrrr}
+    \toprule
+    尺度 & 配比数 & 平均 $\ln L$ 的 $R^2$ & 平均 Spearman \\
+    \midrule
+    $1$m & 256 & $0.664$ & $0.844$ \\
+    $60$m & 256 & $-5.387$ & $0.842$ \\
+    $1$B & 64 & $-265.290$ & $0.736$ \\
+    $10$B（估计） & 63 & $-66.863$ & $0.498$ \\
+    $70$B（估计） & 63 & $-81.042$ & $0.421$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_mixture_importance.pdf}
+  \caption{零和编码下配比系数的相对对比强度}
+  \label{fig:q1_mixture_imp}
+\end{figure}
+
+质量域与配比的 $17$ 个域并不一一对应。依据附件映射指南，三个域可同名对应、三个域语义近似对应，其余是推断映射；无质量域的配比列仍保留在式~\eqref{eq:q1-mix} 中。推断映射只为后续解释提供参考，不产生新的观测质量值，也未进入问题三数值求解。
+
+\subsection{小结}
+问题一给出七域质量中位数 $Q_0=0.48788$ 与明确判据下的 A1 冲突率 $0.303\%$。二者均依赖所选评分标度和阈值。配比模型的跨尺度绝对损失预测显著失准，暂不用于预算配置。

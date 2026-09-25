@@ -1,0 +1,18 @@
+mixture_domain,quality_domain,mapping_type,note
+arxiv,arxiv,direct,配方域名与质量信号域名一致
+github,github,direct,配方域名与质量信号域名一致
+stackexchange,stackexchange,direct,配方域名与质量信号域名一致
+wikipedia_en,wikipedia,near_direct,名称略有差异，语义对应
+gutenberg_pg_19,book,near_direct,书籍类文本，可参考 book 域质量信号
+pile_cc,commoncrawl,near_direct,网页抓取类文本，可参考 commoncrawl 域质量信号
+dm_mathematics,(none),inferred,无同名质量域，需自行建立关联
+freelaw,(none),inferred,无同名质量域，需自行建立关联
+nih_exporter,(none),inferred,无同名质量域，需自行建立关联
+pubmed_central,(none),inferred,无同名质量域，需自行建立关联
+philpapers,(none),inferred,无同名质量域，需自行建立关联
+enron_emails,(none),inferred,无同名质量域，需自行建立关联
+ubuntu_irc,(none),inferred,无同名质量域，需自行建立关联
+europarl,(none),inferred,无同名质量域，需自行建立关联
+hackernews,(none),inferred,无同名质量域，需自行建立关联
+pubmed_abstracts,(none),inferred,无同名质量域，需自行建立关联
+uspto_backgrounds,(none),inferred,无同名质量域，需自行建立关联

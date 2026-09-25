@@ -1,0 +1,33 @@
+/Users/hybuzhy/.matplotlib is not a writable directory
+Matplotlib created a temporary cache directory at /var/folders/7d/zbq8qj61031fvh3nr9565z1c0000gn/T/matplotlib-oaji88jy because there was an issue with the default path (/Users/hybuzhy/.matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[Q1] decoded A_data_value/slimpajama_quality_signal_sample.jsonl.xz: 51230 rows (softmax)
+[Q1] decoded A_data_value/slimpajama_quality_signal_sample.jsonl.xz: 51230 rows (argmax)
+[Q1] decoded A_data_value/slimpajama_quality_extended/arxiv_part-6777d8857c6e-000486.jsonl.xz: 17523 rows (softmax)
+[Q1] A2_arxiv: Q=0.48714, conflict=0.057%
+[Q1] decoded A_data_value/slimpajama_quality_extended/github_part-6777d8857c6e-000275.jsonl.xz: 203752 rows (softmax)
+[Q1] A3_github: Q=0.44910, conflict=0.012%
+[save] figures/problem_1_quality_results.json (12311 bytes)
+[data_ingest] A_data_value/regmix_tables/train_mixture_1m.csv 全量 512 行已核对
+[data_ingest] A_data_value/regmix_tables/train_pile_loss_1m.csv 全量 512 行已核对
+[data_ingest] A_data_value/regmix_tables/test_mixture_1m.csv 全量 256 行已核对
+[data_ingest] A_data_value/regmix_tables/test_pile_loss_1m.csv 全量 256 行已核对
+[Q1]   配比 observed_holdout 1m: logLoss R2=0.664, Spearman=0.844
+[data_ingest] A_data_value/regmix_tables/test_mixture_60m.csv 全量 256 行已核对
+[data_ingest] A_data_value/regmix_tables/test_pile_loss_60m.csv 全量 256 行已核对
+[Q1]   配比 observed_holdout 60m: logLoss R2=-5.387, Spearman=0.842
+[data_ingest] A_data_value/regmix_tables/test_mixture_1B.csv 全量 64 行已核对
+[data_ingest] A_data_value/regmix_tables/test_pile_loss_1B.csv 全量 64 行已核对
+[Q1]   配比 observed_holdout 1B: logLoss R2=-265.290, Spearman=0.736
+[data_ingest] A_data_value/regmix_tables/est_mixture_10b.csv 全量 63 行已核对
+[data_ingest] A_data_value/regmix_tables/est_pile_loss_10b.csv 全量 63 行已核对
+[Q1]   配比 estimated_extrapolation 10B: logLoss R2=-66.863, Spearman=0.498
+[data_ingest] A_data_value/regmix_tables/est_mixture_70b.csv 全量 63 行已核对
+[data_ingest] A_data_value/regmix_tables/est_pile_loss_70b.csv 全量 63 行已核对
+[Q1]   配比 estimated_extrapolation 70B: logLoss R2=-81.042, Spearman=0.421
+[save] output/q1_mixture_model.json (2395 bytes)
+[data_ingest] A_data_value/domain_mapping_guide.csv 全量 17 行已核对
+[Q1]   域映射类型分布: {'direct': 3, 'inferred': 11, 'near_direct': 3}, inferred=11个
+[save] figures/problem_1_results.json (17283 bytes)
+[save] output/q1_quality_scores.csv (3027228 bytes, 51230 rows)
+[Q1] validate_capability PASS
+[Q1] complete

@@ -1,0 +1,68 @@
+{
+  "method": "log-domain simplex-constrained linear regression + LightGBM",
+  "n_train": 512,
+  "n_target_domains": 13,
+  "train_r2": {
+    "arxiv": 0.5860975363926452,
+    "freelaw": 0.6672977702752074,
+    "pubmed_central": 0.6009500056333053,
+    "wikipedia_en": 0.7335025534888058,
+    "dm_mathematics": 0.4955731339406766,
+    "github": 0.6390964298143258,
+    "stackexchange": 0.6236494285747671,
+    "gutenberg_pg_19": 0.7231258663921356,
+    "pile_cc": 0.7861292923519191,
+    "ubuntu_irc": 0.6148756555229123,
+    "hackernews": 0.6925053719093217,
+    "pubmed_abstracts": 0.7853639054163678,
+    "uspto_backgrounds": 0.7713539601736821
+  },
+  "holdout_r2": {
+    "1m": 0.6639093223106035,
+    "60m": -5.38686434842979,
+    "1B": -265.29011491073925
+  },
+  "holdout_rank_spearman": {
+    "1m": 0.8438917878585137,
+    "60m": 0.8421168811733012,
+    "1B": 0.7364151873767256
+  },
+  "holdout_note": "absolute loss calibration fails across scales; rank correlation is descriptive, not full predictive transfer",
+  "extrapolation": {
+    "10B": {
+      "n": 63,
+      "mean_logloss_r2": -66.86327203751709,
+      "mean_rank_spearman": 0.49804461125097255,
+      "data_status": "estimated_extrapolation"
+    },
+    "70B": {
+      "n": 63,
+      "mean_logloss_r2": -81.0417872040839,
+      "mean_rank_spearman": 0.4209053407638885,
+      "data_status": "estimated_extrapolation"
+    }
+  },
+  "lightgbm_r2": 0.9767429201502119,
+  "mixture_domain_importance": {
+    "arxiv": 0.3122700355672969,
+    "freelaw": 0.29544725441464215,
+    "nih_exporter": 0.251238403828654,
+    "pubmed_central": 0.2910808880960452,
+    "wikipedia_en": 0.2477488254473608,
+    "dm_mathematics": 0.5105615936264815,
+    "github": 0.2801523974114294,
+    "philpapers": 0.5757008081142186,
+    "stackexchange": 0.2297247344218965,
+    "enron_emails": 1.0958986150349157,
+    "gutenberg_pg_19": 0.22047064518499995,
+    "pile_cc": 0.22514329841840888,
+    "ubuntu_irc": 0.29890645322735504,
+    "europarl": 0.19070180818872398,
+    "hackernews": 0.1923611255126881,
+    "pubmed_abstracts": 0.26264463412708977,
+    "uspto_backgrounds": 0.2792081908316437
+  },
+  "importance_note": "sum(b)=0 编码下的平均绝对系数，仅表示相对平均配比域的线性对比强度；非 LightGBM 增益或因果效应",
+  "coefficient_coding": "sum(b_i)=0; intercept adjusted to preserve predictions",
+  "simplex_ok": true
+}

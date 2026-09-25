@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><title>h</title><style>
+@page{size:auto;margin:0}
+html,body{margin:0;padding:0;width:fit-content;height:fit-content;background:transparent}
+.fig,.fig *{font-family:"Times New Roman","SimSun","Songti SC","Microsoft YaHei",serif;
+  font-style:normal!important;-webkit-font-smoothing:antialiased;box-sizing:border-box}
+.fig{width:fit-content;height:fit-content;background:transparent;padding:20px 24px;
+  display:flex;flex-direction:column;align-items:center;gap:5px;--e:#000}
+/* 分层带：细虚线框（SECT=1），行首内联签（LABELPOS=2） */
+.band{border:1px dashed var(--e);background:#fff;padding:9px 10px 10px;
+  display:flex;flex-direction:column;align-items:center;gap:9px}
+.bt{align-self:flex-start;border:1px solid var(--e);padding:1px 6px;
+  font-size:12px;font-weight:700}
+.g3{display:grid;grid-template-columns:repeat(3,156px);gap:10px 13px;align-items:stretch}
+.g2{display:grid;grid-template-columns:repeat(2,240px);gap:14px;align-items:stretch}
+/* 维度盒：白底、直角、黑细线；成员指标列在盒内 */
+.d{border:1px solid var(--e);background:#fff;padding:5px 8px 6px;text-align:center;
+  display:flex;flex-direction:column;gap:3px}
+.d .t{font-size:12px;font-weight:700;border-bottom:1px solid var(--e);padding-bottom:3px}
+.d .l{font-size:12px;font-weight:500;line-height:1.36}
+/* 合成步骤节点 */
+.n{border:1px solid var(--e);background:#fff;padding:6px 10px;text-align:center;
+  line-height:1.34;display:flex;flex-direction:column;justify-content:center}
+.n .a{display:block;font-size:12.5px;font-weight:600}
+.n .b{display:block;font-size:12px;font-weight:500}
+/* 终点评分（唯一焦点）：左侧竖条强调，不加黑底 */
+.q{border:1px solid var(--e);border-left:2px solid var(--e);background:#fff;
+  padding:8px 14px;font-size:13px;font-weight:700;text-align:center}
+/* 粗实竖箭头（ARROW=1） */
+.ar{display:flex;flex-direction:column;align-items:center}
+.ar i{display:block;width:1.8px;height:8px;background:var(--e)}
+.ar u{display:block;width:0;height:0;border-top:6px solid var(--e);
+  border-left:4.5px solid transparent;border-right:4.5px solid transparent}
+</style></head>
+<body><div class="fig" data-mh-palette="mono">
+
+  <!-- 第一层：22 项指标按 6 个质量维度归并 -->
+  <div class="band">
+    <span class="bt">指标层　22 项指标归入 6 个质量维度</span>
+    <div class="g3">
+      <div class="d" data-mh-row="1"><span class="t">语义与教育价值</span>
+        <span class="l">流畅度、QuRater 评分、教育价值、推理性、专业性、可读性</span></div>
+      <div class="d" data-mh-row="1"><span class="t">整洁与噪声</span>
+        <span class="l">整洁度、广告含量（负向，需取补）</span></div>
+      <div class="d" data-mh-row="1"><span class="t">长度与篇章结构</span>
+        <span class="l">词数、句子数、平均词长、句末标点比例</span></div>
+      <div class="d" data-mh-row="2"><span class="t">用词多样性与重复</span>
+        <span class="l">唯一词占比、单词熵、二元与三元组重复占比</span></div>
+      <div class="d" data-mh-row="2"><span class="t">字符构成</span>
+        <span class="l">非字母词占比、大写字母占比、数字字符占比</span></div>
+      <div class="d" data-mh-row="2"><span class="t">参考分布相似度</span>
+        <span class="l">与书籍、维基、数学三类参考语料的相似度</span></div>
+    </div>
+  </div>
+
+  <div class="ar"><i></i><u></u></div>
+
+  <!-- 第二层：合成 -->
+  <div class="band">
+    <span class="bt">合成层　同向化与客观赋权</span>
+    <div class="g2">
+      <div class="n" data-mh-row="3"><span class="a">量纲归一与方向统一</span>
+        <span class="b">逐指标极差归一，负向指标取补后一律越高越好</span></div>
+      <div class="n" data-mh-row="3"><span class="a">熵权客观赋权</span>
+        <span class="b">指标信息熵越小、区分度越高则权重越大</span></div>
+    </div>
+  </div>
+
+  <div class="ar"><i></i><u></u></div>
+
+  <!-- 第三层：综合评分 -->
+  <div class="q">综合质量评分 Q：样本加权合成后按域聚合</div>
+
+</div></body></html>

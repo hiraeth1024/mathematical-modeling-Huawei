@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/hybuzhy/Developer/workspace/华为杯 F题 -算力约束下提升大语言模型能力的资源配置建模/workspace/code/main.py", line 16, in <module>
+    import problem1
+  File "/Users/hybuzhy/Developer/workspace/华为杯 F题 -算力约束下提升大语言模型能力的资源配置建模/workspace/code/problem1.py", line 13, in <module>
+    from scipy import stats
+ModuleNotFoundError: No module named 'scipy'
