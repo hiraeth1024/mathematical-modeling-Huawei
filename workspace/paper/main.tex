@@ -67,6 +67,7 @@
 
 % MH-FLOAT-TUNE 受控浮动调参（防整页空白/一页一图）
 \usepackage[section]{placeins}
+\usepackage{flafter}
 \renewcommand{\topfraction}{0.92}
 \renewcommand{\bottomfraction}{0.9}
 \renewcommand{\textfraction}{0.06}
@@ -76,6 +77,9 @@
 \setcounter{topnumber}{3}
 \setcounter{bottomnumber}{2}
 \setcounter{totalnumber}{4}
+\setlength{\textfloatsep}{9pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
 \usepackage{fancyhdr}
 
 % 页面样式：无页眉，页码位于页脚正中央
@@ -99,6 +103,8 @@
 \makeatletter
 \patchcmd{\l@section}{\bfseries}{\normalfont\songti\zihao{-4}}{}
   {\PackageError{paper}{Cannot set section entry font in contents}{Check the document class.}}
+\patchcmd{\l@section}{\addvspace{1.0em \@plus\p@}}{\addvspace{0.3em \@plus\p@}}{}
+  {\PackageError{paper}{Cannot compact section spacing in contents}{Check the document class.}}
 \makeatother
 
 \begin{document}
@@ -106,8 +112,13 @@
 
 % 题目后生成目录，页码连续。
 \thispagestyle{fancy}
+% 二级目录保持正文小四字号，仅压缩行距，兼顾导航信息和版面利用率。
+\begingroup
+\setlength{\parskip}{0pt}
+\linespread{0.8}\zihao{-4}\selectfont
 \setcounter{tocdepth}{2}
 \tableofcontents
+\endgroup
 
 % 目录后另起一页开始正文
 \clearpage
@@ -126,7 +137,7 @@ L(N,\Dt)=E+A\,N^{-\alpha}+B\,\Dt^{-\beta},
 
 题目提供三组真实数据：一组覆盖七个来源域、含 $22$ 个质量信号的大规模文本样本与两个扩展集；一组来自公开模型训练的标度律轨迹与跨族、文献验证点，其中仅一小组半合成实验带有质量标度；一组开源模型评测榜单、逐任务评测记录、损失—基准桥接样本与模型架构元数据。四问按数据、标度律、预算配置与能力分析组织；实际计算依赖关系在图~\ref{fig:roadmap} 中说明。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.88\textwidth,height=0.8\textheight,keepaspectratio]{fig_roadmap.pdf}
   \caption{四问递进的整体技术路线}
@@ -165,7 +176,7 @@ L(N,\Dt)=E+A\,N^{-\alpha}+B\,\Dt^{-\beta},
 \section{符号说明}
 下表汇总全文跨章节复用、直接进入核心目标或约束的主要符号；一次性下标在首次出现处解释。
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \songti\zihao{-4}
   \begin{tabular}{@{}>{\centering\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{5.3cm}>{\centering\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{4.6cm}@{}}
@@ -191,15 +202,17 @@ L(N,\Dt)=E+A\,N^{-\alpha}+B\,\Dt^{-\beta},
 \input{sections/s4_q2.tex}
 \input{sections/s5_q3.tex}
 \input{sections/s6_q4.tex}
+% 仅此处允许问题四末图跨到下一节页顶，让模型检验正文回填上一页余白。
+\begingroup
+\let\FloatBarrier\relax
 \input{sections/s7_verify.tex}
+\endgroup
 \input{sections/s8_conclusion.tex}
 
-% 参考文献、附录 A 和附录 B 分别另起一页
-\clearpage
+% 参考文献与附录顺排，避免强制分页在章节尾部留下大片空白。
+\FloatBarrier
 \input{sections/s0_refs.tex}
-\clearpage
 \input{sections/s9_appendix.tex}
-\clearpage
 \input{sections/s10_appendix.tex}
 
 \end{document}

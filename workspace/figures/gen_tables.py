@@ -48,7 +48,7 @@ w_main, w_c = p1["weights"], p1["weights_critic"]
 short = dict(zip(pre1["indicators"], pre1["short_labels"]))
 items = sorted(w_main, key=lambda k: -w_main[k])
 half = (len(items) + 1) // 2
-L = [r"\begin{table}[H]", r"  \centering",
+L = [r"\begin{table}[!htbp]", r"  \centering",
      r"  \caption{三组平衡主权重与 CRITIC 对照}", r"  \label{tab:q1_weights}",
      r"  \songti\zihao{-4}",
      r"  \setlength{\tabcolsep}{4pt}",
@@ -76,7 +76,7 @@ ci = pre1["domain_Q_A1_ci"]
 ext = {v["domain"]: v for v in pre1["domain_Q_extended_ci"].values()}
 doms = sorted(ci, key=lambda d: -ci[d]["Q"])
 qs = p1["Q_stats"]
-L = [r"\begin{table}[H]", r"  \centering",
+L = [r"\begin{table}[!htbp]", r"  \centering",
      r"  \caption{域级综合质量统计}", r"  \label{tab:q1_domain_Q}",
      r"  \songti\zihao{-4}",
      r"  \begin{tabular}{lrccrc}", r"    \toprule",
@@ -98,7 +98,7 @@ write(L, "TABLE_q1_domain_Q.tex")
 cp, gp = p2["classic"]["params"], p2["generalized"]["params"]
 g, c = p2["generalized"], p2["classic"]
 gen = c["generalization"]
-L = [r"\begin{table}[H]", r"  \centering",
+L = [r"\begin{table}[!htbp]", r"  \centering",
      r"  \caption{标度律参数与拟合优度}", r"  \label{tab:q2_scaling}",
      r"  \songti\zihao{-4}",
      r"  \begin{tabular}{lrr}", r"    \toprule",
@@ -135,7 +135,7 @@ oa = p3["optimal_allocation"]
 bkeys = list(oa["by_gtype"]["exp"].keys())
 GT = [("exp", "指数型"), ("pow", "幂型"), ("log", "对数型")]
 # 保持小四号宋体：窄列间距与方案名称换行代替整表缩放。
-L = [r"\begin{table}[H]", r"  \centering",
+L = [r"\begin{table}[!htbp]", r"  \centering",
      r"  \caption{三档预算下的最优算力配置}", r"  \label{tab:q3_allocation}",
      r"  \songti\zihao{-4}",
      r"  \setlength{\tabcolsep}{4pt}",
@@ -170,7 +170,7 @@ write(L, "TABLE_q3_allocation.tex")
 # ===================== TABLE_q4_frontier =====================
 fr = p4["frontier"]
 SC = [("high", "维持", 1.0), ("mid", "放缓", 0.5), ("low", "停滞", 0.0)]
-L = [r"\begin{table}[H]", r"  \centering",
+L = [r"\begin{table}[!htbp]", r"  \centering",
      r"  \caption{能力前沿情景预测分位数}", r"  \label{tab:q4_frontier}",
      r"  \songti\zihao{-4}",
      r"  \begin{tabular}{llrrrr}", r"    \toprule",

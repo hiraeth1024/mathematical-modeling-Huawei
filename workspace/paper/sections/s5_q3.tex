@@ -57,7 +57,7 @@ D=\frac{C}{kN+h(Q)},\qquad
 
 预算增大时指数型下的候选最低损失从 $3.073$ 经 $2.151$ 降至 $1.914$，逐步趋近不可约损失 $1.69$，参数量与数据量单调增，预算利用率约 $100\%$。相对质量固定为当前 $Q_0$、取 $N=D$ 的等数值对照方案（它不是 Chinchilla 最优比例），三档损失改善依次为 $0.234$、$0.131$、$0.080$。低预算时幂型与对数型的候选 $Q$ 均停在 $Q_0$，指数型略升至 $0.506$；成本函数的区别仍会改变中档资源配置（表~\ref{tab:q3_allocation}）。另固定 $Q=Q_0$ 后重新优化 $N,D$，三档损失分别为 $3.07306$、$2.16886$、$1.92606$；与这一公平对照相比，指数型质量投入的净改善仅为 $0.00018$、$0.01812$、$0.01215$，其余改善来自规模与数据配比的调整。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q3_allocation_stacked.pdf}
   \caption{三档预算下的算力份额构成}
@@ -76,7 +76,7 @@ C^{\dagger}=\arg\max_{C}\ \left|\frac{\mathrm d\,s_X(C)}{\mathrm d\,\log C}\righ
 
 结果。在 $\theta=0.5$、指数型质量成本和当前 $36$ 点扫描网格下，质量份额导数的最大绝对值约在 $10^{19}$ FLOPs，作为模型内候选转移点；按 $10^{-7}$ 的质量容差，网格上的首次激活点为 $10^{19}$ FLOPs。基线处右导数过零给出连续候选阈值约 $8.04\times10^{18}$ FLOPs，上界驻点方程给出质量饱和候选阈值约 $1.67\times10^{22}$ FLOPs；后两者须与全轨迹对照。位置依赖评分基线、成本函数和搜索网格，不是纯数据驱动的物理阈值。转移点见图~\ref{fig:q3_transition}。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q3_transition_line.pdf}
   \caption{最优份额演化与结构性转移点}
@@ -93,7 +93,7 @@ C^{\dagger}=\arg\max_{C}\ \left|\frac{\mathrm d\,s_X(C)}{\mathrm d\,\log C}\righ
 \end{equation}
 当上下文长度达到该值时注意力开销与训练开销相当，超过它长上下文将显著挤压训练预算。敏感性扫描的取值严格取自模型架构元数据的实测集，即 $2048$、$4096$、$8192$、$32768$ 与 $131072$。图~\ref{fig:q3_lctx} 展示最优配置随上下文长度的变化。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q3_lctx_panels.pdf}
   \caption{最优配置随上下文长度的变化}
@@ -102,7 +102,7 @@ C^{\dagger}=\arg\max_{C}\ \left|\frac{\mathrm d\,s_X(C)}{\mathrm d\,\log C}\righ
 
 在中档预算下，上下文由 $2048$ 增至 $131072$ 时，注意力份额从约 $0.059$ 升至约 $0.777$（图~\ref{fig:q3_lctx}）。临界值 $3\times10^{4}$ 位于 $8192$ 与 $32768$ 之间；上下文不小于 $32768$ 时，按当前成本模型，注意力开销超过基础训练开销。可行域见图~\ref{fig:tikz_q3_feasible}。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{tikz_q3_feasible.pdf}
   \caption{算力预算可行域与结构转移}

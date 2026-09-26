@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """gen_latex_includes.py — 生成 figures/latex_includes.tex。
 
-每图一个 [H] 浮动块。caption 只写短标题（中文 ≤20 字），统计口径、结论、数据
+每图一个 [!htbp] 受控浮动块。caption 只写短标题（中文 ≤20 字），统计口径、结论、数据
 来源全部留给论文正文——这样 caption 不会变成小字号段落，正文也能完整解释证据。
 宽度按各图实际长宽比分档：越接近方形/越高，越要收窄，否则一张图吃掉整页高度。
 """
@@ -47,7 +47,7 @@ def width_fraction(ar):
 
 lines = [
     "% figures/latex_includes.tex —— 由 figures/gen_latex_includes.py 生成",
-    "% 需要 \\usepackage{graphicx} 与 \\usepackage{float}（[H] 就地固定，防多图堆叠）",
+    "% 使用 [!htbp] 受控浮动，允许 LaTeX 回填页面空白。",
     "% caption 只写短标题；口径/结论/数据来源写进正文。",
     "",
 ]
@@ -62,7 +62,7 @@ for name, cap, lab in FIGS:
         ar = r.height / r.width
     wf = width_fraction(ar)
     lines += [
-        r"\begin{figure}[H]",
+        r"\begin{figure}[!htbp]",
         r"  \centering",
         r"  \includegraphics[width=%.2f\textwidth]{figures/%s.pdf}" % (wf, name),
         r"  \caption{%s}" % cap,

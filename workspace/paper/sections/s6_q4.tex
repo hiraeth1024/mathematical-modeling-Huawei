@@ -26,7 +26,7 @@
 
 结果与识别假设。在 $4561$ 个有效模型上回归得 $\mathrm{Cap}=-24576+6.27\ln N+12.14\,t$，决定系数 $0.462$；年份系数是控制参数量后的条件关联，不具因果解释。两变量之外仍有大量系统性变异。所选时间窗内平均参数规模下降，使回归规模项增量为负；按式~\eqref{eq:q4-share} 计算的两项份额约为 $-25\%$ 与 $125\%$。超出 $0$--$100\%$ 只是负增量下的比值结果，且分母由拟合增量而非观测到的能力变化构成。它只能描述这套回归与样本窗，不能据此证明非规模技术进步的因果份额。新增类型固定效应后，年份系数由 $12.14$ 降至 $9.96$ 点/年，HC3 标准误约 $0.57$；说明类型构成确会影响时间关联。HC3 未进一步校正模型家族聚类。累计演化使用累计样本的平均提交年份，避免把窗口末日期误当均值。占比随时间的演化见图~\ref{fig:q4_contribution}。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_contribution_decomp.pdf}
   \caption{规模与年份项的回归增量分解}
@@ -45,7 +45,7 @@
 
 结果与不确定性。高可比层样本仅 $7$ 条，决定系数约 $0.40$；中可比层 $68$ 条，决定系数约 $0.36$。高可比层留一 RMSE 为 $0.466$，反而高于训练均值对照的 $0.424$；中可比层留一 RMSE 为 $9.69$，低于均值对照的 $11.53$。映射只能作为损失到基准能力的探索性桥梁，不能给出可靠的模型外推精度。下一节的前沿直接由榜单能力值计算，不经过这条桥接，因此其预测区间不含桥接误差。图~\ref{fig:q4_bridge} 展示分层样本与拟合曲线。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_bridge_scatter.pdf}
   \caption{损失到能力的分层桥接}
@@ -75,7 +75,7 @@ F^{(b)}_{s,\Delta}=\operatorname{clip}_{[0,100]}
 
 按上述假设，$24$ 个月中位数在系数 $1$、$0.5$、$0$ 下分别约为 $85.4$、$64.1$、$42.5$（表~\ref{tab:q4_frontier}）。零斜率情景的 $12$ 与 $24$ 个月分布相同；其余情景随时间上升是线性趋势和正系数的模型结果，不是已验证的能力不倒退规律。历史末值约 $42$、拟合斜率约 $21.2$ 点每年；以不足一年数据外推两年，绝对数值应谨慎使用。前沿分位带见图~\ref{fig:q4_frontier}。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_frontier_fan.pdf}
   \caption{能力前沿情景预测区间}
@@ -87,11 +87,11 @@ F^{(b)}_{s,\Delta}=\operatorname{clip}_{[0,100]}
 \subsection{逐任务聚合分析}
 仅用榜单汇总列不足以刻画能力短板，本文遍历逐任务评测记录，按目录取最新可解析记录、跳过损坏文件做逐任务聚合。共解析 $1860$ 个目录（六维完整 $1854$、损坏跳过 $7$），覆盖满足要求。六维缺项的 $6$ 个模型不参与均分排名，各任务均值仍使用该任务可用记录。这里的原始指标未经过榜单的机会水平归一化，不能直接与上一节的综合榜单得分混用。各任务难度均值为：指令遵循 $40.2$、综合推理 $47.5$、数学 $11.4$、研究生级问答 $29.8$、多步推理 $40.0$、专业知识 $32.0$，其中数学的原始均值最低；不同任务的指标与机会水平不同，不能直接据此确定难度排序。图~\ref{fig:q4_task_radar} 展示前沿模型的六维剖面。
 
-\begin{figure}[H]
+前沿模型在综合推理与指令遵循维度较强，而在数学与研究生级问答维度普遍偏弱，六维剖面的不均衡揭示了当前能力短板集中在高难推理任务上（图~\ref{fig:q4_task_radar}）\cite{mmlu2020}。这与式~\eqref{eq:q4-cap} 均分口径下的综合能力互为补充：均分给出总体水平，逐任务剖面给出结构短板。
+
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q4_task_radar.pdf}
   \caption{前沿模型逐任务能力剖面}
   \label{fig:q4_task_radar}
 \end{figure}
-
-前沿模型在综合推理与指令遵循维度较强，而在数学与研究生级问答维度普遍偏弱，六维剖面的不均衡揭示了当前能力短板集中在高难推理任务上（图~\ref{fig:q4_task_radar}）\cite{mmlu2020}。这与式~\eqref{eq:q4-cap} 均分口径下的综合能力互为补充：均分给出总体水平，逐任务剖面给出结构短板。

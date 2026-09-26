@@ -2,7 +2,7 @@
 
 本章用 A1 的 $51230$ 条质量信号记录定义样本级质量，用 A2/A3 检验跨集合稳定性；另用 RegMix 配比实验建立配比--损失关系。质量评分与配比回归使用不同附件，后者的系数不进入本章的 $Q$。计算流程见图~\ref{fig:pipeline_q1}。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.96\textwidth,keepaspectratio]{fig_pipeline_q1.pdf}
   \caption{问题一质量评价数据处理流程}
@@ -26,14 +26,14 @@ A1 的 $Q$ 范围为 $0.1459$--$0.8191$，域级中位数 $Q_0=0.48788$。A1 全
 
 表中相同的主权重由“三组各占 $1/3$、组内等权”直接给出，并非熵权计算结果；CRITIC 列是数据驱动的对照，不能据此把主评分称作熵权法。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.96\textwidth,keepaspectratio]{fig_index_hierarchy.pdf}
   \caption{质量指标体系层次结构}
   \label{fig:index_hierarchy}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_quality_corr.pdf}
   \caption{语义解码并归一化后质量指标的相关性}
@@ -51,14 +51,14 @@ A1 的 $Q$ 范围为 $0.1459$--$0.8191$，域级中位数 $Q_0=0.48788$。A1 全
 
 A1 检出 $155/51230$ 条，冲突率 $0.303\%$；C4 为七域最高，$103/10000=1.03\%$。A2 的 arxiv 为 $10/17523=0.057\%$，A3 的 github 为 $24/203752=0.0118\%$。教育价值与广告概率的 A1 Spearman 相关为 $-0.181$，总体负相关与少量局部共现并不矛盾。$\delta\in\{0.3,0.5,0.7,1\}$ 时七域排序不变；降权因子没有下游损失标签校准，故不能声称其提高训练性能。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.92\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_conflict_scatter.pdf}
   \caption{高教育价值与广告判定的局部共现}
   \label{fig:q1_conflict_scatter}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_domain_Q_dumbbell.pdf}
   \caption{A1 抽样域与 A2/A3 扩展域的质量对照}
@@ -80,7 +80,7 @@ A1 检出 $155/51230$ 条，冲突率 $0.303\%$；C4 为七域最高，$103/1000
 
 $1$m 同尺度留出的平均对数损失 $R^2=0.664$、Spearman $=0.844$；$60$m、$1$B 观测留出集的 $R^2$ 分别为 $-5.387$、$-265.290$，排序相关为 $0.842$、$0.736$。A12--A15 是估计值表，不能当真实留出测试：$10$B/$70$B 的平均 $R^2=-66.863/-81.042$，排序相关 $0.498/0.421$。这些结果表明固定 $1$m 模型不能直接预测大规模绝对损失；跨尺度排序也逐渐变弱。梯度提升模型的 $1$m 五折交叉验证 $R^2=0.977$，只检验同尺度拟合。
 
-\begin{table}[H]
+\begin{table}[!htbp]
   \centering
   \caption{配比回归分尺度检验；末两行是附件估计值}
   \label{tab:q1-mixture-holdout}
@@ -98,7 +98,7 @@ $1$m 同尺度留出的平均对数损失 $R^2=0.664$、Spearman $=0.844$；$60$
   \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q1_mixture_importance.pdf}
   \caption{零和编码下配比系数的相对对比强度}

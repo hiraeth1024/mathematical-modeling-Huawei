@@ -13,7 +13,7 @@
 
 结果与分层验证。拟合得 $E=1.690$、$A=0.354$、$\alpha=0.340$、$B=1.240$、$\beta=0.280$，$R^2$ 接近 $1$，残差均值约 $-5\times10^{-8}$。在 B2、B4、B5 上分别进行族外、跨族收敛点与文献点验证，RMSE 为 $1.243$、$0.293$、$0.198$，对应 $R^2=-5.073,0.605,0.731$。B2 的负决定系数说明主拟合不能直接保证跨族迁移；B3 本次仅登记轨迹文件数量，不称为已完成验证。另读取 B9 的 $132$ 条规模元数据和 B10 的 $128$ 条估算基线；B10 均位于 B1 参数量范围之外，RMSE 约 $0.0011$，只反映估算数据的一致性，不能视作真实大模型的预测精度。图~\ref{fig:q2_scaling_fit} 给出主集拟合与残差。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_scaling_fit.pdf}
   \caption{经典标度律拟合优度与残差}
@@ -38,7 +38,7 @@
 
 表~\ref{tab:q2_scaling} 的参数列分别对应 B1 经典拟合和 B6--B8 半合成经验拟合。留出检验的无质量列使用单独重拟合的模型，不能与 B1 参数列混同。后续曲面、弹性和问题三统一使用 B1 经典参数加假设 $\theta=0.5$；不再把半合成经验拟合的五个参数与正指数拼接。$Q=1$ 退化相对误差为 $0$，属于代数一致性检查。图~\ref{fig:q2_gen_surface} 展示该下游假设模型。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.96\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_generalized_surface.pdf}
   \caption{广义标度律损失曲面}
@@ -71,7 +71,7 @@
 
 结果。在参考点 $N=1$、$D=100$、$Q=Q_0=0.48788$，使用与问题三相同的参数，得 $\varepsilon_N=-0.04969$、$\varepsilon_D=-0.04367$、$\varepsilon_Q=-0.02184$，且 $\varepsilon_Q=\theta\varepsilon_D$。局部替代率为 $\mathrm dN/\mathrm dQ|_L=-0.9007$，线性化的 $\Delta Q=0.1$ 对应 $\Delta N\approx-0.0901$B。直接求解有限增量的等损失方程，则可减少约 $0.0767$B 参数；若保持原质量，用增加参数量达到同样的降损效果，则需增加约 $0.0855$B 参数。这两个有限增量问题的约束不同，不能混用。上述结果仍依赖假设质量指数；图~\ref{fig:q2_elasticity} 与图~\ref{fig:q2_substitution} 给出弹性和局部替代关系。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_elasticity_diverging.pdf}
   \caption{各因素损失弹性对照}
@@ -80,7 +80,7 @@
 
 在当前参考点，参数量弹性的绝对值略大于数据量，质量弹性为数据量的一半；其它工作点的排序可以变化。负号由模型形式及正参数约束决定，不能单独作为经验验证（图~\ref{fig:q2_elasticity}）。
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{fig_q2_substitution_contour.pdf}
   \caption{等损失线与质量--规模替代}

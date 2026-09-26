@@ -15,7 +15,7 @@ labels = {
     "theta_0.8": "$\\theta=0.8$",
 }
 lines = [
-    r"\begin{table}[H]",
+    r"\begin{table}[!htbp]",
     r"  \centering",
     r"  \caption{质量基线与指数扰动下的候选最优质量}",
     r"  \label{tab:q3-assumption-sensitivity}",
