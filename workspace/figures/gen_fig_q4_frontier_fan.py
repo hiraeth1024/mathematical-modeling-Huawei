@@ -1,18 +1,5 @@
 # -*- coding: utf-8 -*-
-"""fig_q4_frontier_fan — 能力前沿 12/24 月情景预测扇形图（配方 advanced #27）。
-
-本图讲什么：历史段是 C1 上按月取的 P90 能力前沿包络（10 个点，2024.46~2025.21，
-  斜率 19.68 点/年）；预测段按三档能力斜率假设外推，画 bootstrap P10-P90 分位带
-  与 P50 中位线。low=0、mid=0.5、high=1；这不是从算力增速估计的弹性。
-  low 档的 12/24 月预测分布相同。
-数据来源：figures/problem_4_results.json['frontier']（historical_frontier /
-  slope / predictions 的 P10/P50/P90 / scenarios）← C1 4576 行；
-  C4 历史算力中位数增速 5.10×/年仅作背景，n_open=2813。
-关键数值：12 月 P50：low 41.52 / mid 51.38 / high 61.28；
-  24 月 P50：low 41.52 / mid 61.28 / high 81.02；历史末值 41.75。
-版式：原生 6.4×4.3in；预测段只有 12/24 月两个锚点，故用分段线性连接并明确
-  标注"情景模拟含外推不确定性、非数据直接支持"。
-"""
+"""月度 P90 与三情景预测分位带。曲线由拟合末期水平出发，预测仅表示历史样本末期后的条件情景；数值读取当前问题四结果。"""
 import sys
 import os
 
@@ -35,6 +22,7 @@ ORDER = [("high", cn("维持（斜率×1.0）"), PALETTE[0]),
          ("low", cn("停滞（斜率×0.0）"), PALETTE[1])]
 
 t0, c0 = float(hist_t[-1]), float(hist_c[-1])
+anchor = float(fr["fitted_anchor"])
 
 fig, ax = plt.subplots(figsize=(6.4, 4.3), layout="constrained")
 set_paper_placement(fig)
@@ -52,9 +40,9 @@ ax.axvline(t0, color=COLORS["ref_line"], linestyle=":", linewidth=1.1, zorder=2,
 for key, lab, col in ORDER:
     d = pred[key]
     tt = np.array([t0, float(d["12m"]["t_target"]), float(d["24m"]["t_target"])])
-    p50 = np.array([c0, float(d["12m"]["P50"]), float(d["24m"]["P50"])])
-    p10 = np.array([c0, float(d["12m"]["P10"]), float(d["24m"]["P10"])])
-    p90 = np.array([c0, float(d["12m"]["P90"]), float(d["24m"]["P90"])])
+    p50 = np.array([anchor, float(d["12m"]["P50"]), float(d["24m"]["P50"])])
+    p10 = np.array([anchor, float(d["12m"]["P10"]), float(d["24m"]["P10"])])
+    p90 = np.array([anchor, float(d["12m"]["P90"]), float(d["24m"]["P90"])])
     uncertainty_band(ax, tt, p10, p90, color=col, alpha=0.22, zorder=3,
                      label=cn("%s P10-P90" % lab))
     ax.plot(tt, p50, "--", color=col, linewidth=1.9, zorder=5)

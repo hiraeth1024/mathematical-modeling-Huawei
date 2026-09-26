@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "elasticity_finite_difference_max_error": 5.428303639920529e-12,
+  "profile_vs_slsqp": [
+    {
+      "cost": "exp",
+      "budget": 1e+19,
+      "profile_L": 3.0728815130222022,
+      "slsqp_L": 3.072881513021944,
+      "dense_grid_delta_L": -4.440892098500626e-16,
+      "stationarity_residual": 9.599750175515103e-09,
+      "quality_state": "interior",
+      "fixed_quality_L": 3.073063551175162,
+      "quality_only_gain": 0.00018203815295958492
+    },
+    {
+      "cost": "exp",
+      "budget": 1e+22,
+      "profile_L": 2.150740557132188,
+      "slsqp_L": 2.1507405571320484,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 9.25084125924962e-09,
+      "quality_state": "interior",
+      "fixed_quality_L": 2.168858006676909,
+      "quality_only_gain": 0.018117449544721165
+    },
+    {
+      "cost": "exp",
+      "budget": 1e+24,
+      "profile_L": 1.9139110620948736,
+      "slsqp_L": 1.9139110620948299,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 0.0,
+      "quality_state": "upper",
+      "fixed_quality_L": 1.9260637821710334,
+      "quality_only_gain": 0.012152720076159751
+    },
+    {
+      "cost": "pow",
+      "budget": 1e+19,
+      "profile_L": 3.073063551175162,
+      "slsqp_L": 3.0730635511750464,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 1.4710455076283324e-15,
+      "quality_state": "baseline",
+      "fixed_quality_L": 3.073063551175162,
+      "quality_only_gain": 0.0
+    },
+    {
+      "cost": "pow",
+      "budget": 1e+22,
+      "profile_L": 2.152455726381796,
+      "slsqp_L": 2.152455726381734,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 1.3877787807814457e-17,
+      "quality_state": "upper",
+      "fixed_quality_L": 2.168858006676909,
+      "quality_only_gain": 0.016402280295113147
+    },
+    {
+      "cost": "pow",
+      "budget": 1e+24,
+      "profile_L": 1.9140243587405315,
+      "slsqp_L": 1.9140243587405006,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 6.938893903907228e-18,
+      "quality_state": "upper",
+      "fixed_quality_L": 1.9260637821710334,
+      "quality_only_gain": 0.012039423430501905
+    },
+    {
+      "cost": "log",
+      "budget": 1e+19,
+      "profile_L": 3.073063551175162,
+      "slsqp_L": 3.0730635511750886,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 1.4710455076283324e-15,
+      "quality_state": "baseline",
+      "fixed_quality_L": 3.073063551175162,
+      "quality_only_gain": 0.0
+    },
+    {
+      "cost": "log",
+      "budget": 1e+22,
+      "profile_L": 2.145823127500117,
+      "slsqp_L": 2.1458231275000568,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 0.0,
+      "quality_state": "upper",
+      "fixed_quality_L": 2.168858006676909,
+      "quality_only_gain": 0.02303487917679181
+    },
+    {
+      "cost": "log",
+      "budget": 1e+24,
+      "profile_L": 1.9135694616015886,
+      "slsqp_L": 1.9135694616015588,
+      "dense_grid_delta_L": 0.0,
+      "stationarity_residual": 6.938893903907228e-18,
+      "quality_state": "upper",
+      "fixed_quality_L": 1.9260637821710334,
+      "quality_only_gain": 0.012494320569444772
+    }
+  ],
+  "timing_9_budgets_seconds": {
+    "profile": 0.049572750999999915,
+    "slsqp_20_starts": 0.4056292069999998
+  },
+  "speed_ratio": 8.182503468488173,
+  "limits": "外层网格与独立SLSQP一致性不等于数学全局最优证明；远期区间未得到长期回测验证"
+}

@@ -3,7 +3,7 @@
 
 认领能力：P3-C1(N/D/Q联合优化) P3-C2(结构性转移定义与识别) P3-C3(L_ctx敏感性+临界值)
 方法(METHOD_CLAIMS M5/M6)：
-  M5 KKT 解析条件 + SLSQP 多起点约束搜索(式14-15)，预算约束进 NonlinearConstraint
+  M5 预算消元、固定质量的唯一驻点、质量剖面搜索；独立 SLSQP 复核
   M6 结构转移份额导数 ds_X/d(logC) 峰值 + 数值边界状态检查(式18)
 
 单位约定：决策变量 N,D 以 1e9 为单位（与 B1 标度律一致）；代入算力公式须乘 1e9。
@@ -18,10 +18,10 @@ if _HERE not in sys.path:
 
 import json
 import numpy as np
-from scipy.optimize import minimize, NonlinearConstraint
+from scipy.optimize import minimize, NonlinearConstraint, brentq, minimize_scalar
 
 import utils as u
-from params import ETA, LCTX_CRIT, LCTX_SET, BUDGETS, SEED, g_Q, UNIT_SCALE
+from params import ETA, LCTX_CRIT, LCTX_SET, BUDGETS, SEED, g_Q, g_Q_prime, UNIT_SCALE
 
 # 广义标度律参数（Q3 用 B1 真实标度律 + assumed theta，来自 Q2）
 def _load_q2_params():
@@ -56,7 +56,7 @@ def compute_total(N, D, Q, Q0, Lctx, gkind):
     return C_train + C_Q + C_attn, C_train, C_Q, C_attn
 
 
-def solve_budget(C, Q0, params, Lctx, gkind, n_starts=20):
+def solve_budget_slsqp(C, Q0, params, Lctx, gkind, n_starts=20):
     """SLSQP 多起点求 min L s.t. C_tot<=C。对数变量(lnN,lnD)+Q。"""
     rng = np.random.default_rng(SEED)
     E = params[0]
@@ -74,7 +74,7 @@ def solve_budget(C, Q0, params, Lctx, gkind, n_starts=20):
         return (C - Ct) / C          # >=0 可行（归一化）
 
     nlc = NonlinearConstraint(con_fun, 0.0, np.inf)
-    bounds = [(np.log(1e-3), np.log(1e5)), (np.log(1e-2), np.log(1e6)), (1e-3, 1.0)]
+    bounds = [(np.log(1e-3), np.log(1e5)), (np.log(1e-2), np.log(1e6)), (Q0, 1.0)]
 
     best = None
     # Chinchilla 平衡点附近初值：6 N D 1e18 ~ 0.9 C
@@ -94,7 +94,7 @@ def solve_budget(C, Q0, params, Lctx, gkind, n_starts=20):
             res = minimize(obj, x0, method="SLSQP", bounds=bounds,
                            constraints=[nlc],
                            options={"maxiter": 500, "ftol": 1e-12})
-            if not res.success and res.status not in (0, 9):
+            if not res.success:
                 continue
             N, D, Q = unpack(res.x)
             Q = np.clip(Q, 1e-4, 1.0)
@@ -111,6 +111,64 @@ def solve_budget(C, Q0, params, Lctx, gkind, n_starts=20):
     return best
 
 
+def solve_fixed_quality(C, Q, Q0, params, Lctx, gkind):
+    """消去预算等式中的 D；固定 Q 时 ln N 的导数唯一过零。"""
+    E, A, alpha, B, beta, theta = params
+    k = (6.0 + ETA * Lctx) * UNIT_SCALE ** 2
+    h = UNIT_SCALE * max(g_Q(Q, gkind) - g_Q(Q0, gkind), 0.0)
+
+    def terms(log_n):
+        N = np.exp(log_n)
+        D = C / (k * N + h)
+        model_term = A * N ** (-alpha)
+        data_term = B * (Q ** theta * D) ** (-beta)
+        grad_n = -alpha * model_term + beta * data_term * k * N / (k * N + h)
+        return N, D, model_term, data_term, grad_n
+
+    root = brentq(lambda x: terms(x)[-1], -80.0, 80.0, xtol=1e-12)
+    N, D, model_term, data_term, grad_n = terms(root)
+    Ct, Ctr, CQ, Cat = compute_total(N, D, Q, Q0, Lctx, gkind)
+    # Q0 处取右导数；Q<Q0 成本相同且损失更高，故可排除。
+    grad_q = beta * data_term * (UNIT_SCALE * g_Q_prime(Q, gkind) / (k * N + h) - theta / Q)
+    return {"N": float(N), "D": float(D), "Q": float(Q),
+            "L": float(E + model_term + data_term), "C_tot": float(Ct),
+            "C_train": float(Ctr), "C_Q": float(CQ), "C_attn": float(Cat),
+            "util": float(Ct / C), "profile_grad_logN": float(grad_n),
+            "profile_grad_Q": float(grad_q)}
+
+
+def solve_budget(C, Q0, params, Lctx, gkind, n_starts=20, q_grid_size=129):
+    """预算消元 + 唯一 N 驻点 + Q 网格分段细化，显式比较两端点。
+
+    n_starts 仅保留旧调用接口；主算法确定性，不依赖随机初值。
+    Q 方向的网格细化不是全局最优证明，另用 SLSQP 和加密网格复核。
+    """
+    if not (C > 0 and 0 < Q0 <= 1 and Lctx >= 0):
+        raise ValueError("C、Q0 或 Lctx 不满足定义域")
+    if not all(np.isfinite(params)) or min(params[1:]) <= 0:
+        raise ValueError("预算消元要求 A,alpha,B,beta,theta 为有限正数")
+    grid = np.linspace(Q0, 1.0, max(3, q_grid_size))
+    candidates = [solve_fixed_quality(C, q, Q0, params, Lctx, gkind) for q in grid]
+    vals = [s["L"] for s in candidates]
+    for i in range(len(grid)):
+        if i in (0, len(grid) - 1) or (vals[i] <= vals[i - 1] and vals[i] <= vals[i + 1]):
+            fit = minimize_scalar(
+                lambda q: solve_fixed_quality(C, q, Q0, params, Lctx, gkind)["L"],
+                bounds=(grid[max(i - 1, 0)], grid[min(i + 1, len(grid) - 1)]), method="bounded",
+                options={"xatol": 1e-12})
+            if not fit.success:
+                raise RuntimeError(f"Q profile minimization failed: {fit.message}")
+            candidates.append(solve_fixed_quality(C, fit.x, Q0, params, Lctx, gkind))
+    best = min(candidates, key=lambda s: s["L"])
+    q, dq = best["Q"], best["profile_grad_Q"]
+    state = "fixed" if Q0 == 1 else "baseline" if abs(q - Q0) < 1e-9 else "upper" if abs(q - 1) < 1e-9 else "interior"
+    q_violation = 0.0 if state == "fixed" else max(0.0, -dq) if state == "baseline" else max(0.0, dq) if state == "upper" else abs(dq)
+    best.update({"solver": "budget-eliminated profile", "quality_state": state,
+                 "q_grid_size": len(grid), "budget_relative_error": abs(best["util"] - 1),
+                 "stationarity_residual": max(abs(best["profile_grad_logN"]), q_violation)})
+    return best
+
+
 def main():
     u.set_all_seeds(SEED)
     params = _load_q2_params()
@@ -120,7 +178,7 @@ def main():
           f"B={params[3]:.3f} beta={params[4]:.3f} theta={params[5]:.3f}; Q0={Q0:.4f}")
 
     results = {"_meta": u.run_meta(),
-               "method": "SLSQP multi-start feasible search + share-derivative transition; KKT equations analytic only",
+               "method": "budget elimination + unique N stationary root + bounded Q profile; projected stationarity checks",
                "scaling_params": {"E": params[0], "A": params[1], "alpha": params[2],
                                   "B": params[3], "beta": params[4], "theta": params[5]},
                "Q0": Q0, "eta": ETA, "Lctx_crit": LCTX_CRIT}
@@ -129,10 +187,10 @@ def main():
     _q3_transition(results, params, Q0)
     _q3_lctx(results, params, Q0)
 
+    validate_capability(results)
     u.save_json(results, "figures/problem_3_results.json")
     u.save_json(results["optimal_allocation"], "output/q3_optimal_allocation.json")
     u.save_json(results["lctx_sensitivity"], "output/q3_lctx_sensitivity.json")
-    validate_capability(results)
     print("[Q3] 完成")
     return results
 
@@ -159,7 +217,7 @@ def _q3_optimal(results, params, Q0):
             print(f"[Q3]   g={gkind} C={C:.0e}: N*={sol['N']:.4g} D*={sol['D']:.4g} "
                   f"Q*={sol['Q']:.4f} L*={sol['L']:.4f} util={sol['util']:.4f} "
                   f"s_train={shares['s_train']:.3f} s_Q={shares['s_Q']:.3f} s_attn={shares['s_attn']:.3f}")
-    # 对比基线：Chinchilla 等分(N=D, Q=Q0 无质量投入)，仅作对照
+    # 对比基线：等数值基线(N=D, Q=Q0 无质量投入)，仅作对照
     baseline_chinchilla = {}
     for C in BUDGETS:
         # 6 N D 1e18 = C, N=D → N=D=sqrt(C/6e18); Q=Q0 (C_Q=0)
@@ -175,16 +233,22 @@ def _q3_optimal(results, params, Q0):
         baseline_chinchilla[f"{C:.0e}"] = {
             "N": Nb, "D": Db, "Q": Q0, "L": float(Lb), "C_tot": float(Ct),
             "C_train": float(Ctr), "C_Q": float(CQ), "C_attn": float(Cat),
-            "util": float(Ct / C), "note": "Chinchilla等分基线(N=D,Q=Q0无质量投入)，作对照"}
+            "util": float(Ct / C), "note": "N=D等数值基线（非Chinchilla最优比例），Q=Q0无质量投入"}
+    baseline_fixed_quality = {}
+    for C in BUDGETS:
+        sol = solve_fixed_quality(C, Q0, Q0, params, Lctx_main, "exp")
+        sol["note"] = "固定Q=Q0，重新优化N与D；用于区分质量投入与规模配比改善"
+        baseline_fixed_quality[f"{C:.0e}"] = sol
     results["optimal_allocation"] = {"Lctx_main": Lctx_main, "budgets": BUDGETS,
                                      "by_gtype": alloc,
+                                     "baseline_fixed_quality": baseline_fixed_quality,
                                      "baseline_chinchilla": baseline_chinchilla}
     # 对比：最优 vs 基线 L 改善
     for C in BUDGETS:
         opt_L = alloc["exp"][f"{C:.0e}"].get("L")
         base_L = baseline_chinchilla[f"{C:.0e}"]["L"]
         if opt_L is not None:
-            print(f"[Q3]   C={C:.0e}: 最优L={opt_L:.4f} vs Chinchilla基线L={base_L:.4f} "
+            print(f"[Q3]   C={C:.0e}: 最优L={opt_L:.4f} vs N=D基线L={base_L:.4f} "
                   f"(改善{base_L-opt_L:.4f})")
 
     # 预算单调性核验：C↑ → L*↓（用 exp 型）
@@ -226,8 +290,16 @@ def _q3_transition(results, params, Q0, gkind="exp"):
         peak_idx, C_transition = -1, None
     # Q 数值边界状态与 C_Q 铰链激活；未计算 KKT 残差。
     Qs_arr = np.array(Qs)
-    q_activates = [bool(q > Q0) for q in Qs]
+    q_activates = [bool(q > Q0 + 1e-7) for q in Qs]
     first_activate = next((float(Cs[i]) for i, a in enumerate(q_activates) if a), None)
+    # 区分网格首个激活点和铰链处右导数过零的连续阈值。
+    boundary_thresholds = {}
+    for name, q in (("quality_activation_C", Q0), ("quality_saturation_C", 1.0)):
+        f = lambda lc: solve_fixed_quality(10.0 ** lc, q, Q0, params, Lctx_main, gkind)["profile_grad_Q"]
+        if f(logC[0]) * f(logC[-1]) < 0:
+            boundary_thresholds[name] = float(10 ** brentq(f, logC[0], logC[-1]))
+        else:
+            boundary_thresholds[name] = None
 
     results["structural_transition"] = {
         "gtype": gkind, "logC_grid": logC.tolist(), "C_grid": Cs.tolist(),
@@ -237,7 +309,9 @@ def _q3_transition(results, params, Q0, gkind="exp"):
         "transition_logC": float(logC[peak_idx]) if peak_idx >= 0 else None,
         "transition_C": C_transition,
         "CQ_first_activation_C": first_activate,
-        "definition": "候选结构转移=份额对logC导数峰值处(式18)；另检查 Q 边界与 C_Q 铰链状态，未计算 KKT 残差",
+        "boundary_stationarity_thresholds": boundary_thresholds,
+        "quality_states": ["baseline" if q <= Q0 + 1e-7 else "upper" if q >= 1 - 1e-7 else "interior" for q in Qs],
+        "definition": "候选结构转移=份额对logC导数峰值；质量边界状态使用1e-7容差，边界阈值由单边驻点方程计算，不能单独证明全局换支",
     }
     print(f"[Q3]   转移点 C†~{C_transition:.2e} (logC={logC[peak_idx]:.2f}), "
           f"C_Q首次激活 C~{first_activate}")
@@ -285,6 +359,8 @@ def validate_capability(results):
                 f"[能力不成立] g={gkind} C={C:.0e} 越预算 {sol['C_tot']:.3e}>{C:.3e}"
             assert 0 < sol["Q"] <= 1.0, f"[能力不成立] Q={sol['Q']}越界(0,1]"
             assert sol["N"] > 0 and sol["D"] > 0, "[能力不成立] N/D非正"
+            assert sol["stationarity_residual"] < 1e-6, "[求解失败] 一阶残差过大"
+            assert sol["Q"] >= results["Q0"] - 1e-9, "[求解失败] 质量低于免费基线"
     # P3-C1: 预算单调性
     assert results["optimal_allocation"]["budget_monotonic_L"], "[能力不成立] C↑→L*↓ 破"
     # P3-C2: 转移判据可判定
@@ -293,7 +369,7 @@ def validate_capability(results):
     # P3-C3: 临界值 + C7 取值
     ls = results["lctx_sensitivity"]
     assert ls["Lctx_crit_check"] and abs(ls["Lctx_crit"] - 3e4) < 1.0, "[能力不成立] 临界值!=3e4"
-    assert set(int(k) for k in ls["panels"].keys()) <= set(LCTX_SET), "[能力不成立] L_ctx用了C7外取值"
+    assert set(int(k) for k in ls["panels"].keys()) == set(LCTX_SET), "[能力不成立] L_ctx敏感性缺项或用了C7外取值"
     print("[Q3] validate_capability PASS")
 
 

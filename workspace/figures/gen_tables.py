@@ -5,7 +5,7 @@
   TABLE_q1_weights      22 指标三组平衡权重 vs CRITIC 权重对照
   TABLE_q1_domain_Q     七域 Q 与 bootstrap 区间（描述性统计）
   TABLE_q2_scaling      经典/广义标度律参数 + 拟合与泛化优度（主结果表）
-  TABLE_q3_allocation   三档预算 × 三种 g(Q) 最优配置 + Chinchilla 基线
+  TABLE_q3_allocation   三档预算 × 三种 g(Q) 最优配置 + 等数值基线\\newline $N=D$
   TABLE_q4_frontier     12/24 月能力前沿三情景分位数
 
 表注只写短标题（≤20 汉字）；统计口径/重复次数/数据来源写进论文正文。
@@ -50,8 +50,9 @@ items = sorted(w_main, key=lambda k: -w_main[k])
 half = (len(items) + 1) // 2
 L = [r"\begin{table}[H]", r"  \centering",
      r"  \caption{三组平衡主权重与 CRITIC 对照}", r"  \label{tab:q1_weights}",
-     r"  \small",
-     r"  \begin{tabular}{rlcc@{\hspace{2.2em}}rlcc}", r"    \toprule",
+     r"  \songti\zihao{-4}",
+     r"  \setlength{\tabcolsep}{4pt}",
+     r"  \begin{tabular}{rlcc@{\hspace{1em}}rlcc}", r"    \toprule",
      r"    \# & 指标 & 主权重 $w_j$ & CRITIC & \# & 指标 & 主权重 $w_j$ & CRITIC \\",
      r"    \midrule"]
 for i in range(half):
@@ -77,7 +78,7 @@ doms = sorted(ci, key=lambda d: -ci[d]["Q"])
 qs = p1["Q_stats"]
 L = [r"\begin{table}[H]", r"  \centering",
      r"  \caption{域级综合质量统计}", r"  \label{tab:q1_domain_Q}",
-     r"  \small",
+     r"  \songti\zihao{-4}",
      r"  \begin{tabular}{lrccrc}", r"    \toprule",
      r"    域 & $n_{A1}$ & $Q_{A1}$ & 95\% 区间 & $n_{ext}$ & $Q_{ext}$ \\",
      r"    \midrule"]
@@ -99,30 +100,28 @@ g, c = p2["generalized"], p2["classic"]
 gen = c["generalization"]
 L = [r"\begin{table}[H]", r"  \centering",
      r"  \caption{标度律参数与拟合优度}", r"  \label{tab:q2_scaling}",
-     r"  \small",
+     r"  \songti\zihao{-4}",
      r"  \begin{tabular}{lrr}", r"    \toprule",
      r"    项 & 经典律 $L(N,D)$ & 广义律 $L(N,D,Q)$ \\", r"    \midrule",
-     r"    \multicolumn{3}{l}{\textit{参数}} \\"]
+     r"    \multicolumn{3}{l}{参数} \\"]
 for k, sym in (("E", r"$E$"), ("A", r"$A$"), ("alpha", r"$\alpha$"),
                ("B", r"$B$"), ("beta", r"$\beta$")):
     L.append(f"    \\quad {sym} & {cp[k]:.4f} & {gp[k]:.4f} \\\\")
 L += [r"    \quad $\theta$ (经验) & -- & %.3f \\" % g["theta_empirical_B6B8"],
       r"    \quad $\theta$ (下游取用) & -- & %.2f \\" % g["theta_assumed_downstream"],
-      r"    \midrule", r"    \multicolumn{3}{l}{\textit{拟合}} \\",
+      r"    \midrule", r"    \multicolumn{3}{l}{拟合} \\",
       r"    \quad 样本量 $n$ & %d & %d \\" % (c["n_fit"], g["n_fit"]),
       r"    \quad $R^2$ & %.7f & %.4f \\" % (c["r2"], g["r2"]),
       r"    \quad 残差标准差 & %.3e & -- \\" % c["residual_std"],
-      r"    \quad AIC & %.1f & %.1f \\" % (g["aic"]["classic"], g["aic"]["generalized"]),
-      r"    \quad BIC & %.1f & %.1f \\" % (g["bic"]["classic"], g["bic"]["generalized"]),
-      r"    \midrule", r"    \multicolumn{3}{l}{\textit{留出/外部集 RMSE}} \\",
-      r"    \quad B6 留出 ($n$=%d) & %.4f & %.4f \\" % (
+      r"    \midrule", r"    \multicolumn{3}{l}{留出/外部集 RMSE} \\",
+      r"    \quad B6--B8 分组留出 ($n$=%d) & %.4f & %.4f \\" % (
           g["n_holdout"], g["rmse_holdout_classic_baseline"],
           g["rmse_holdout_generalized"])]
 for k in sorted(gen, key=lambda k: gen[k]["rmse"]):
     v = gen[k]
     L.append("    \\quad %s ($n$=%d) & %.4f & -- \\\\" % (
         esc(k.split("_", 1)[1]), v["n"], v["rmse"]))
-L += [r"    \midrule", r"    \multicolumn{3}{l}{\textit{参考点弹性}} \\"]
+L += [r"    \midrule", r"    \multicolumn{3}{l}{参考点弹性} \\"]
 el = p2["elasticity"]
 for k, sym in (("eps_N", r"$\varepsilon_N$"), ("eps_D", r"$\varepsilon_D$"),
                ("eps_Q", r"$\varepsilon_Q$")):
@@ -135,13 +134,12 @@ write(L, "TABLE_q2_scaling.tex")
 oa = p3["optimal_allocation"]
 bkeys = list(oa["by_gtype"]["exp"].keys())
 GT = [("exp", "指数型"), ("pow", "幂型"), ("log", "对数型")]
-# 9 列表自然宽 ≈109% textwidth（见 _tmp/est_width 估算）→ 只有这张需要 resizebox；
-# 其余 3-8 列表自然宽 55%~93%，加 resizebox 反而会把字撑大，不加。
+# 保持小四号宋体：窄列间距与方案名称换行代替整表缩放。
 L = [r"\begin{table}[H]", r"  \centering",
      r"  \caption{三档预算下的最优算力配置}", r"  \label{tab:q3_allocation}",
-     r"  \small",
-     r"  \resizebox{\textwidth}{!}{%",
-     r"  \begin{tabular}{llrrrrrrr}", r"    \toprule",
+     r"  \songti\zihao{-4}",
+     r"  \setlength{\tabcolsep}{4pt}",
+     r"  \begin{tabular}{@{}l>{\raggedright\arraybackslash}p{2.4cm}rrrrrrr@{}}", r"    \toprule",
      r"    $C$ (FLOPs) & $g(Q)$ & $N^*$ & $D^*$ & $Q^*$ & $L^*$ "
      r"& $s_{train}$ & $s_Q$ & $s_{attn}$ \\", r"    \midrule"]
 for bi, k in enumerate(bkeys):
@@ -155,12 +153,18 @@ for bi, k in enumerate(bkeys):
                     s["s_train"], s["s_Q"], s["s_attn"]))
     b = oa["baseline_chinchilla"][k]
     tot = float(b["C_tot"])
-    L.append("    & Chinchilla 基线 & %.3f & %.1f & %.4f & %.4f & %.4f & %.4f & %.4f \\\\"
+    L.append("    & 等数值基线\\newline $N=D$ & %.3f & %.1f & %.4f & %.4f & %.4f & %.4f & %.4f \\\\"
              % (b["N"], b["D"], b["Q"], b["L"],
                 b["C_train"] / tot, b["C_Q"] / tot, b["C_attn"] / tot))
+    fixed = oa["baseline_fixed_quality"][k]
+    total = fixed["C_tot"]
+    L.append("    & 固定质量\\newline 最优基线 & %.3f & %.1f & %.4f & %.4f & %.4f & %.4f & %.4f "
+             % (fixed["N"], fixed["D"], fixed["Q"], fixed["L"],
+                fixed["C_train"] / total, fixed["C_Q"] / total, fixed["C_attn"] / total)
+             + r"\\")
     if bi < len(bkeys) - 1:
         L.append(r"    \midrule")
-L += [r"    \bottomrule", r"  \end{tabular}", r"  }", r"\end{table}"]
+L += [r"    \bottomrule", r"  \end{tabular}", r"\end{table}"]
 write(L, "TABLE_q3_allocation.tex")
 
 # ===================== TABLE_q4_frontier =====================
@@ -168,7 +172,7 @@ fr = p4["frontier"]
 SC = [("high", "维持", 1.0), ("mid", "放缓", 0.5), ("low", "停滞", 0.0)]
 L = [r"\begin{table}[H]", r"  \centering",
      r"  \caption{能力前沿情景预测分位数}", r"  \label{tab:q4_frontier}",
-     r"  \small",
+     r"  \songti\zihao{-4}",
      r"  \begin{tabular}{llrrrr}", r"    \toprule",
      r"    情景 & 斜率系数 & 期限 & P10 & P50 & P90 \\", r"    \midrule"]
 for key, lab, mult in SC:

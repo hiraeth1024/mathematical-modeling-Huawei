@@ -1,17 +1,5 @@
 # -*- coding: utf-8 -*-
-"""fig_q2_elasticity_diverging — 各因素损失弹性发散柱状图（配方 advanced #20）。
-
-本图讲什么：式12 弹性 ε_x=∂lnL/∂ln x 在 4 个工作点上的对照。三个因素全部落在
-  零线左侧（增投都降损），但量级排序稳定为 |ε_D|>|ε_N|>|ε_Q|，且恒有恒等式
-  ε_Q=θ·ε_D（θ=0.5）——即质量的降损杠杆只有数据的一半。随工作点沿 N 增大，
-  三条弹性同步收缩，对应幂律的边际收益递减。
-数据来源：figures/problem_2_results.json['generalized']['params'] +
-  ['theta_assumed_downstream'] 解析代入（同 code/problem2.py::_p2_elasticity 式12）；
-  参考工作点 (N=1,D=100,Q=0.5) 的三个 ε 与已发布值逐一断言一致。
-关键数值：参考点 ε_N=-0.0657, ε_D=-0.0860, ε_Q=-0.0430；θ=0.5；
-  工作点沿 B1 数据域 (N 0.07~12, D 0.13~300) 取 4 档，Q 固定 0.5 保证可比。
-版式：原生 6.2×4.2in，3 组 × 4 工作点 = 12 根横条，零线居右。
-"""
+"""各因素弹性对照：使用 downstream_params 与当前 Q0，参考点必须与问题二输出一致；保持原有横条图样式。"""
 import sys
 import os
 
@@ -24,7 +12,7 @@ from _figbase import (save_fig, set_paper_placement, PALETTE, COLORS,
                       declutter_axes)
 
 p2 = load("problem_2_results.json")
-gp = p2["generalized"]["params"]
+gp = p2["generalized"]["downstream_params"]
 theta = float(p2["generalized"]["theta_assumed_downstream"])
 params = [gp["E"], gp["A"], gp["alpha"], gp["B"], gp["beta"], theta]
 ref = p2["elasticity"]["reference_point"]
@@ -89,6 +77,6 @@ h, l = ax.get_legend_handles_labels()
 auto_legend(ax, handles=h + extra, labels=l + [e.get_label() for e in extra],
             loc="upper left", fontsize=8.2, frameon=False,
             labelspacing=0.28, handlelength=1.3, ncol=2,
-            title=cn("工作点（$Q$=%.1f 固定）" % Q_FIX), title_fontsize=8.2)
+            title=cn("工作点（$Q$=%.3f 固定）" % Q_FIX), title_fontsize=8.2)
 
 save_fig(fig, "figures/fig_q2_elasticity_diverging.pdf")

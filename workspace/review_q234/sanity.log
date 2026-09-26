@@ -1,0 +1,3 @@
+==================================================
+[sanity_check] errors=0 warnings=0 suspicious=0
+[sanity_check] PASS：无 NaN/Inf/非法数值

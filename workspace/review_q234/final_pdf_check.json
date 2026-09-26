@@ -1,0 +1,14 @@
+{
+  "pages": 42,
+  "sha256": "a1a3cc55ae9b7e37059f9f695f6ead190a9aca4235efad5ba8b4e504f759d542",
+  "overfull": false,
+  "undefined_references": false,
+  "numerical_review": "PASS",
+  "format": {
+    "title": "16 pt Heiti, centered",
+    "section": "14 pt Heiti, centered",
+    "other_chinese": "12 pt Songti",
+    "figure_text": "Original styling preserved as requested"
+  },
+  "visual_review": "Title, contents, symbol table, weights table, allocation table and appendix checked"
+}

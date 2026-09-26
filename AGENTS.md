@@ -12,12 +12,14 @@ Run commands from `workspace/` because scripts use workspace-relative paths:
 cd workspace
 python3 -m pip install -r code/requirements.txt
 python3 code/main.py
+python3 code/main.py --problems 2 3 4
+python3 code/review_q234.py
 python3 code/sanity_check.py
 python3 code/constraint_audit.py
 ./paper/compile_tex.sh
 ```
 
-`main.py` recomputes the four models and overwrites generated results. The two audit scripts check saved numerical values and resource constraints. The paper script uses a XeTeX engine, resolves references, and writes `paper/build/main.pdf` while preserving `paper/main.tex`. Check `README.txt` and `EXPORT_WARNINGS.txt` before attempting a full reproduction.
+`main.py` recomputes the four models and overwrites generated results. Use `--problems` to recompute selected stages while loading the others from saved results. `review_q234.py` compares numerical solvers and checks derivatives, boundaries, and validation outputs. The two audit scripts check saved numerical values and resource constraints. The paper script uses a XeTeX engine, resolves references, and writes `paper/build/main.pdf` while preserving `paper/main.tex`. Check `README.txt` and `EXPORT_WARNINGS.txt` before attempting a full reproduction.
 
 ## Coding Style & Naming Conventions
 

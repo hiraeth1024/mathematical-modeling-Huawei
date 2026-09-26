@@ -1,0 +1,25 @@
+============================================================
+[Q2] Step 1: 经典标度律 B1 拟合（对数域 Huber-NLS 多起点）
+[data_ingest] B_scaling_laws/pythia_training_log_existing.csv 全量 1176 行已核对
+[Q2]   E=1.6898 A=0.3540 alpha=0.3400 B=1.2403 beta=0.2799 R2=1.00000
+[Q2]   残差均值=-4.9953e-08 标准差=0.0001
+[data_ingest] B_scaling_laws/cerebras_training_log.csv 全量 1029 行已核对
+[Q2]   泛化 B2_cerebras: n=1029 RMSE=1.2431 R2=-5.072747895611805
+[data_ingest] B_scaling_laws/scaling_baseline.csv 全量 57 行已核对
+[Q2]   泛化 B4_baseline: n=57 RMSE=0.2927 R2=0.6045104725211098
+[data_ingest] B_scaling_laws/published_scaling_data.csv 全量 44 行已核对
+[Q2]   泛化 B5_published: n=44 RMSE=0.1976 R2=0.7305501048132615
+[data_ingest] B_scaling_laws/supplementary_large_models.csv 全量 132 行已核对
+[data_ingest] B_scaling_laws/supplementary_large_baseline.csv 全量 128 行已核对
+[Q2] Step 2: B6-B8 分组留出与公平基线
+[data_ingest] B_scaling_laws/supplementary_NQ_experiment.csv 全量 360 行已核对
+[data_ingest] B_scaling_laws/supplementary_NQ_experiment_expanded.csv 全量 450 行已核对
+[data_ingest] B_scaling_laws/supplementary_NQ_experiment_large.csv 全量 1704 行已核对
+[Q2] grouped holdout n=488: generalized RMSE=0.674882, refit no-Q=0.783601; theta=-10.0000
+[Q2] Step 3: 弹性与 Q-N 替代率（解析代入拟合参数）
+[Q2]   弹性 eps_N=-0.0497 eps_D=-0.0437 eps_Q=-0.0218 (均应<0)
+[Q2]   替代率 dN/dQ|_L=-0.9007；ΔQ=0.1 等价 ΔN~-0.0901 (10^9 params)
+[Q2] validate_capability PASS
+[save] figures/problem_2_results.json (135890 bytes)
+[save] output/q2_classic_scaling.json (47511 bytes)
+[Q2] 完成

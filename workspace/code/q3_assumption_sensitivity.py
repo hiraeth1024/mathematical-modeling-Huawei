@@ -20,7 +20,7 @@ def main():
         "theta_0.8": (q0, 0.8),
     }
     output = {
-        "method": "Q3 exponential cost; Lctx=2048; 20-start SLSQP per budget",
+        "method": "Q3 exponential cost; Lctx=2048; budget-eliminated profile per budget",
         "budgets_flops": BUDGETS,
         "scenarios": {},
     }

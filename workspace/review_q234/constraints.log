@@ -1,0 +1,9 @@
+[baseline] baseline_fixed_quality[C=1e+19] PASS=True util=1.0000
+[baseline] baseline_fixed_quality[C=1e+22] PASS=True util=1.0000
+[baseline] baseline_fixed_quality[C=1e+24] PASS=True util=1.0000
+[baseline] baseline_chinchilla[C=1e+19] PASS=True util=1.0000
+[baseline] baseline_chinchilla[C=1e+22] PASS=True util=1.0000
+[baseline] baseline_chinchilla[C=1e+24] PASS=True util=1.0000
+============================================================
+[constraint_audit] 审计方案数=15, 发现基线=['baseline_fixed_quality', 'baseline_chinchilla']
+[constraint_audit] PASS  n_violations=0

@@ -1,0 +1,98 @@
+{
+  "pages": 42,
+  "chinese_fonts": [
+    {
+      "font": "IHAIZV+STHeitiSC-Light",
+      "size_pt": 16.0,
+      "count": 21
+    },
+    {
+      "font": "IHAIZV+STHeitiSC-Light",
+      "size_pt": 14.0,
+      "count": 152
+    },
+    {
+      "font": "IXFAWU+STSongti-SC-Regular",
+      "size_pt": 12.0,
+      "count": 11986
+    },
+    {
+      "font": "BAAAAA+STSongti-SC-Bold",
+      "size_pt": 9.92,
+      "count": 89
+    },
+    {
+      "font": "CAAAAA+STSongti-SC-Regular",
+      "size_pt": 9.52,
+      "count": 92
+    },
+    {
+      "font": "EAAAAA+STSongti-SC-Bold",
+      "size_pt": 8.73,
+      "count": 10
+    },
+    {
+      "font": "FAAAAA+STSongti-SC-Regular",
+      "size_pt": 8.73,
+      "count": 7
+    },
+    {
+      "font": "GAAAAA+STSongti-SC-Bold",
+      "size_pt": 10.32,
+      "count": 17
+    },
+    {
+      "font": "AAAAAA+STSongti-SC-Bold",
+      "size_pt": 10.58,
+      "count": 71
+    },
+    {
+      "font": "BAAAAA+STSongti-SC-Regular",
+      "size_pt": 10.16,
+      "count": 126
+    },
+    {
+      "font": "FAAAAA+STSongti-SC-Bold",
+      "size_pt": 11.0,
+      "count": 17
+    },
+    {
+      "font": "AAAAAA+SimSun",
+      "size_pt": 9.51,
+      "count": 62
+    },
+    {
+      "font": "CAAAAA+SimSun",
+      "size_pt": 9.51,
+      "count": 135
+    },
+    {
+      "font": "AAAAAA+SimSun",
+      "size_pt": 10.3,
+      "count": 32
+    },
+    {
+      "font": "MAFJWI+SimSun",
+      "size_pt": 13.68,
+      "count": 23
+    }
+  ],
+  "key_pages": {
+    "核心算法代码摘录": [
+      2,
+      36
+    ],
+    "符号 含义": [
+      5
+    ],
+    "三组平衡主权重": [
+      7
+    ],
+    "三档预算下的最优算力配置": [
+      21
+    ],
+    "参考文献": [
+      33
+    ]
+  }
+}
