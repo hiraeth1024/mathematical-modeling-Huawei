@@ -1,0 +1,55 @@
+\subsection{固定质量子问题的唯一性与解析基线}
+预算消元不仅减少一个决策变量，也使固定质量子问题的解结构可以直接分析。对给定 $Q\in[Q_0,1]$，令 $k=U^2(6+\eta\Lctx)>0$、$h=U[g(Q)-g(Q_0)]\geq0$，并将数据项记为
+\begin{equation}
+T(N,Q;C)=BQ^{-\theta\beta}\left(\frac{kN+h}{C}\right)^\beta.
+\label{eq:q3-data-term}
+\end{equation}
+当 $N\to0^+$ 时，参数项 $AN^{-\alpha}\to\infty$；当 $N\to\infty$ 时，预算允许的数据量趋于零，数据项趋于无穷。因此固定质量下的极小值不会逃向参数量的两个边界。在对数参数 $x=\ln N$ 上，其一阶条件为
+\begin{equation}
+\alpha AN^{-\alpha}
+=\beta T(N,Q;C)\frac{kN}{kN+h}.
+\label{eq:q3-unique-root}
+\end{equation}
+左侧严格下降。令右侧为 $R(N)>0$，则
+\begin{equation}
+\frac{\mathrm d\ln R}{\mathrm d\ln N}
+=1+(\beta-1)\frac{kN}{kN+h}>0.
+\label{eq:q3-monotone-root}
+\end{equation}
+由于 $0<kN/(kN+h)\leq1$ 且 $\beta>0$，该不等式成立。两侧在正半轴上恰交一次，导数在交点前为负、之后为正，因此该驻点是固定质量子问题的唯一全局极小点。这一结论只针对固定 $Q$ 的一维问题，不自动推广到外层质量剖面；对外层仍需比较内部候选与端点。
+
+当 $Q=Q_0$ 时 $h=0$，式~\eqref{eq:q3-unique-root} 可以直接解得
+\begin{align}
+N_0^*(C)&=\left[\frac{\alpha A}{\beta B}\,Q_0^{\theta\beta}
+\left(\frac{C}{k}\right)^\beta\right]^{1/(\alpha+\beta)},\label{eq:q3-fixed-closed}\\
+D_0^*(C)&=\frac{C}{kN_0^*(C)}.
+\end{align}
+表~\ref{tab:q3-closed} 由该解析式独立计算，并与预算消元程序保存的固定质量解逐项比较，相对差异低于 $10^{-10}$。这种核验针对求解实现与单位换算，不能替代对损失模型的外部验证。
+
+\input{../figures/TABLE_q3_closed_form.tex}
+
+解析式还给出两类资源随预算增长的条件标度：$N_0^*\propto C^{\beta/(\alpha+\beta)}$，$D_0^*\propto C^{\alpha/(\alpha+\beta)}$。当前 $\alpha\approx0.340$、$\beta\approx0.280$，因此数据量的预算指数略大于参数量。数据参数比满足
+\begin{equation}
+\frac{D_0^*}{N_0^*}\propto C^{(\alpha-\beta)/(\alpha+\beta)}.
+\label{eq:q3-ratio-scaling}
+\end{equation}
+所以即使完全不投入额外质量成本，最优 $D/N$ 也不必是常数，更不能由单位相同推出 $N=D$。实际比例同时依赖系数、指数、基线质量和上下文成本。等数值方案适合展示朴素配置的代价，固定质量解析解则适合隔离额外质量投入的收益，两种基线承担不同检验任务。
+
+\subsection{质量边界条件与预算的边际价值}
+记固定质量最优值为 $F(Q;C)=\widetilde L(N^*(Q),Q)$。在可微内点上，参数驻点使关于 $N^*(Q)$ 的链式项消失，因而
+\begin{equation}
+\frac{\mathrm dF}{\mathrm dQ}
+=\beta T\left[-\frac{\theta}{Q}+\frac{h'(Q)}{kN^*(Q)+h(Q)}\right].
+\label{eq:q3-quality-envelope}
+\end{equation}
+方括号左项为提高质量对有效数据的相对增益，右项为质量成本增加导致的可训练数据量收缩。内点候选要求二者相等；在 $Q_0$ 处，若右导数非负，局部上不应继续提高质量；在 $Q=1$ 处，若左导数非正，继续沿可行方向降低质量会增大损失，上界满足相应必要条件。
+
+式~\eqref{eq:q3-quality-envelope} 也表明，判断是否购买质量不能只比较 $g(Q)$ 的绝对大小。相同的单位 token 质量成本，面对不同参数规模时占总成本的比例不同；同时，质量指数 $\theta$ 决定预期收益的强度。三型成本函数的参数和曲率均不相同，因此某一个预算档的排序不能作为所有预算档的固定排序。
+
+对预算也可作包络分析。在候选最优解所在分支可微且预算活跃时，
+\begin{equation}
+-\frac{\partial L^*}{\partial\ln C}=\beta T^*,
+\qquad \mu^*=\frac{\beta T^*}{C},
+\label{eq:q3-budget-value}
+\end{equation}
+其中 $\mu^*$ 是一阶预算影子价格。它描述预算发生小幅变化时的模型内边际降损，不是硬件报价，也不是增加一块设备必然带来的实际提升。在固定质量、无新增质量成本的基线上，两类可约损失按 $C^{-\alpha\beta/(\alpha+\beta)}$ 衰减，给出预算收益递减的解析解释。实际改变较大预算时，应使用重新优化后的差值，而不能把这一局部导数无限线性外推。

@@ -36,6 +36,8 @@
 \end{align}
 由式~\eqref{eq:q3-kkt-n}--\eqref{eq:q3-kkt-d} 可消去乘子 $\mu$，得到参数量与数据量的边际平衡关系\cite{hoffmann2022}。质量条件须分段理解：$Q<Q_0$ 时提高质量不增加 $C_Q$ 却降低损失，故候选最优解不会停在该段；在 $Q=Q_0$ 处比较铰链两侧的单边导数，在 $Q_0<Q<1$ 的内点使用式~\eqref{eq:q3-kkt-q} 的边际收益等于边际成本条件，在 $Q=1$ 时检查上界条件。以上均为局部必要条件，不能单独证明全局最优。
 
+\input{sections/s5_q3_derivation.tex}
+
 \subsection{数值求解}
 数值求解先利用单调性消去预算约束。令 $k=U^2(6+\eta\Lctx)$、$h(Q)=U[g(Q)-g(Q_0)]_+$，由于损失随数据量严格下降，有
 \begin{equation}
@@ -110,3 +112,5 @@ C^{\dagger}=\arg\max_{C}\ \left|\frac{\mathrm d\,s_X(C)}{\mathrm d\,\log C}\righ
 \end{figure}
 
 在参数量--数据量--质量空间中，式~\eqref{eq:q3-budget} 的预算面与候选解位置表明预算约束活跃（图~\ref{fig:tikz_q3_feasible}）。综合本章：预算增大使候选最小损失下降；当前扫描显示约 $10^{19}$ FLOPs 的质量份额变化峰值，长上下文在 $3\times10^{4}$ tokens 附近使注意力开销赶上基础训练开销。
+
+\input{sections/s5_q3_extended.tex}

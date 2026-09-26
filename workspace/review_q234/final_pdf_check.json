@@ -1,14 +1,16 @@
 {
-  "pages": 42,
-  "sha256": "a1a3cc55ae9b7e37059f9f695f6ead190a9aca4235efad5ba8b4e504f759d542",
+  "pages": 48,
+  "sha256": "da925614de25f27d0540b845f27a65763615191ac2316cecb357c74293736205",
   "overfull": false,
   "undefined_references": false,
   "numerical_review": "PASS",
   "format": {
-    "title": "16 pt Heiti, centered",
     "section": "14 pt Heiti, centered",
     "other_chinese": "12 pt Songti",
-    "figure_text": "Original styling preserved as requested"
+    "figure_text": "Original style preserved",
+    "title": "Current source starts with contents; separate title page not present"
   },
-  "visual_review": "Title, contents, symbol table, weights table, allocation table and appendix checked"
+  "visual_review": "Previous 47-page expansion reviewed in full; latest figure 10 layout checked in rendered page 17 of the recompiled 48-page PDF. Legend is below and separate from both axis titles.",
+  "current_review": "../review_expansion/final_pdf_check.json",
+  "last_updated": "2026-09-26"
 }

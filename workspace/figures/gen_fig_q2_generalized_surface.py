@@ -29,10 +29,10 @@ XX, YY = np.meshgrid(lgN, Qs)
 # 把 8.5pt 的刻度压到 7.2pt。收窄后缩放比接近 1，字号不再腰斩。
 fig = plt.figure(figsize=(5.6, 4.0))
 set_paper_placement(fig)
-# 图例占独立行：3D 曲面铺满数据区，任何图内位置都会压住曲面
-gs = fig.add_gridspec(2, 1, height_ratios=[1.0, 0.075], hspace=0.01)
+# 3D 轴标题投影到轴框外，底部预留空间后再放独立图例。
+gs = fig.add_gridspec(1, 1, bottom=0.30, top=0.97)
 ax = fig.add_subplot(gs[0, 0], projection="3d")
-ax_leg = fig.add_subplot(gs[1, 0])
+ax_leg = fig.add_axes([0.08, 0.09, 0.84, 0.07])
 ax_leg.axis("off")
 
 surf = ax.plot_surface(XX, YY, LL, cmap="YlOrRd", alpha=0.88, edgecolor="none",

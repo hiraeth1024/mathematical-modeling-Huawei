@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-26",
+  "pdf": "paper/build/main.pdf",
+  "pages": 48,
+  "target_pages_including_appendices": [
+    45,
+    50
+  ],
+  "sha256": "da925614de25f27d0540b845f27a65763615191ac2316cecb357c74293736205",
+  "overfull": false,
+  "undefined_references": false,
+  "remaining_warning": "Reference paragraph Underfull hbox, badness 1173; does not affect readability",
+  "derived_checks": {
+    "grouped_rmse_aggregation": true,
+    "exact_iso_loss_identity": true,
+    "fixed_quality_closed_form_max_relative_error": 1.1060523584852248e-14,
+    "backtest_matches_saved_metrics": true
+  },
+  "source_hash_checks": {
+    "review_q234/source_hashes.json": {
+      "code/problem2.py": true,
+      "code/problem3.py": true,
+      "code/problem4.py": true,
+      "code/params.py": true,
+      "code/review_q234.py": true
+    },
+    "review_expansion/derived_results.json": {
+      "figures/problem_1_results.json": true,
+      "figures/problem_2_results.json": true,
+      "figures/problem_3_results.json": true,
+      "figures/problem_4_results.json": true,
+      "figures/q3_assumption_sensitivity.json": true,
+      "output/q1_weight_sensitivity.json": true
+    }
+  },
+  "visual_review": "Previous 47-page expansion reviewed in full; latest figure 10 layout checked in rendered page 17 of the recompiled 48-page PDF. Legend is below and separate from both axis titles.",
+  "format": {
+    "section": "14 pt Heiti, centered",
+    "other_chinese": "12 pt Songti",
+    "figure_text": "Original style preserved",
+    "title": "Current source starts with contents; separate title page not present"
+  },
+  "new_figures": 7,
+  "new_tables": 7,
+  "new_tables_detail": "6 generated numerical tables and 1 evidence table",
+  "last_updated": "2026-09-26"
+}

@@ -425,7 +425,11 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-(fancyhdr.sty
+(flafter.sty
+Package: flafter 2021/07/31 v1.4e Standard LaTeX floats after reference (FMi)
+Applying: [2015/01/01] float order in 2-column on input line 49.
+Already applied: [0000/00/00] float order in 2-column on input line 151.
+) (fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
 rs
 \f@nch@headwidth=\skip66
@@ -443,79 +447,79 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 ) (main_compile.aux)
 \openout1 = `main_compile.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 113.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 113.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 113.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 113.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 113.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 113.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 113.
-LaTeX Font Info:    Redeclaring math accent \check on input line 113.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 113.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 113.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 113.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 113.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 113.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 119.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 119.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 119.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 119.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 119.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 119.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 119.
+LaTeX Font Info:    Redeclaring math accent \check on input line 119.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 119.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 119.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 119.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 119.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 113.
+(Font)              `operators' in the math version `normal' on input line 119.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 113.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 119.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 113.
+(Font)              `operators' in the math version `bold' on input line 119.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 113.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 119.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 113.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 113.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 113.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 113.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 113.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 119.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 113.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 113.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 113.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 113.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 119.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -603,104 +607,123 @@ File: ../figures//fig_roadmap.pdf Graphic file (type pdf)
 <use ../figures//fig_roadmap.pdf>
  [3
 
-] [4] (sections/s3_q1.tex
+]
+(sections/s2_data_evidence.tex [4]) (sections/s3_q1.tex [5]
 File: ../figures//fig_pipeline_q1.pdf Graphic file (type pdf)
 <use ../figures//fig_pipeline_q1.pdf>
 
-[5]
 
 Package fontspec Warning: Font "Songti SC" does not contain requested Script
 (fontspec)                "CJK".
 
-[6] (../figures/TABLE_q1_weights.tex)
+(../figures/TABLE_q1_weights.tex) [6] [7]
 File: ../figures//fig_index_hierarchy.pdf Graphic file (type pdf)
 <use ../figures//fig_index_hierarchy.pdf>
- [7]
 File: ../figures//fig_q1_quality_corr.pdf Graphic file (type pdf)
 <use ../figures//fig_q1_quality_corr.pdf>
- [8]
 File: ../figures//fig_q1_conflict_scatter.pdf Graphic file (type pdf)
 <use ../figures//fig_q1_conflict_scatter.pdf>
- [9]
 File: ../figures//fig_q1_domain_Q_dumbbell.pdf Graphic file (type pdf)
 <use ../figures//fig_q1_domain_Q_dumbbell.pdf>
- [10]
-(../figures/TABLE_q1_domain_Q.tex) [11]
+ (../figures/TABLE_q1_domain_Q.tex)
+[8] [9]
 File: ../figures//fig_q1_mixture_importance.pdf Graphic file (type pdf)
 <use ../figures//fig_q1_mixture_importance.pdf>
- [12]) (sections/s4_q2.tex [13]
+ (sections/s3_q1_extended.tex [10] [11]
+File: ../figures//fig_q1_weight_robustness.pdf Graphic file (type pdf)
+<use ../figures//fig_q1_weight_robustness.pdf>
+ [12]
+(../figures/TABLE_q1_conflict_domains.tex))) (sections/s4_q2.tex [13]
 File: ../figures//fig_q2_scaling_fit.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_scaling_fit.pdf>
  [14]
-(../figures/TABLE_q2_scaling.tex) [15]
+(../figures/TABLE_q2_scaling.tex)
 File: ../figures//fig_q2_generalized_surface.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_generalized_surface.pdf>
- [16]
+ [15]
 File: ../figures//fig_q2_elasticity_diverging.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_elasticity_diverging.pdf>
- [17]
 File: ../figures//fig_q2_substitution_contour.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_substitution_contour.pdf>
- [18]) (sections/s5_q3.tex
-[19] (../figures/TABLE_q3_allocation.tex) [20]
+ (sections/s4_q2_extended.tex [16]
+[17] (../figures/TABLE_q2_source_validation.tex)
+File: ../figures//fig_q2_source_validation.pdf Graphic file (type pdf)
+<use ../figures//fig_q2_source_validation.pdf>
+ [18] [19]
+File: ../figures//fig_q2_finite_substitution.pdf Graphic file (type pdf)
+<use ../figures//fig_q2_finite_substitution.pdf>
+))
+(sections/s5_q3.tex [20] (sections/s5_q3_derivation.tex [21]
+(../figures/TABLE_q3_closed_form.tex)) [22] (../figures/TABLE_q3_allocation.tex
+)
 File: ../figures//fig_q3_allocation_stacked.pdf Graphic file (type pdf)
 <use ../figures//fig_q3_allocation_stacked.pdf>
- [21]
+ [23]
 File: ../figures//fig_q3_transition_line.pdf Graphic file (type pdf)
 <use ../figures//fig_q3_transition_line.pdf>
- [22]
 File: ../figures//fig_q3_lctx_panels.pdf Graphic file (type pdf)
 <use ../figures//fig_q3_lctx_panels.pdf>
- [23]
 File: ../figures//tikz_q3_feasible.pdf Graphic file (type pdf)
 <use ../figures//tikz_q3_feasible.pdf>
- [24])
-(sections/s6_q4.tex [25]
+ [24] [25] (sections/s5_q3_extended.tex
+File: ../figures//fig_q3_quality_profiles.pdf Graphic file (type pdf)
+<use ../figures//fig_q3_quality_profiles.pdf>
+ [26] [27]
+File: ../figures//fig_q3_gain_decomposition.pdf Graphic file (type pdf)
+<use ../figures//fig_q3_gain_decomposition.pdf>
+)) (sections/s6_q4.tex
+[28]
 File: ../figures//fig_q4_contribution_decomp.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_contribution_decomp.pdf>
- [26]
+ [29]
 File: ../figures//fig_q4_bridge_scatter.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_bridge_scatter.pdf>
- [27] (../figures/TABLE_q4_frontier.tex)
+ [30] [31] (../figures/TABLE_q4_frontier.tex)
 File: ../figures//fig_q4_frontier_fan.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_frontier_fan.pdf>
- [28]
+ [32]
 File: ../figures//fig_q4_task_radar.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_task_radar.pdf>
 
-[29]) (sections/s7_verify.tex [30] (../figures/TABLE_q3_sensitivity.tex))
-(sections/s8_conclusion.tex [31]) [32] (sections/s0_refs.tex
-Underfull \hbox (badness 1173) in paragraph at lines 29--32
+(sections/s6_q4_extended.tex [33] (../figures/TABLE_q4_type_frontiers.tex)
+File: ../figures//fig_q4_type_frontiers.pdf Graphic file (type pdf)
+<use ../figures//fig_q4_type_frontiers.pdf>
+
+(../figures/TABLE_q4_backtest.tex) [34]
+File: ../figures//fig_q4_rolling_validation.pdf Graphic file (type pdf)
+<use ../figures//fig_q4_rolling_validation.pdf>
+ [35])) (sections/s7_verify.tex [36]
+(../figures/TABLE_q3_sensitivity.tex) (sections/s7_verify_extended.tex
+(../figures/TABLE_q3_sensitivity_full.tex) [37])) (sections/s8_conclusion.tex
+[38]) [39] (sections/s0_refs.tex
+Underfull \hbox (badness 1173) in paragraph at lines 31--34
 []\TU/lmr/m/n/12.045 Penedo G, Kydlíček H, Ben Allal L, et al. The FineWeb Data
 sets: Decant-
  []
 
-[33
+[40
 
-]) [34] (sections/s9_appendix.tex) [35
-
-] (sections/s10_appendix.tex
-(lstlang1.sty
+]) [41] (sections/s9_appendix.tex) (sections/s10_appendix.tex (lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (../code/quality_scoring.py
 consecutive:
-) (../code/quality_scoring.py
-consecutive:
-[36
+[42
 
-]) (../code/q1_pipeline.py
+]) (../code/quality_scoring.py
+consecutive:
+[43]) (../code/q1_pipeline.py
 consecutive:
 ) (../code/problem1.py
 consecutive:
-[37]) (../code/problem2.py
+) (../code/problem2.py
 consecutive:
-) [38] (../code/problem2.py
+[44]) (../code/problem2.py
 consecutive:
-[39]) (../code/problem3.py
+[45]) (../code/problem3.py
 consecutive:
-[40]) (../code/problem4.py
+[46] [47]) (../code/problem4.py
 consecutive:
-[41]) (../code/problem4.py
+) (../code/problem4.py
 consecutive:
-)) [42] (main_compile.aux) )
-Output written on main_compile.xdv (42 pages, 604396 bytes).
+[48])) [49] (main_compile.aux) )
+Output written on main_compile.xdv (49 pages, 799196 bytes).

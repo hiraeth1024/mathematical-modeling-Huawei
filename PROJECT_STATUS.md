@@ -1,6 +1,6 @@
 # 华为杯 F 题项目状态文档
 
-> 生成日期：2026-09-26 · 最后更新：2026-09-26 · 分支：`main`（含未提交的排版优化变更）
+> 生成日期：2026-09-26 · 最后更新：2026-09-26 · 分支：`main`（含未提交的正文扩充与排版变更）
 
 ---
 
@@ -17,13 +17,14 @@
 | 一 | 数据质量评价 + 冲突消解 + 配比–Loss 关系 | 22 指标语义解码 → A1 经验分位 → 三组平衡赋权；分域 Loss 配比回归 | `Q0=0.487876`，冲突率 0.303% |
 | 二 | 经典标度律 → 广义标度律 + 弹性与替代 | Huber 多起点非线性最小二乘；`Q^θ·D` 有效数据量 | 广义律含质量 RMSE=0.675 优于基线 |
 | 三 | 算力约束下资源配置优化 + 结构性转移 | KKT 解析 + 预算消元 + SLSQP 交叉验证 | 三档预算下 `N/D/Q` 最优配置 |
-| 四 | 贡献分解 + Loss–Benchmark 桥接 + 前沿预测 | 增长核算 OLS + 分层单调 sigmoid + Bootstrap 分位带 | 非规模进步主导（125%） |
+| 四 | 贡献分解 + Loss–Benchmark 桥接 + 前沿预测 | 增长核算 OLS + 分层单调 sigmoid + Bootstrap 分位带 | 年份项占回归增量约 125%（描述性分解，非因果贡献） |
 
 **最新动态（2026-09-25~26）**：
 - 问题一质量评分全线重构：修正分类 logits 语义误读、改用 A1 经验分位参照、三组平衡赋权，A1/A2/A3 全量重算。
 - 问题二/三/四代码评审与数值迭代收尾：数值校验与约束审计通过。
 - 论文完成专项排版优化：逐页定位 `[H]` 强制浮动、章节浮动屏障与 `\clearpage` 导致的空白，改为受控浮动并优化目录、参考文献和附录衔接；最终由 **42 页压缩为 35 页**，未删减模型内容、数据或图表。
-- `paper/build/main.pdf` 已重新编译并完成 35 页逐页视觉复核；无 Overfull、未定义引用、图表裁切或重叠，仅参考文献保留 1 处不影响阅读的 Underfull。
+- 在上述 35 页紧凑版基础上，按用户确认的“整份 PDF 含附录 45～50 页”口径扩充到 **47 页**：新增约 7,700 个汉字、7 张图、7 张表（6 张计算表及 1 张证据表），保持原有字体、页边距和图内样式。
+- 当前 PDF 已编译并完成全篇页面检查；新增公式和数值由 `figures/gen_paper_expansion.py` 复算，检查记录见 `workspace/review_expansion/`。
 - 当前有独立的 `question1/` 审查工作目录，记录问题一重构的规划、发现与进度。
 
 ---
@@ -77,13 +78,14 @@ mathematical-modeling-Huawei/
     │   ├── constraint_audit.py      #   主方案/基线/轨迹/上下文预算核验
     │   └── requirements.txt
     │
-    ├── figures/                     # 【图表产物 + 生成脚本】（22 张 PDF/HTML + 15 个生成器）
+    ├── figures/                     # 【图表产物 + 生成脚本】（本轮新增 7 张矢量 PDF）
     │   ├── gen_fig_q1_*.py          #   Q1: conflict_scatter / domain_Q_dumbbell / mixture_importance / quality_corr
     │   ├── gen_fig_q2_*.py          #   Q2: scaling_fit / substitution_contour / elasticity_diverging / generalized_surface
     │   ├── gen_fig_q3_*.py          #   Q3: allocation_stacked / transition_line / lctx_panels
     │   ├── gen_fig_q4_*.py          #   Q4: contribution_decomp / frontier_fan / task_radar / bridge_scatter
     │   ├── gen_tables.py / gen_table_q3_sensitivity.py / gen_code_includes.py / gen_latex_includes.py
     │   ├── prep_q1_indicators.py / prep_q4_decomp.py        # 图表数据准备
+    │   ├── gen_paper_expansion.py   #   正文扩充图表及独立恒等式/回测检查
     │   ├── _figbase.py              #   绘图基类/公共样式
     │   ├── fig_roadmap.*            #   四问递进技术路线（HTML 引擎 + PDF）
     │   ├── fig_index_hierarchy.*    #   层级索引图
@@ -111,7 +113,9 @@ mathematical-modeling-Huawei/
     │   ├── sections/                #   0_refs(参考文献) · 3_q1 · 4_q2 · 5_q3 · 6_q4 · 7_verify · 8_conclusion · 9_appendix · 10_appendix
     │   ├── _improvement_rounds/     #   round0_original.pdf / round1.pdf / round2.pdf（改进迭代快照）
     │   ├── PAPER_IMPROVEMENT_LOG.md
-    │   └── build/                   #   main.pdf（35 页，已编译并逐页复核）+ 编译日志 + tectonic-cache
+    │   └── build/                   #   main.pdf（48 页，含附录，图 10 已调整并检查）+ 编译日志 + tectonic-cache
+    │
+    ├── review_expansion/            # 正文扩充报告、复算数据、最终 PDF 检查
     │
     ├── review_q234/                 # 【问题二三迭代复核工作区】
     │   ├── REVIEW.md                #   三问迭代报告（方法修正 + 数值 + 结论边界）
@@ -152,7 +156,7 @@ mathematical-modeling-Huawei/
 | 问题一独立复核 | ✅ 通过 | 独立脚本逐行最大差 2.2e-16；域排序对权重做敏感性对照 |
 | 问题二/三迭代 | ✅ 收尾（09-26） | 公平验证、预算消元、统一参数；三问数值校验通过 |
 | 问题四迭代 | ✅ 收尾 | 分解/桥接/前沿一致性修正完成 |
-| 论文编译与排版优化 | ✅ 35 页 | `paper/build/main.pdf`；已逐页复核，无 Overfull/未定义引用/图表裁切或重叠 |
+| 论文正文扩充与排版 | ✅ 48 页（含附录） | `paper/build/main.pdf`；已逐页复核，无 Overfull/未定义引用/图表裁切或重叠 |
 | 数据审计 / 约束审计 / 能力审计 | ✅ 通过 | 详见 `workspace/AUDIT_REPORT.md`、`CAPABILITY_VERDICT.json` |
 
 ### 📌 关键运行命令（须在 `workspace/` 下执行）
@@ -165,6 +169,7 @@ python code/main.py --problems 2 3 4    # 只重算指定问，其余加载保�
 python code/q3_assumption_sensitivity.py
 python code/review_q234.py              # 三问数值复核 + 参数对照
 python code/sanity_check.py & python code/constraint_audit.py
+python figures/gen_paper_expansion.py  # 扩充图表、解析基线及滚动回测检查
 bash paper/compile_tex.sh               # XeTeX 编译 → build/main.pdf
 ```
 
@@ -174,7 +179,21 @@ bash paper/compile_tex.sh               # XeTeX 编译 → build/main.pdf
 - **含义声明**：`RESULTS.md` 标注为历史口径，问题一及依赖它的问题三数值已被重构结果取代；当前结果以 `question1/REVIEW_*.md` 与 `figures/problem_1/3_results.json` 为准。
 - **模型限制**：
   - 问题一权重与方向是建模假设（无外部质量–损失标签 → 无法公平校准组间权重）。
-  - 广义律的 `θ=0.5` 是假设（quality-helps premise），经验 θ 与口径限制 B6–B8（其 `Q_score` 是 setpoint 难度而非部署质量）；配比系数未进入广义律/优化。
+  - 广义律的 `θ=0.5` 是假设（quality-helps premise），B6–B8 的 `Q_score` 与 A1 质量标度尚未校准，不能仅凭相关性断言其等同于部署质量或难度；配比系数未进入广义律/优化。
   - 三问优化没有全局最优证明（Q 外层网格 + 局部细化）；结构转移点对评分标度/成本函数/网格敏感。
   - 问题四前沿预测是情景分位数，非校准远期预测；非规模贡献是条件关联而非因果识别。
-- **版面**：原先由强制浮动和人工分页造成的大片空白已消除；除末页代码附录自然结束的留白外，无明显非必要空白。最终日志仅有参考文献 1 处 Underfull，不影响阅读和 PDF 生成。
+- **版面**：沿用紧凑版的受控浮动与小四字号；目录自然续为 2 页，图 10 调整后整份 PDF 为 48 页（含附录）。最终页数、哈希和日志状态以 `workspace/review_expansion/final_pdf_check.json` 为准。
+- **新增验证结论**：含质量模型的整体留出 RMSE 改善主要来自 B8；在 B6、B7 上反而劣于无质量基线，不能概括为各来源一致改善。
+
+
+## 四、本轮正文扩充与后续建议
+
+- 新增章节文件：`s2_data_evidence.tex`、`s3_q1_extended.tex`、`s4_q2_extended.tex`、`s5_q3_derivation.tex`、`s5_q3_extended.tex`、`s6_q4_extended.tex`、`s7_verify_extended.tex`。
+- 内容涵盖证据分层、评分性质、权重敏感性、质量标度可识别性、有限增量替代、固定质量唯一驻点及闭式基线、质量净收益、分类型前沿、滚动回测和不确定性传播。
+- 复算通过：分来源 RMSE 聚合、等损失曲线回代、解析基线与数值解对照、滚动回测与保存指标一致。原始附件、四问主结果与已审计核心算法保持原样；本轮属于分析和表达扩充。
+- 扩充前备份：`workspace/paper/_improvement_rounds/expansion_before_20260926.pdf` 及同名源文件 ZIP。详细报告见 `workspace/review_expansion/REVIEW.md`，日期记录见 `2026-09-26/工作进度与下一步建议.md`。
+- 下一步优先核对提交模板是否另需独立标题/摘要页；当前主文件从目录开始。随后检查匿名化、附件齐全性和提交清单。后续研究应优先补质量分数与真实训练收益的联合数据、更多时间窗口及外部预测检验。
+
+### 图 10 标签调整（2026-09-26）
+
+将经典律退化线与弹性参考点图例移至图底部独立区域，为三维坐标轴标题留出空间；保留原数值与配色。重新编译得到 48 页，已检查第 17 页图 10 无图例与坐标轴文字重叠；编译无 Overfull 或未定义引用。

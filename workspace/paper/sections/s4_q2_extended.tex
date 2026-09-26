@@ -1,0 +1,59 @@
+\subsection{分来源留出误差与质量项的适用范围}
+总体留出 RMSE 能够概括给定样本混合下的预测误差，但各来源对该指标的贡献并不相同。设来源 $s$ 的留出样本量为 $n_s$、均方根误差为 $R_s$，则总体误差满足
+\begin{equation}
+R_{\mathrm{all}}^2=\sum_s\frac{n_s}{\sum_u n_u}R_s^2.
+\label{eq:q2-rmse-decompose}
+\end{equation}
+因此，总体改进既取决于各来源误差变化，也取决于样本构成。表~\ref{tab:q2-source-validation} 在完全相同的分组留出划分下重新汇总 B6、B7、B8；各来源平方误差按样本量加权后，与已经报告的总体 RMSE 一致。
+
+\input{../figures/TABLE_q2_source_validation.tex}
+
+B6 与 B7 的含质量 RMSE 分别为 $1.188$ 和 $1.144$，均高于无质量模型约 $0.44$ 的误差；B8 则由无质量模型的 $0.896$ 降为 $0.230$。B8 占 $337/488$ 的留出记录，是总体改善的主要来源。由此可见，含质量扩展改善的是当前来源混合下的整体指标，并未在每一个来源上都占优。若部署时的来源比例变化，总体比较可能随之改变。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{fig_q2_source_validation.pdf}
+\caption{广义律与无质量基线的分来源留出误差；两模型分别在同一训练集拟合}
+\label{fig:q2-source-validation}
+\end{figure}
+
+该分层结果还解释了为什么不能把总体误差下降直接当作“质量作用已被验证”。补充集之间可能存在配方、评分标度或生成方式的差别，单一质量指数会同时吸收其中若干关联。当前实验的可靠结论是：质量字段对该混合数据的条件预测有信息，但单一函数对各来源的兼容程度不一致。后续若增加来源截距或交互项，应再次进行按设置分组的验证，并保留完全独立的来源外测试；只改善训练误差不能说明迁移能力提高。
+
+\subsection{质量标度变换与参数可识别性}
+质量指数不仅依赖训练观测，也依赖质量坐标本身。考虑正数 $c,r$，将质量重新定义为 $Q'=cQ^r$，则数据项可改写为
+\begin{equation}
+B Q^{-\theta\beta}D^{-\beta}
+= Bc^{\theta\beta/r}(Q')^{-\theta\beta/r}D^{-\beta}.
+\label{eq:q2-quality-reparameter}
+\end{equation}
+若同时令 $\theta'=\theta/r$、$B'=Bc^{\theta\beta/r}$，预测损失保持不变。这说明在未固定质量定义时，指数数值本身没有独立可比性。不同论文采用不同归一化、不同组合权重或不同质量变量，即使得到不同的 $Q_0$ 或 $\theta$，也不能仅凭数值大小判断谁的模型更准确。
+
+上述等价关系适用于相应的幂式重参数化，任意经验百分位变换一般不属于这一类，不能仅调整一个指数就保证完全等价。问题一将各字段转成经验百分位，得到有界的相对评分；B6--B8 中的质量字段并未与该评分建立同一样本上的校准关系。因此，经验负指数与下游正指数承担不同角色：前者揭示补充数据中的相关模式及拟合边界，后者定义“质量提升增加有效数据量”的资源配置情景。本文保留这一差别，不把两者平均或简单变号后当作新的经验估计。
+
+从实验设计看，识别独立质量效应至少需要在相近 $N,D$ 下改变质量，在相近质量下改变训练量，并保持验证集与损失计量一致。否则，质量与数据量近似共线时，$\ln D+\theta\ln Q$ 的变化可以由不同参数组合解释。题目现有数据适合构造条件模型和敏感性分析，但不足以保证这类参数在跨数据集、跨训练尺度时都可识别。
+
+\subsection{有限质量增量的精确替代与近似误差}
+局部导数只描述参考点附近的变化。固定 $D=D_0$、目标损失 $L=L_0$，直接移项可得等损失配置
+\begin{equation}
+N(Q)=\left[\frac{A}{L_0-E-BQ^{-\theta\beta}D_0^{-\beta}}\right]^{1/\alpha},
+\qquad L_0-E-BQ^{-\theta\beta}D_0^{-\beta}>0.
+\label{eq:q2-exact-substitution}
+\end{equation}
+分母条件是可行性的组成部分：如果仅数据项已经达到或超过允许的可约损失，即使无限增大参数量，也无法达到目标 $L_0$。反之，当质量改善而数据量固定时，数据项下降，为参数项提供更大损失空间，因而能够减少参数量。式~\eqref{eq:q2-exact-substitution} 给出的参数节省仍然是同一假设损失函数上的替代，不是实际训练测得的压缩效果。
+
+在参考点处作 Taylor 展开，有
+\begin{equation}
+N(Q_0+\Delta Q)=N_0+N'(Q_0)\Delta Q
++\tfrac12N''(\xi)(\Delta Q)^2,
+\label{eq:q2-taylor}
+\end{equation}
+其中 $\xi$ 位于两质量值之间。本文参数均为正，令 $t=\theta\beta$、$H=L_0-E$、$K=BD_0^{-\beta}$，在可行域上可由 $N=A^{1/\alpha}(H-KQ^{-t})^{-1/\alpha}$ 求得 $N''(Q)>0$。因此等损失曲线在本例中为凸函数，切线在曲线下方；对正向质量增量，线性近似会高估能够节省的参数量。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{fig_q2_finite_substitution.pdf}
+\caption{有限质量增量下的精确参数节省与局部线性近似；固定 $D=100$B}
+\label{fig:q2-finite-substitution}
+\end{figure}
+
+图~\ref{fig:q2-finite-substitution} 由式~\eqref{eq:q2-exact-substitution} 逐点计算，并回代损失核验。$\Delta Q=0.1$ 时，局部近似的参数节省为 $0.0901$B，精确值为 $0.0767$B；增量继续扩大时两者差距增加。因此，小扰动分析适合解释边际关系，较大幅度配置变更应直接求解等损失关系或重新执行预算优化。资源配置还会同时改变 $D$，不能将固定数据量的参数节省直接当作预算最优方案中的规模变化。
