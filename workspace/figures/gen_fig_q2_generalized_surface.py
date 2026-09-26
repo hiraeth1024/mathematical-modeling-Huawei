@@ -1,18 +1,6 @@
 
 # -*- coding: utf-8 -*-
-"""fig_q2_generalized_surface — 广义标度律 L(N,Q) 3D 曲面（配方 competition #6）。
-
-本图讲什么：广义律 L=E+A·N^(-α)+B·(Q^θ·D)^(-β) 在 D=100B tokens 固定切面上的
-  地形。曲面沿 N 与 Q 双向单调下降，说明"扩大模型"与"提升数据质量"在该参数化下
-  都能降损；Q=1 的退化对照线（黑色）即经典律 L(N,D)——广义律在 Q→1 时数值退化
-  回经典律（相对误差 0），这是模型自洽性检验。底面投影等高线给出等损失线走向。
-数据来源：figures/problem_2_results.json['generalized']['surface_data']
-  （N_grid 30 点 logspace 0.1~100，Q_grid 30 点 0.1~1.0，D 固定 100）
-  ← B6-B8 半合成 N-D-Q 实验 n_fit=2012，θ 取下游 assumed 0.5。
-关键数值：θ_assumed=0.5（下游 Q3/Q4 口径）；留出 RMSE 广义 0.688 优于同参经典
-  基线 0.971；AIC 广义 -1842.7 vs 经典 -31.6；Q=1 退化相对误差 0.0。
-版式：原生 6.2×4.7in，3D 轴不做 tight_layout（save 钩子已跳过）。
-"""
+"""广义损失曲面：B1 经典参数与假设 theta，数据来自当前 problem_2_results.json 的 surface_data。与问题三使用相同参数口径。"""
 import sys
 import os
 

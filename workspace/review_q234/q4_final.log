@@ -1,0 +1,38 @@
+############################################################
+# 华为杯 F 题：算力约束下提升大语言模型能力的资源配置建模
+# comp-code 主程序：四问递进求解
+############################################################
+============================================================
+[Q4] Step 1: 规模 vs 非规模贡献分解（控制 ln Params 规模项 + 时间趋势项）
+[data_ingest] C_efficiency_evolution/leaderboard_enhanced.csv 全量 4576 行已核对
+[Q4]   有效样本 n=4561; C4开源字段(Epoch_AI_Open_Weights)标注 443 条
+[Q4]   Cap ~ -24575.96 + 6.266·lnN + 12.142·year, R2=0.462
+[Q4]   观测ΔCap=6.743; Δf(规模)=-1.711 Δh(非规模)=8.546 → 规模%=-25.0 非规模%=125.0
+[Q4]   窗口内平均参数规模 ΔlnN=-0.273(下降→本回归规模项增量为负)
+[Q4] Step 2: bounded bridge and leave-one-out validation
+[data_ingest] C_efficiency_evolution/loss_benchmark_bridge_expanded.csv 全量 75 行已核对
+[Q4] bridge High (same model, same validation set): R2=0.4029, LOO RMSE=0.466
+[Q4] bridge Medium (different validation set, approximate): R2=0.3565, LOO RMSE=9.693
+[Q4] Step 3: 能力前沿 12/24 月预测（Bootstrap 分位带 + 情景）
+[data_ingest] C_efficiency_evolution/leaderboard_enhanced.csv 全量 4576 行已核对
+[Q4]   开源模型 n=2509/4564
+[data_ingest] C_efficiency_evolution/epoch_all_ai_models.csv 全量 3523 行已核对
+[Q4]   C4历史算力增速: 3.86×/年 (log10斜率=0.587)
+[Q4]   一步滚动检验 n=5: 趋势 MAE=1.77, 末值延续 MAE=1.47
+[Q4]   情景 low(rc=0.0): 12m P50=42.52 24m P50=42.52
+[Q4]   情景 mid(rc=0.5): 12m P50=53.33 24m P50=64.05
+[Q4]   情景 high(rc=1.0): 12m P50=64.05 24m P50=85.41
+[data_ingest] C_efficiency_evolution/leaderboard_extended_timeseries.csv 全量 4599 行已核对
+[Q4]   前沿不倒退(24m>=12m, mid): True
+[Q4] Step 4: C8 逐任务聚合（遍历 detailed_results/ JSON）
+[Q4]   detailed_results 子目录数=1863
+[save] output/q4_task_aggregation.csv (305390 bytes, 1860 rows)
+[Q4]   解析成功 1860 目录, 损坏跳过 7, 六维完整 1854
+[Q4] validate_capability PASS
+[save] figures/problem_4_results.json (20880 bytes)
+[save] output/q4_bridge_model.json (7163 bytes)
+[Q4] 完成
+[save] figures/all_results.json (214101 bytes)
+
+============================================================
+[main] 四问全部完成，汇总 → figures/all_results.json

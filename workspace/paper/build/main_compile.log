@@ -168,8 +168,10 @@ File: ctex-scheme-chinese-article.def 2021/12/12 v2.5.8 Chinese scheme for arti
 cle (CTEX)
  (ctex-name-utf8.cfg
 File: ctex-name-utf8.cfg 2021/12/12 v2.5.8 Caption with encoding UTF-8 (CTEX)
-)))
-(ctex.cfg
+))
+(ctex-cs4size.clo
+File: ctex-cs4size.clo 2021/12/12 v2.5.8 cs4size option (CTEX)
+)) (ctex.cfg
 File: ctex.cfg 2021/12/12 v2.5.8 Configuration file (CTEX)
 )
 
@@ -441,79 +443,79 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 ) (main_compile.aux)
 \openout1 = `main_compile.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 104.
-LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 104.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 104.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 104.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 104.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 104.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 104.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 104.
-LaTeX Font Info:    Redeclaring math accent \check on input line 104.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 104.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 104.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 104.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 104.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 104.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 113.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 113.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 113.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 113.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 113.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 113.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 113.
+LaTeX Font Info:    Redeclaring math accent \check on input line 113.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 113.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 113.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 113.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 113.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 104.
+(Font)              `operators' in the math version `normal' on input line 113.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 104.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 113.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 104.
+(Font)              `operators' in the math version `bold' on input line 113.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 104.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 113.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 104.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 104.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 104.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 104.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 104.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 113.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 104.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 104.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 104.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 113.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 104.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 113.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -630,78 +632,52 @@ File: ../figures//fig_q1_mixture_importance.pdf Graphic file (type pdf)
 File: ../figures//fig_q2_scaling_fit.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_scaling_fit.pdf>
  [14]
-
-LaTeX Font Warning: Font shape `TU/SongtiSC(0)/m/it' undefined
-(Font)              using `TU/SongtiSC(0)/m/n' instead on input line 33.
-
 (../figures/TABLE_q2_scaling.tex) [15]
 File: ../figures//fig_q2_generalized_surface.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_generalized_surface.pdf>
  [16]
 File: ../figures//fig_q2_elasticity_diverging.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_elasticity_diverging.pdf>
+ [17]
 File: ../figures//fig_q2_substitution_contour.pdf Graphic file (type pdf)
 <use ../figures//fig_q2_substitution_contour.pdf>
- [17]) (sections/s5_q3.tex [18]
-(../figures/TABLE_q3_allocation.tex) [19]
+ [18]) (sections/s5_q3.tex
+[19] (../figures/TABLE_q3_allocation.tex) [20]
 File: ../figures//fig_q3_allocation_stacked.pdf Graphic file (type pdf)
 <use ../figures//fig_q3_allocation_stacked.pdf>
- [20]
+ [21]
 File: ../figures//fig_q3_transition_line.pdf Graphic file (type pdf)
 <use ../figures//fig_q3_transition_line.pdf>
+ [22]
 File: ../figures//fig_q3_lctx_panels.pdf Graphic file (type pdf)
 <use ../figures//fig_q3_lctx_panels.pdf>
- [21]
+ [23]
 File: ../figures//tikz_q3_feasible.pdf Graphic file (type pdf)
 <use ../figures//tikz_q3_feasible.pdf>
- [22]) (sections/s6_q4.tex
-[23]
+ [24])
+(sections/s6_q4.tex [25]
 File: ../figures//fig_q4_contribution_decomp.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_contribution_decomp.pdf>
- [24]
+ [26]
 File: ../figures//fig_q4_bridge_scatter.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_bridge_scatter.pdf>
- [25] (../figures/TABLE_q4_frontier.tex)
+ [27] (../figures/TABLE_q4_frontier.tex)
 File: ../figures//fig_q4_frontier_fan.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_frontier_fan.pdf>
- [26]
+ [28]
 File: ../figures//fig_q4_task_radar.pdf Graphic file (type pdf)
 <use ../figures//fig_q4_task_radar.pdf>
- [27])
-(sections/s7_verify.tex [28] (../figures/TABLE_q3_sensitivity.tex))
-(sections/s8_conclusion.tex [29]) [30] (sections/s0_refs.tex
-Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmr/m/n/10.95 OpenDataLab. SlimPajama-Meta-rater dataset card, field desc
-riptions. $[][][][][] []
+
+[29]) (sections/s7_verify.tex [30] (../figures/TABLE_q3_sensitivity.tex))
+(sections/s8_conclusion.tex [31]) [32] (sections/s0_refs.tex
+Underfull \hbox (badness 1173) in paragraph at lines 29--32
+[]\TU/lmr/m/n/12.045 Penedo G, Kydlíček H, Ben Allal L, et al. The FineWeb Data
+sets: Decant-
  []
 
+[33
 
-Underfull \hbox (badness 3792) in paragraph at lines 54--57
-[]\TU/lmr/m/n/10.95 Biderman S, Schoelkopf H, Anthony Q, et al. Pythia: A Suite
- for Analyzing
- []
-
-
-Underfull \hbox (badness 1888) in paragraph at lines 54--57
-\TU/lmr/m/n/10.95 Large Language Models Across Training and Scaling. arXiv:2304
-.01373, 2023. DOI:
- []
-
-
-Underfull \hbox (badness 2096) in paragraph at lines 59--62
-[]\TU/lmr/m/n/10.95 Brown T B, Mann B, Ryder N, et al. Language Models are Few-
-Shot Learners.
- []
-
-
-Underfull \hbox (badness 3281) in paragraph at lines 74--77
-[]\TU/lmr/m/n/10.95 Liang P, Bommasani R, Lee T, et al. Holistic Evaluation of 
-Language Models.
- []
-
-[31
-
-]) [32] (sections/s9_appendix.tex) [33
+]) [34] (sections/s9_appendix.tex) [35
 
 ] (sections/s10_appendix.tex
 (lstlang1.sty
@@ -710,25 +686,21 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 consecutive:
 ) (../code/quality_scoring.py
 consecutive:
-[34
+[36
 
 ]) (../code/q1_pipeline.py
 consecutive:
 ) (../code/problem1.py
 consecutive:
-) [35] (../code/problem2.py
+[37]) (../code/problem2.py
 consecutive:
-) (../code/problem2.py
+) [38] (../code/problem2.py
 consecutive:
-[36]) (../code/problem3.py
+[39]) (../code/problem3.py
 consecutive:
-[37] [38]) (../code/problem4.py
+[40]) (../code/problem4.py
 consecutive:
-) (../code/problem4.py
+[41]) (../code/problem4.py
 consecutive:
-[39])) [40] (main_compile.aux)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
- )
-Output written on main_compile.xdv (40 pages, 607388 bytes).
+)) [42] (main_compile.aux) )
+Output written on main_compile.xdv (42 pages, 604396 bytes).

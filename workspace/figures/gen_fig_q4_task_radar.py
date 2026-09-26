@@ -1,19 +1,5 @@
 # -*- coding: utf-8 -*-
-"""fig_q4_task_radar — 前沿模型逐任务六维能力雷达图（配方 competition #5）。
-
-本图讲什么：C8 逐任务聚合（1860 个可解析目录，1854 个六维完整）里 Top-5 前沿
-  模型在六个 Benchmark 上的剖面，叠加全样本任务均值作基准多边形。六维并非齐涨：
-  MATH 与 GPQA 是所有前沿模型的共同短板（全样本均值 11.4 / 29.8），而 BBH 与
-  MMLU-PRO 已接近饱和——说明问题四的"综合能力"单一均分口径会掩盖任务间的
-  结构差异，前沿外推需按任务分别看。
-数据来源：figures/problem_4_results.json['c8_aggregation']
-  （top5_frontier_radar + task_difficulty_mean + task_correlation_dims）
-  ← C8 detailed_results 1863 个子目录，7 个损坏目录已跳过。
-关键数值：全样本均值 IFEval 40.2 / BBH 47.5 / MATH 11.4 / GPQA 29.8 /
-  MUSR 40.0 / MMLU-PRO 32.0；Top-5 的 MATH 跨度 39.3~58.9。
-版式：原生 6.2×5.0in，极坐标；5 个模型 + 1 条基准线共 6 条，模型名截断到 ≤18
-  显示宽，图例在专用 GridSpec 列避免压住多边形。
-"""
+"""六维完整记录中排名最高五个模型的原始任务分数，并以各任务可用样本均值对照；缺项模型不参与六维排名。"""
 import sys
 import os
 
@@ -67,7 +53,7 @@ ax.tick_params(axis="x", pad=13)
 # 基准多边形：全样本任务均值
 base = [float(mean6[d]) for d in dims]
 ax.plot(ang_c, base + [base[0]], color=COLORS["text"], linewidth=1.9,
-        linestyle="--", zorder=5, label=cn("全样本均值 n=%d" % c8["n_six_dim_complete"]))
+        linestyle="--", zorder=5, label=cn("各任务可用样本均值"))
 ax.fill(ang_c, base + [base[0]], color=COLORS["text"], alpha=0.06, zorder=2)
 
 for i, k in enumerate(names):

@@ -55,6 +55,17 @@ def g_Q(Q, kind="exp"):
     raise ValueError(f"unknown g(Q) kind: {kind}")
 
 
+def g_Q_prime(Q, kind="exp"):
+    """质量成本的一阶导数，用于边界与驻点残差核验。"""
+    if kind == "exp":
+        return GQ_EXP["lambda"] * g_Q(Q, kind)
+    if kind == "pow":
+        return GQ_POW["gamma"] * GQ_POW["lambda"] * Q ** (GQ_POW["lambda"] - 1)
+    if kind == "log":
+        return GQ_LOG["gamma"] * GQ_LOG["lambda"] / (1 + GQ_LOG["lambda"] * Q)
+    raise ValueError(f"unknown g(Q) kind: {kind}")
+
+
 # ---- 口径一致性断言（防同一物理量跨模块口径打架）----
 # L_ctx 临界值解析恒等：6/eta 必须 == 3e4
 assert abs(LCTX_CRIT - 3e4) < 1.0, f"[口径冲突] Lctx_crit={LCTX_CRIT} != 3e4"

@@ -13,23 +13,26 @@ if _HERE not in sys.path:
 
 import utils as u
 import params
-import problem1
-import problem2
-import problem3
-import problem4
+import argparse
+import importlib
+import json
 
 
-def main():
+def main(problems=(1, 2, 3, 4)):
     u.set_all_seeds(params.SEED)
     print("#" * 60)
     print("# 华为杯 F 题：算力约束下提升大语言模型能力的资源配置建模")
     print("# comp-code 主程序：四问递进求解")
     print("#" * 60)
 
-    r1 = problem1.main()
-    r2 = problem2.main()
-    r3 = problem3.main()
-    r4 = problem4.main()
+    outputs = {}
+    for i in range(1, 5):
+        if i in problems:
+            outputs[i] = importlib.import_module(f"problem{i}").main()
+        else:
+            path = u._ROOT / "figures" / f"problem_{i}_results.json"
+            outputs[i] = json.loads(path.read_text(encoding="utf-8"))
+    r1, r2, r3, r4 = (outputs[i] for i in range(1, 5))
 
     # 汇总（供 paper-figure / logic_audit / cross_problem_check）
     all_results = {
@@ -56,4 +59,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--problems", nargs="+", type=int, choices=(1, 2, 3, 4), default=[1, 2, 3, 4])
+    main(parser.parse_args().problems)

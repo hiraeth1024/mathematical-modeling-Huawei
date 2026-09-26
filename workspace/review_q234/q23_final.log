@@ -1,0 +1,63 @@
+############################################################
+# 华为杯 F 题：算力约束下提升大语言模型能力的资源配置建模
+# comp-code 主程序：四问递进求解
+############################################################
+============================================================
+[Q2] Step 1: 经典标度律 B1 拟合（对数域 Huber-NLS 多起点）
+[data_ingest] B_scaling_laws/pythia_training_log_existing.csv 全量 1176 行已核对
+[Q2]   E=1.6898 A=0.3540 alpha=0.3400 B=1.2403 beta=0.2799 R2=1.00000
+[Q2]   残差均值=-4.9953e-08 标准差=0.0001
+[data_ingest] B_scaling_laws/cerebras_training_log.csv 全量 1029 行已核对
+[Q2]   泛化 B2_cerebras: n=1029 RMSE=1.2431 R2=-5.072747895610833
+[data_ingest] B_scaling_laws/scaling_baseline.csv 全量 57 行已核对
+[Q2]   泛化 B4_baseline: n=57 RMSE=0.2927 R2=0.6045104725222981
+[data_ingest] B_scaling_laws/published_scaling_data.csv 全量 44 行已核对
+[Q2]   泛化 B5_published: n=44 RMSE=0.1976 R2=0.7305501048163647
+[data_ingest] B_scaling_laws/supplementary_large_models.csv 全量 132 行已核对
+[data_ingest] B_scaling_laws/supplementary_large_baseline.csv 全量 128 行已核对
+[Q2] Step 2: B6-B8 分组留出与公平基线
+[data_ingest] B_scaling_laws/supplementary_NQ_experiment.csv 全量 360 行已核对
+[data_ingest] B_scaling_laws/supplementary_NQ_experiment_expanded.csv 全量 450 行已核对
+[data_ingest] B_scaling_laws/supplementary_NQ_experiment_large.csv 全量 1704 行已核对
+[Q2] grouped holdout n=488: generalized RMSE=0.674880, refit no-Q=0.783601; theta=-10.0000
+[Q2] Step 3: 弹性与 Q-N 替代率（解析代入拟合参数）
+[Q2]   弹性 eps_N=-0.0497 eps_D=-0.0437 eps_Q=-0.0218 (均应<0)
+[Q2]   替代率 dN/dQ|_L=-0.9007；ΔQ=0.1 等价 ΔN~-0.0901 (10^9 params)
+[Q2] validate_capability PASS
+[save] figures/problem_2_results.json (135945 bytes)
+[save] output/q2_classic_scaling.json (47552 bytes)
+[Q2] 完成
+============================================================
+[Q3] 标度律参数 E=1.690 A=0.354 alpha=0.340 B=1.240 beta=0.280 theta=0.500; Q0=0.4879
+[Q3] Step 1: 三档预算最优配置（三型 g(Q)），主 L_ctx=2048
+[Q3]   g=exp C=1e+19: N*=0.1935 D*=7.929 Q*=0.5057 L*=3.0729 util=1.0000 s_train=0.920 s_Q=0.017 s_attn=0.063
+[Q3]   g=exp C=1e+22: N*=5.483 D*=261.4 Q*=0.9665 L*=2.1507 util=1.0000 s_train=0.860 s_Q=0.081 s_attn=0.059
+[Q3]   g=exp C=1e+24: N*=40.74 D*=3774 Q*=1.0000 L*=1.9139 util=1.0000 s_train=0.923 s_Q=0.015 s_attn=0.063
+[Q3]   g=pow C=1e+19: N*=0.1882 D*=8.29 Q*=0.4879 L*=3.0731 util=1.0000 s_train=0.936 s_Q=0.000 s_attn=0.064
+[Q3]   g=pow C=1e+22: N*=5.758 D*=240.3 Q*=1.0000 L*=2.1525 util=1.0000 s_train=0.830 s_Q=0.113 s_attn=0.057
+[Q3]   g=pow C=1e+24: N*=40.89 D*=3748 Q*=1.0000 L*=1.9140 util=1.0000 s_train=0.920 s_Q=0.018 s_attn=0.063
+[Q3]   g=log C=1e+19: N*=0.1882 D*=8.29 Q*=0.4879 L*=3.0731 util=1.0000 s_train=0.936 s_Q=0.000 s_attn=0.064
+[Q3]   g=log C=1e+22: N*=5.225 D*=287.8 Q*=1.0000 L*=2.1458 util=1.0000 s_train=0.902 s_Q=0.036 s_attn=0.062
+[Q3]   g=log C=1e+24: N*=40.28 D*=3855 Q*=1.0000 L*=1.9136 util=1.0000 s_train=0.932 s_Q=0.005 s_attn=0.064
+[Q3]   C=1e+19: 最优L=3.0729 vs Chinchilla基线L=3.3066 (改善0.2337)
+[Q3]   C=1e+22: 最优L=2.1507 vs Chinchilla基线L=2.2813 (改善0.1306)
+[Q3]   C=1e+24: 最优L=1.9139 vs Chinchilla基线L=1.9935 (改善0.0795)
+[Q3]   预算单调性 C↑→L*↓: True (L*=[3.0729, 2.1507, 1.9139])
+[Q3] Step 2: 结构性转移识别（份额导数峰值 + 活跃集切换）
+[Q3]   转移点 C†~1.00e+19 (logC=19.00), C_Q首次激活 C~1e+19
+[Q3] Step 3: L_ctx 敏感性（C7 五取值）+ 临界值核验
+[Q3]   L_ctx=2048: N*=5.483 D*=261.4 Q*=0.9665 L*=2.1507 s_attn=0.0587
+[Q3]   L_ctx=4096: N*=5.336 D*=252.5 Q*=0.9714 L*=2.1549 s_attn=0.1104
+[Q3]   L_ctx=8192: N*=5.077 D*=237.1 Q*=0.9803 L*=2.1627 s_attn=0.1972
+[Q3]   L_ctx=32768: N*=4.025 D*=183.9 Q*=1.0000 L*=2.1985 s_attn=0.4851
+[Q3]   L_ctx=131072: N*=2.547 D*=116.4 Q*=1.0000 L*=2.2750 s_attn=0.7773
+[Q3]   L_ctx_crit=6/eta=30000 解析核验=True
+[Q3] validate_capability PASS
+[save] figures/problem_3_results.json (24163 bytes)
+[save] output/q3_optimal_allocation.json (10148 bytes)
+[save] output/q3_lctx_sensitivity.json (1732 bytes)
+[Q3] 完成
+[save] figures/all_results.json (214095 bytes)
+
+============================================================
+[main] 四问全部完成，汇总 → figures/all_results.json

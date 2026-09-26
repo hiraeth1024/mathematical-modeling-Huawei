@@ -12,9 +12,9 @@ python3 - <<'PY'
 from pathlib import Path
 
 source = Path("main.tex").read_text(encoding="utf-8")
-original = r"\documentclass[12pt,a4paper]{ctexart}"
+original = r"\documentclass[zihao=-4,a4paper]{ctexart}"
 assert source.count(original) == 1, "Unexpected document class in main.tex"
-replacement = r"""\documentclass[12pt,a4paper,fontset=none]{ctexart}
+replacement = r"""\documentclass[zihao=-4,a4paper,fontset=none]{ctexart}
 \setCJKmainfont{Songti SC}
 \setCJKsansfont{Heiti SC}
 \setCJKmonofont{Songti SC}
@@ -39,7 +39,14 @@ else
     if command -v tectonic >/dev/null 2>&1; then
       tectonic_bin="$(command -v tectonic)"
     else
-      tectonic_bin="/Applications/ChatGPT.app/Contents/Resources/plugins/openai-bundled/plugins/latex/bin/tectonic"
+      for candidate in \
+        "/Applications/ChatGPT.app/Contents/Resources/tectonic/tectonic" \
+        "/Applications/ChatGPT.app/Contents/Resources/plugins/openai-bundled/plugins/latex/bin/tectonic"; do
+        if [[ -x "$candidate" ]]; then
+          tectonic_bin="$candidate"
+          break
+        fi
+      done
     fi
   fi
   if [[ ! -x "$tectonic_bin" ]]; then

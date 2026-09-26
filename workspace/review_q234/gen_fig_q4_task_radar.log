@@ -1,0 +1,2 @@
+[plot_utils] WARNING fig_q4_task_radar.pdf 左边距偏大: 实测 12.5% 图宽，y 标签实际只需 5.0% —— 疑似空白浪费，检查坐标轴范围与刻度
+Saved: figures/fig_q4_task_radar.pdf

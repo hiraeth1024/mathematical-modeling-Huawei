@@ -19,7 +19,7 @@ lines = [
     r"  \centering",
     r"  \caption{质量基线与指数扰动下的候选最优质量}",
     r"  \label{tab:q3-assumption-sensitivity}",
-    r"  \small",
+    r"  \songti\zihao{-4}",
     r"  \begin{tabular}{lrrrrr}",
     r"    \toprule",
     r"    情景 & $Q_0$ & $\theta$ & $Q^\ast_{10^{19}}$ & $Q^\ast_{10^{22}}$ & $Q^\ast_{10^{24}}$ \\",

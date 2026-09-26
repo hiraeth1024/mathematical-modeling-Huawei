@@ -13,10 +13,8 @@ def walk(obj, path=""):
         for k, v in obj.items():
             walk(v, f"{path}.{k}")
     elif isinstance(obj, list):
-        # 只抽查数值列表的极值，不逐元素展开
-        nums = [x for x in obj if isinstance(x, (int, float)) and not isinstance(x, bool)]
-        for v in (nums[:1] + nums[-1:] if nums else []):
-            _check(path + "[]", v)
+        for i, value in enumerate(obj):
+            walk(value, f"{path}[{i}]")
     elif isinstance(obj, (int, float)) and not isinstance(obj, bool):
         _check(path, v=obj)
 

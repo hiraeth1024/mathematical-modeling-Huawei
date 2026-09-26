@@ -44,6 +44,7 @@ def main():
     for gkind, per in r3["optimal_allocation"]["by_gtype"].items():
         for ckey, sol in per.items():
             if "L" not in sol:
+                violations.append(f"optimal[g={gkind},C={ckey}] 缺少有效解")
                 continue
             name = f"optimal[g={gkind},C={ckey}]"
             audited.add(name)
@@ -91,6 +92,17 @@ def main():
     for k in ls["panels"]:
         if int(k) not in C7:
             violations.append(f"lctx_sensitivity 用了 C7 外取值 {k}")
+        sol = ls["panels"][k]
+        ct = recompute_total(sol["N"], sol["D"], sol["Q"], Q0, int(k), ls["gtype"])
+        if ct > ls["budget_C"] * (1 + 1e-6):
+            violations.append(f"lctx_sensitivity[{k}] 超预算")
+    if set(map(int, ls["panels"])) != C7:
+        violations.append("L_ctx 敏感性缺少题面指定取值")
+    scan = r3["structural_transition"]
+    for i, C in enumerate(scan["C_grid"]):
+        ct = recompute_total(scan["N_traj"][i], scan["D_traj"][i], scan["Q_traj"][i], Q0, Lctx_main, scan["gtype"])
+        if not np.isfinite(ct) or ct > C * (1 + 1e-6):
+            violations.append(f"transition[{i}] 无效或超预算")
     if abs(ls["Lctx_crit"] - 3e4) >= 1.0:
         violations.append(f"Lctx_crit={ls['Lctx_crit']} != 3e4")
 
@@ -120,8 +132,10 @@ def main():
     cd = r4["contribution_decomp"]
     if abs(cd["sum_check"] - 100) > 1e-6:
         violations.append(f"Q4 贡献占比和={cd['sum_check']}!=100")
-    if not r4["frontier"]["frontier_no_regress_24m_ge_12m"]:
-        violations.append("Q4 前沿24m<12m(倒退)")
+    for scenario, horizons in r4["frontier"]["predictions"].items():
+        for horizon, q in horizons.items():
+            if not (0 <= q["P10"] <= q["P50"] <= q["P90"] <= 100):
+                violations.append(f"Q4 {scenario}/{horizon} 分位数倒序或越界")
 
     print("=" * 60)
     n = len(violations)

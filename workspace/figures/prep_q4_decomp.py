@@ -7,7 +7,7 @@ problem_4_results.json 里的 yearly_evolution 只有 2024/2025 两个点，画�
 累计"，不重新拟合第二套系数：
 
   Δf_scale(t)    = b_lnN · [ mean(lnN | year<=t) - mean(lnN | 早期窗口) ]
-  Δh_nonscale(t) = c_year · [ t - mean(year | 早期窗口) ]
+  Δh_nonscale(t) = c_year · [ mean(year | year<=t) - mean(year | 早期窗口) ]
   占比(t)        = 100 · Δ· / (Δf + Δh)
 
 系数 b_lnN / c_year / 早期窗口由重新拟合复现并对已发布值硬断言，保证与论文
@@ -29,7 +29,7 @@ for p in (_ROOT, _CODE):
         sys.path.insert(0, p)
 
 import utils as u                      # noqa: E402
-from problem4 import _parse_year       # noqa: E402
+from problem4 import _load_leaderboard, _fit_ols  # noqa: E402
 from params import SEED                # noqa: E402
 
 OUT_JSON = os.path.join(_HERE, "_prep_q4.json")
@@ -41,17 +41,13 @@ def main():
         open(os.path.join(_HERE, "problem_4_results.json"), encoding="utf-8").read()
     )["contribution_decomp"]
 
-    import statsmodels.api as sm
-    lb = u.read_csv_checked("C_efficiency_evolution/leaderboard_enhanced.csv", 4576)
-    lb["Params_B"] = pd.to_numeric(lb["#Params (B)"], errors="coerce")
-    lb["Cap"] = pd.to_numeric(lb["Average ⬆️"], errors="coerce")
-    lb["year"] = lb["Submission Date"].apply(_parse_year)
+    lb = _load_leaderboard()
 
     d = lb.dropna(subset=["Cap", "Params_B", "year"]).copy()
     d = d[(d["Params_B"] > 0) & (d["Cap"] > 0)]
     d["lnN"] = np.log(d["Params_B"])
 
-    m = sm.OLS(d["Cap"], sm.add_constant(d[["lnN", "year"]])).fit()
+    m = _fit_ols(d, ["lnN", "year"])
     b_N, c_t = float(m.params["lnN"]), float(m.params["year"])
 
     # 硬断言：复现的系数/样本量必须与已发布结果一致（同一模型，不是第二套拟合）
@@ -79,7 +75,7 @@ def main():
         if len(sub) < 30:            # 累计样本太少时占比噪声主导，不出点
             continue
         f_t = b_N * (float(sub["lnN"].mean()) - lnN_early)
-        h_t = c_t * (t - year_early)
+        h_t = c_t * (float(sub["year"].mean()) - year_early)
         tot = f_t + h_t
         if abs(tot) < 1e-9:
             continue
@@ -92,6 +88,7 @@ def main():
             "scale_pct": float(100.0 * f_t / tot),
             "nonscale_pct": float(100.0 * h_t / tot),
             "mean_lnN_cum": float(sub["lnN"].mean()),
+            "mean_year_cum": float(sub["year"].mean()),
         })
     assert rows, "月度网格为空"
 

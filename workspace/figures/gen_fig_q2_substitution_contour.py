@@ -1,17 +1,5 @@
 # -*- coding: utf-8 -*-
-"""fig_q2_substitution_contour — 等损失线上的 Q-N 替代关系（配方 competition #14）。
-
-本图讲什么：D=100B 固定时，(N,Q) 平面上的等损失线族。沿任一条等高线移动即"同
-  等损失下用质量换规模"：在参考点 (N=1,Q=0.5) 处切线斜率 dN/dQ|_L=-1.3097，
-  即 ΔQ=+0.1 可省下 ΔN≈-0.131（约 1.31 亿参数）。等高线在左下角密集、右上角
-  稀疏，说明低规模低质量区替代率最敏感，高规模区再换质量收益趋缓。
-数据来源：figures/problem_2_results.json['elasticity']['iso_loss_contour']
-  （N_grid 40 点 0.1~10，Q_grid 40 点 0.1~1.0，D 固定 100）+ ['substitution_dN_dQ']
-  ← 解析代入广义律拟合参数，θ=0.5，同 code/problem2.py 式13。
-关键数值：L 范围 2.155~3.231；参考点 L_0=2.4983；dN/dQ|_L=-1.3097；
-  ΔQ=0.1 ⇔ ΔN=-0.1310（单位 10^9 参数）。
-版式：原生 6.2×4.6in，填充等高线 + 白色等值线标注 + 参考点切线段。
-"""
+"""固定数据量的等损失线与参考点局部替代率。数值来自当前问题二结果；图中增量为导数的局部线性近似。"""
 import sys
 import os
 
@@ -43,13 +31,7 @@ cf = ax.contourf(QQ, NN, LL, levels=levels, cmap="YlOrRd", alpha=0.88, zorder=1)
 # 标注层数取 every-5 而非 every-3，避免左下密集区 "2.72"×"2.91" 相撞
 cs = ax.contour(QQ, NN, LL, levels=levels[::5], colors=[COLORS["text"]],
                 linewidths=0.7, alpha=0.80, zorder=2)
-lbl = ax.clabel(cs, inline=True, fontsize=8.0, fmt="%.2f",
-                colors=COLORS["text"])
-for t in lbl:
-    # 底板必须不透明：alpha=0.8 时深橙填充透上来，实测 "2.79" 只有 2.94:1。
-    # 实测像素对比度（见 FIGURE_REPORT）不透明后升到 15:1。
-    t.set_bbox(dict(boxstyle="square,pad=0.10", facecolor="white",
-                    edgecolor="none", alpha=1.0))
+# 损失刻度由右侧色条给出，避免低N密集区域的等值线数字相互遮挡。
 
 # 参考点所在等损失线（加粗）
 cs_ref = ax.contour(QQ, NN, LL, levels=[float(ref["L0"])], colors=[COLORS["text"]],
@@ -69,12 +51,13 @@ ax.scatter([q0], [n0], s=92, marker="*", color=COLORS["down"],
 ax.annotate("", xy=(q0 + dq, n0 + slope * dq), xytext=(q0, n0),
             arrowprops=dict(arrowstyle="-|>", color=COLORS["down"], lw=1.5,
                             shrinkA=4, shrinkB=0), zorder=6)
-ax.text(q0 + dq + 0.018, n0 + slope * dq,
-        cn("$\\Delta Q$=+0.1 $\\Rightarrow$ $\\Delta N$=%.3f" % dN01),
+ax.annotate(cn("局部近似 $\\Delta N$=%.3f（$\\Delta Q$=0.1）" % dN01),
+        xy=(q0 + dq, n0 + slope * dq), xytext=(0.60, 1.75),
+        arrowprops=dict(arrowstyle="-", color=COLORS["down"], lw=0.8),
         fontsize=8.5, va="center", ha="left", fontweight="bold",
         color=COLORS["down"],
         bbox=dict(boxstyle="round,pad=0.24", facecolor="white",
-                  edgecolor=COLORS["down"], alpha=0.92, linewidth=0.7))
+                  edgecolor=COLORS["down"], alpha=0.92, linewidth=0.7), zorder=7)
 
 ax.set_xlabel(cn("数据质量 $Q$（无量纲）"))
 ax.set_ylabel(cn("模型规模 $N$（$10^9$ 参数）"))

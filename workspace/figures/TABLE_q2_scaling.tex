@@ -2,38 +2,36 @@
   \centering
   \caption{标度律参数与拟合优度}
   \label{tab:q2_scaling}
-  \small
+  \songti\zihao{-4}
   \begin{tabular}{lrr}
     \toprule
     项 & 经典律 $L(N,D)$ & 广义律 $L(N,D,Q)$ \\
     \midrule
-    \multicolumn{3}{l}{\textit{参数}} \\
-    \quad $E$ & 1.6898 & 0.2163 \\
-    \quad $A$ & 0.3540 & 0.5311 \\
-    \quad $\alpha$ & 0.3400 & 0.3090 \\
-    \quad $B$ & 1.2403 & 2.9534 \\
-    \quad $\beta$ & 0.2799 & 0.1228 \\
+    \multicolumn{3}{l}{参数} \\
+    \quad $E$ & 1.6898 & 0.2295 \\
+    \quad $A$ & 0.3540 & 0.5560 \\
+    \quad $\alpha$ & 0.3400 & 0.3138 \\
+    \quad $B$ & 1.2403 & 2.8884 \\
+    \quad $\beta$ & 0.2799 & 0.1223 \\
     \quad $\theta$ (经验) & -- & -10.000 \\
     \quad $\theta$ (下游取用) & -- & 0.50 \\
     \midrule
-    \multicolumn{3}{l}{\textit{拟合}} \\
-    \quad 样本量 $n$ & 1176 & 2012 \\
-    \quad $R^2$ & 0.9999998 & 0.3389 \\
+    \multicolumn{3}{l}{拟合} \\
+    \quad 样本量 $n$ & 1176 & 2026 \\
+    \quad $R^2$ & 0.9999998 & 0.3547 \\
     \quad 残差标准差 & 1.466e-04 & -- \\
-    \quad AIC & -31.6 & -1842.7 \\
-    \quad BIC & -2.5 & -1807.8 \\
     \midrule
-    \multicolumn{3}{l}{\textit{留出/外部集 RMSE}} \\
-    \quad B6 留出 ($n$=502) & 0.9713 & 0.6879 \\
+    \multicolumn{3}{l}{留出/外部集 RMSE} \\
+    \quad B6--B8 分组留出 ($n$=488) & 0.7836 & 0.6749 \\
     \quad published ($n$=44) & 0.1976 & -- \\
     \quad baseline ($n$=57) & 0.2927 & -- \\
     \quad cerebras ($n$=1029) & 1.2431 & -- \\
     \midrule
-    \multicolumn{3}{l}{\textit{参考点弹性}} \\
-    \quad $\varepsilon_N$ & -- & -0.0657 \\
-    \quad $\varepsilon_D$ & -- & -0.0860 \\
-    \quad $\varepsilon_Q$ & -- & -0.0430 \\
-    \quad $dN/dQ|_L$ & -- & -1.3097 \\
+    \multicolumn{3}{l}{参考点弹性} \\
+    \quad $\varepsilon_N$ & -- & -0.0497 \\
+    \quad $\varepsilon_D$ & -- & -0.0437 \\
+    \quad $\varepsilon_Q$ & -- & -0.0218 \\
+    \quad $dN/dQ|_L$ & -- & -0.9007 \\
     \bottomrule
   \end{tabular}
 \end{table}

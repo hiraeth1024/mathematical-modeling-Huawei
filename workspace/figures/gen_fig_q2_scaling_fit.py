@@ -82,6 +82,7 @@ ax2.axvline(0.0, color=COLORS["ref_line"], linestyle="--", linewidth=1.0, zorder
 ax2.set_xlabel(cn("拟合残差 $\\hat{L}-L$（nats/token）"))
 ax2.set_ylabel(cn("概率密度"))
 declutter_axes(ax2, grid="y")
+ax2.ticklabel_format(axis="x", style="sci", scilimits=(0, 0), useMathText=True)
 auto_legend(ax2, loc="upper right", fontsize=8.5, frameon=False,
             labelspacing=0.3, handlelength=1.5)
 

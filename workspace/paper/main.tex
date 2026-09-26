@@ -1,6 +1,6 @@
 % !TeX program = xelatex
 % 华为杯 F 题：算力约束下提升大语言模型能力的资源配置建模
-\documentclass[12pt,a4paper]{ctexart}
+\documentclass[zihao=-4,a4paper]{ctexart}
 
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{bm}
@@ -20,30 +20,34 @@
 \geometry{a4paper,left=2.25cm,right=2.25cm,top=3.0cm,bottom=1.85cm}
 \graphicspath{{figures/}{../figures/}}
 
-\captionsetup{font=small,labelsep=quad}
+\DeclareCaptionFont{papertext}{\normalfont\songti\zihao{-4}}
+\captionsetup{font=papertext,labelfont=papertext,textfont=papertext,labelsep=quad}
 \setlength{\parskip}{0.35em}
 \setlength{\parindent}{2em}
 \linespread{1.0}
 \renewcommand{\arraystretch}{1.15}
 \AtBeginDocument{\zihao{-4}\songti}
 
-% 格式规范：一级标题四号黑体居中，其余正文小四号宋体
+% 格式规范：题目三号黑体，一级标题四号黑体，均居中；其余汉字小四宋体。
+% 图内文字按作者要求保留原图样式，不随正文改动。
 \ctexset{
-  section={format=\centering\heiti\zihao{4},beforeskip=1.4ex,afterskip=1.0ex},
-  subsection={format=\heiti\zihao{-4},beforeskip=1.2ex,afterskip=0.8ex},
-  subsubsection={format=\heiti\zihao{-4},beforeskip=1.0ex,afterskip=0.6ex}
+  section={format=\normalfont\centering\heiti\zihao{4},beforeskip=1.4ex,afterskip=1.0ex},
+  subsection={format=\normalfont\songti\zihao{-4},beforeskip=1.2ex,afterskip=0.8ex},
+  subsubsection={format=\normalfont\songti\zihao{-4},beforeskip=1.0ex,afterskip=0.6ex},
+  paragraph={format=\normalfont\songti\zihao{-4}},
+  subparagraph={format=\normalfont\songti\zihao{-4}}
 }
 
 % 附录源代码的排版样式
 \renewcommand{\lstlistingname}{代码}
 \lstdefinestyle{pythonstyle}{
   language=Python,
-  basicstyle=\ttfamily\small,
+  basicstyle=\ttfamily\songti\zihao{-4},
   keywordstyle=\color{blue!70!black},
   commentstyle=\color{green!45!black},
   stringstyle=\color{orange!70!black},
   numbers=left,
-  numberstyle=\tiny\color{gray},
+  numberstyle=\fontsize{6pt}{7pt}\selectfont\color{gray},
   numbersep=8pt,
   frame=single,
   breaklines=true,
@@ -91,10 +95,16 @@
 \let\oldcite\cite
 \renewcommand{\cite}[1]{\textsuperscript{\oldcite{#1}}}
 \usepackage{etoolbox}
+% 目录条目采用正文格式；“目录”标题仍按一级标题排版。
+\makeatletter
+\patchcmd{\l@section}{\bfseries}{\normalfont\songti\zihao{-4}}{}
+  {\PackageError{paper}{Cannot set section entry font in contents}{Check the document class.}}
+\makeatother
 
 \begin{document}
 
-% 摘要后另起一页生成目录；页码与摘要连续
+
+% 题目后生成目录，页码连续。
 \thispagestyle{fancy}
 \setcounter{tocdepth}{2}
 \tableofcontents
@@ -157,12 +167,12 @@ L(N,\Dt)=E+A\,N^{-\alpha}+B\,\Dt^{-\beta},
 
 \begin{table}[H]
   \centering
-  \small
-  \begin{tabular}{clcl}
+  \songti\zihao{-4}
+  \begin{tabular}{@{}>{\centering\arraybackslash}p{1.2cm}>{\raggedright\arraybackslash}p{5.3cm}>{\centering\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{4.6cm}@{}}
     \toprule
     符号 & 含义 & 符号 & 含义 \\
     \midrule
-    $L$ & 验证集交叉熵损失 (nats/token) & $C$ & 总算力预算 (FLOPs) \\
+    $L$ & 验证集交叉熵损失 (\mbox{nats/token}) & $C$ & 总算力预算 (FLOPs) \\
     $N$ & 模型参数量 ($10^9$) & $\Ctrain=6N\Dt$ & 基础训练开销 \\
     $\Dt$ & 训练 token 数 ($10^9$) & $C_Q$ & 质量提升开销 \\
     $Q$ & 综合数据质量评分 $(0,1]$ & $\Cattn=\eta N\Dt\Lctx$ & 长文本注意力开销 \\

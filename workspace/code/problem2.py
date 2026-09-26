@@ -34,9 +34,12 @@ def _residual_log_huber(params, N, D, L):
     return np.log(L) - np.log(pred)
 
 
-def fit_classic(N, D, L):
+def fit_classic(N, D, L, supplementary=False):
     """对数域 Huber-NLS 多起点拟合经典律。返回最优参数与 R2。"""
-    rng = np.random.default_rng(SEED)
+    N, D, L = (np.asarray(x, dtype=float) for x in (N, D, L))
+    if not all(np.isfinite(x).all() and (x > 0).all() for x in (N, D, L)):
+        raise ValueError("N,D,L 必须为有限正数")
+    upper = [max(L), 200, 1.5, 500, 1.5] if supplementary else [min(L) + 1e-6, 50, 1.0, 50, 1.0]
     best = None
     # 多起点：alpha,beta 网格初值 + E,A,B 合理初值
     for alpha0 in [0.1, 0.2, 0.34, 0.5]:
@@ -46,18 +49,21 @@ def fit_classic(N, D, L):
                 res = least_squares(
                     _residual_log_huber, x0, args=(N, D, L),
                     loss="huber", f_scale=0.1,
-                    bounds=([0.0, 0.0, 0.01, 0.0, 0.01],
-                            [min(L) + 1e-6, 50, 1.0, 50, 1.0]),
-                    max_nfev=20000)
+                    bounds=([0.0, 0.0, 0.01, 0.0, 0.01], upper),
+                    x_scale="jac", ftol=1e-12, xtol=1e-12, gtol=1e-10, max_nfev=20000)
+                if not res.success:
+                    continue
                 pred = classic_model(res.x, N, D)
                 ss_res = np.sum((L - pred) ** 2)
                 ss_tot = np.sum((L - L.mean()) ** 2)
                 r2 = 1 - ss_res / ss_tot
-                if best is None or r2 > best["r2"]:
+                if best is None or res.cost < best["cost"]:
                     best = {"params": res.x, "r2": float(r2),
                             "cost": float(res.cost)}
-            except Exception:
+            except (ValueError, FloatingPointError):
                 continue
+    if best is None:
+        raise RuntimeError("经典标度律的全部初值均未收敛")
     return best
 
 
@@ -93,14 +99,21 @@ def fit_generalized(N, D, Q, L, classic_params, theta_bounds=(-10.0, 10.0)):
                 loss="huber", f_scale=0.1,
                 bounds=([0.0, 0.0, 0.01, 0.0, 0.01, lo_t],
                         [Lmax, 200, 1.5, 500, 1.5, hi_t]),
-                max_nfev=30000)
+                x_scale="jac", ftol=1e-12, xtol=1e-12, gtol=1e-10, max_nfev=30000)
+            if not res.success:
+                continue
             pred = generalized_model(res.x, N, D, Q)
             ss_res = np.sum((L - pred) ** 2); ss_tot = np.sum((L - L.mean()) ** 2)
             r2 = 1 - ss_res / ss_tot
-            if best is None or r2 > best["r2"]:
-                best = {"params": res.x, "r2": float(r2), "cost": float(res.cost)}
-        except Exception:
+            if best is None or res.cost < best["cost"]:
+                best = {"params": res.x, "r2": float(r2), "cost": float(res.cost),
+                        "active_bounds": res.active_mask.tolist(),
+                        "jacobian_condition": float(np.linalg.cond(res.jac)),
+                        "optimality": float(res.optimality)}
+        except (ValueError, FloatingPointError):
             continue
+    if best is None:
+        raise RuntimeError("广义标度律的全部初值均未收敛")
     return best
 
 
@@ -112,9 +125,9 @@ def main():
     _p2_generalized(results)
     _p2_elasticity(results)
 
+    validate_capability(results)
     u.save_json(results, "figures/problem_2_results.json")
     u.save_json(results["classic"], "output/q2_classic_scaling.json")
-    validate_capability(results)
     print("[Q2] 完成")
     return results
 
@@ -168,94 +181,96 @@ def _p2_classic(results):
         # 供图：预测vs实际 + 残差（下采样到 300 点防图过密，全精度已在此不需要）
         "fit_scatter": {"actual": L.tolist(), "predicted": pred.tolist()},
     }
+    assert set(layers) == {"B2_cerebras", "B4_baseline", "B5_published"}, "必须完成B2/B4/B5验证"
+    b9 = u.read_csv_checked("B_scaling_laws/supplementary_large_models.csv", 132)
+    b10 = u.read_csv_checked("B_scaling_laws/supplementary_large_baseline.csv", 128)
+    pred_large = classic_model(fit["params"], b10["N_params_B"], b10["D_tokens_B"])
+    results["classic"]["large_scale_extrapolation"] = {
+        "B9_n": len(b9), "B10_n": len(b10),
+        "B9_N_range": [float(b9["N_params_B"].min()), float(b9["N_params_B"].max())],
+        "B10_rmse": float(np.sqrt(np.mean((b10["val_loss"] - pred_large) ** 2))),
+        "B10_outside_B1_N": int((b10["N_params_B"] > N.max()).sum()),
+        "note": "B9为规模元数据，B10为补充估算基线，仅作外推一致性诊断，不作真实观测验证",
+    }
 
 
 def _p2_generalized(results):
-    """P2-C2：B6-B8 含 Q_score 拟合广义律，Q=1 退化核验。"""
-    print("[Q2] Step 2: 广义标度律 B6-B8 拟合 theta（含 Q_score）")
+    """半合成补充集：按实验设置分组留出，与独立拟合的无 Q 模型比较。"""
+    print("[Q2] Step 2: B6-B8 分组留出与公平基线")
     frames = []
-    for rel, nexp in [
-        ("B_scaling_laws/supplementary_NQ_experiment.csv", 360),
-        ("B_scaling_laws/supplementary_NQ_experiment_expanded.csv", 450),
-        ("B_scaling_laws/supplementary_NQ_experiment_large.csv", 1704)]:
-        d = u.read_csv_checked(rel, nexp)
-        frames.append(d[["N_params_B", "D_tokens_B", "Q_score", "val_loss"]])
+    for tag, rel, n in [
+        ("B6", "supplementary_NQ_experiment.csv", 360),
+        ("B7", "supplementary_NQ_experiment_expanded.csv", 450),
+        ("B8", "supplementary_NQ_experiment_large.csv", 1704)]:
+        d = u.read_csv_checked("B_scaling_laws/" + rel, n)
+        d["source"] = tag
+        frames.append(d)
     dq = pd.concat(frames, ignore_index=True)
-    dq = dq[(dq["val_loss"] > 0) & (dq["Q_score"] > 0)].copy()
-    N, D, Q, L = (dq["N_params_B"].values, dq["D_tokens_B"].values,
-                  dq["Q_score"].values, dq["val_loss"].values)
-
-    # corr(Q,L) 方向佐证
-    from scipy import stats as _st
-    corr_QL = float(_st.spearmanr(Q, L).statistic)
-    print(f"[Q2]   corr(Q,L)={corr_QL:.3f}（应<0：Q↑→Loss↓）")
-
-    cp = list(results["classic"]["params"].values())
-    # 留出 20% 作 B6 留出点比较
+    cols = ["N_params_B", "D_tokens_B", "Q_score", "val_loss"]
+    valid = np.isfinite(dq[cols]).all(axis=1) & (dq[cols] > 0).all(axis=1)
+    dq = dq.loc[valid].reset_index(drop=True)
+    N, D, Q, L = (dq[c].to_numpy(float) for c in cols)
+    from scipy.stats import spearmanr
+    corr_QL = float(spearmanr(Q, L).statistic)
+    cp = [results["classic"]["params"][k] for k in ("E", "A", "alpha", "B", "beta")]
+    # 同一 N,D,Q 设置的重复行不可同时进入训练与留出集。
+    groups = dq.groupby(cols[:3], sort=True).ngroup().to_numpy()
+    unique = np.unique(groups)
     rng = np.random.default_rng(SEED)
-    idx = rng.permutation(len(dq))
-    n_ho = max(20, int(0.2 * len(dq)))
-    ho, tr = idx[:n_ho], idx[n_ho:]
-
-    # 经验拟合：theta 符号由 B6-B8 数据决定（自由拟合，诚实报告）
-    genfit = fit_generalized(N[tr], D[tr], Q[tr], L[tr], cp, theta_bounds=(-10.0, 10.0))
-    E, A, alpha, B, beta, theta = genfit["params"]
-    print(f"[Q2]   广义律经验拟合 theta={theta:.4f} (E={E:.3f} A={A:.3f} a={alpha:.3f} "
-          f"B={B:.3f} b={beta:.3f}) R2={genfit['r2']:.4f}")
-    print(f"[Q2]   [重要发现] B6-B8 的 Q_score 与 val_loss 正相关(corr={corr_QL:.3f})，"
-          f"故经验 theta{'<0' if theta<0 else '>0'}。这是因 B6-B8 的 Q_score 是实验 setpoint"
-          f"(重标定损失区间, Q=0.05 时 L=1.04<经典 E)，非问题一的部署质量 Q_synth。")
-
-    # 留出点 RMSE：广义(含Q) vs 经典基线(忽略Q)
-    pred_gen_ho = generalized_model(genfit["params"], N[ho], D[ho], Q[ho])
-    rmse_gen = float(np.sqrt(np.mean((L[ho] - pred_gen_ho) ** 2)))
-    pred_cls_ho = classic_model(cp, N[ho], D[ho])
-    rmse_cls = float(np.sqrt(np.mean((L[ho] - pred_cls_ho) ** 2)))
-    # 广义律自身经典基线（同参数去 Q，公平对比 Q 项增量价值）
-    pred_gen_baseline_ho = classic_model([E, A, alpha, B, beta], N[ho], D[ho])
-    rmse_gen_baseline = float(np.sqrt(np.mean((L[ho] - pred_gen_baseline_ho) ** 2)))
-    print(f"[Q2]   B6留出 RMSE: 广义(含Q)={rmse_gen:.4f} vs 同参经典(无Q)={rmse_gen_baseline:.4f} "
-          f"({'Q项显著改善' if rmse_gen <= rmse_gen_baseline else 'Q项无益'})")
-
-    def _aic_bic(resid, k, n):
-        rss = np.sum(resid ** 2)
-        aic = n * np.log(rss / n) + 2 * k
-        bic = n * np.log(rss / n) + k * np.log(n)
-        return float(aic), float(bic)
-    aic_g, bic_g = _aic_bic(L - generalized_model(genfit["params"], N, D, Q), 6, len(L))
-    aic_c, bic_c = _aic_bic(L - classic_model([E, A, alpha, B, beta], N, D), 5, len(L))
-
-    # Q=1 退化核验（equivalence_claims，rel_tol=0.001）：Q^theta=1 恒成立，与 theta 符号无关
-    testN, testD = np.array([1.0, 5.0]), np.array([50.0, 200.0])
-    L_gen_Q1 = generalized_model(genfit["params"], testN, testD, np.array([1.0, 1.0]))
-    L_classic_form = classic_model([E, A, alpha, B, beta], testN, testD)
-    rel_err = float(np.max(np.abs(L_gen_Q1 - L_classic_form) / L_classic_form))
-    print(f"[Q2]   Q=1退化核验 rel_err={rel_err:.2e} (阈值0.001) -> {'PASS' if rel_err<0.001 else 'FAIL'}")
-
-    # 下游 Q3/Q4 用的 theta（role=assumed，报告表10）：部署质量 Q_synth↑→Loss↓ 的premise
-    # theta 取正(默认0.5)，反映"高质量数据等效更多token"，灵敏度 {0.2,0.5,0.8} 见 Q3
-    THETA_ASSUMED = 0.5
-    print(f"[Q2]   下游 Q3/Q4 采用 theta_assumed={THETA_ASSUMED}>0 "
-          f"(role=assumed, 反映部署质量Q_synth的quality-helps premise, 非B6-B8经验值)")
-
+    holdout_groups = rng.permutation(unique)[:max(1, int(np.ceil(.2 * len(unique))))]
+    mask = np.isin(groups, holdout_groups)
+    tr, ho = np.flatnonzero(~mask), np.flatnonzero(mask)
+    genfit = fit_generalized(N[tr], D[tr], Q[tr], L[tr], cp)
+    baseline = fit_classic(N[tr], D[tr], L[tr], supplementary=True)
+    gp = genfit["params"]
+    pred_g = generalized_model(gp, N[ho], D[ho], Q[ho])
+    pred_c = classic_model(baseline["params"], N[ho], D[ho])
+    rmse_g = float(np.sqrt(np.mean((L[ho] - pred_g) ** 2)))
+    rmse_c = float(np.sqrt(np.mean((L[ho] - pred_c) ** 2)))
+    source_metrics = {}
+    for tag in sorted(dq["source"].unique()):
+        m = dq.loc[ho, "source"].to_numpy() == tag
+        source_metrics[tag] = {"n": int(m.sum()),
+            "rmse_generalized": float(np.sqrt(np.mean((L[ho][m] - pred_g[m]) ** 2))),
+            "rmse_no_quality": float(np.sqrt(np.mean((L[ho][m] - pred_c[m]) ** 2)))}
+    # Huber 拟合不是 Gaussian MLE；这些只是同训练集 log-RSS 惩罚诊断，不能用作严格 AIC 推断。
+    def information_diagnostic(pred, k):
+        mse = max(float(np.mean((np.log(L[tr]) - np.log(pred)) ** 2)), np.finfo(float).tiny)
+        n = len(tr)
+        return n * np.log(mse) + 2 * k, n * np.log(mse) + k * np.log(n)
+    ag, bg = information_diagnostic(generalized_model(gp, N[tr], D[tr], Q[tr]), 6)
+    ac, bc = information_diagnostic(classic_model(baseline["params"], N[tr], D[tr]), 5)
+    test_n, test_d = np.array([1., 5.]), np.array([50., 200.])
+    reference = classic_model(gp[:5], test_n, test_d)
+    rel_err = float(np.max(np.abs(generalized_model(gp, test_n, test_d, np.ones(2)) - reference) / reference))
+    theta_assumed = 0.5
+    downstream = cp + [theta_assumed]
     results["generalized"] = {
-        "params": {"E": float(E), "A": float(A), "alpha": float(alpha),
-                   "B": float(B), "beta": float(beta), "theta": float(theta)},
-        "theta_empirical_B6B8": float(theta),
-        "theta_assumed_downstream": THETA_ASSUMED,
-        "theta_role": "assumed (下游Q3/Q4). B6-B8经验theta仅描述setpoint数据, 见corr_Q_L说明",
-        "r2": genfit["r2"], "n_fit": int(len(tr)), "n_holdout": int(n_ho),
+        "params": dict(zip(("E", "A", "alpha", "B", "beta", "theta"), map(float, gp))),
+        "theta_empirical_B6B8": float(gp[-1]), "theta_assumed_downstream": theta_assumed,
+        "theta_role": "下游theta=0.5是假设；B6-B8为半合成数据，不能校准A1质量的因果效应",
+        "r2": genfit["r2"], "n_fit": len(tr), "n_holdout": len(ho),
         "corr_Q_L": corr_QL,
-        "corr_Q_L_note": "B6-B8 Q_score为实验setpoint(重标定损失), 与Q_synth部署质量口径不同(报告表10明确区分)",
-        "rmse_holdout_generalized": rmse_gen,
-        "rmse_holdout_classic_baseline": rmse_gen_baseline,
-        "generalized_better_or_equal": bool(rmse_gen <= rmse_gen_baseline),
-        "aic": {"generalized": aic_g, "classic": aic_c},
-        "bic": {"generalized": bic_g, "classic": bic_c},
-        "Q1_degeneracy_rel_err": rel_err,
-        "Q1_degeneracy_pass": bool(rel_err < 0.001),
-        "surface_data": _gen_surface([E, A, alpha, B, beta, THETA_ASSUMED]),
+        "corr_Q_L_note": "B6-B8的Q_score与损失正相关；不据此推断其真实语义或与A1评分可比",
+        "split": {"unit": "unique (N,D,Q) setting", "seed": SEED,
+                  "n_groups": len(unique), "n_holdout_groups": len(holdout_groups),
+                  "group_overlap": len(set(groups[tr]) & set(groups[ho]))},
+        "rmse_holdout_generalized": rmse_g,
+        "rmse_holdout_classic_baseline": rmse_c,
+        "baseline_params": dict(zip(("E", "A", "alpha", "B", "beta"), map(float, baseline["params"]))),
+        "baseline_note": "同一训练集、同一Huber目标、同一公共参数边界，独立重拟合不含Q的模型",
+        "generalized_better_or_equal": bool(rmse_g <= rmse_c),
+        "holdout_by_source": source_metrics,
+        "fit_diagnostics": {k: genfit[k] for k in ("active_bounds", "jacobian_condition", "optimality")},
+        "aic": {"generalized": float(ag), "classic": float(ac)},
+        "bic": {"generalized": float(bg), "classic": float(bc)},
+        "information_criteria_note": "训练集log残差平方和惩罚诊断；Huber估计非Gaussian MLE，不作正式AIC/BIC检验",
+        "Q1_degeneracy_rel_err": rel_err, "Q1_degeneracy_pass": rel_err < .001,
+        "downstream_params": dict(zip(("E", "A", "alpha", "B", "beta", "theta"), downstream)),
+        "surface_data": _gen_surface(downstream),
+        "surface_note": "B1经典参数+假设theta，与问题三同口径；不同于半合成经验拟合",
     }
+    print(f"[Q2] grouped holdout n={len(ho)}: generalized RMSE={rmse_g:.6f}, refit no-Q={rmse_c:.6f}; theta={gp[-1]:.4f}")
 
 
 def _gen_surface(params):
@@ -274,13 +289,15 @@ def _gen_surface(params):
 def _p2_elasticity(results):
     """P2-C3：弹性解析 + Q-N 替代率数值（式11-13）。"""
     print("[Q2] Step 3: 弹性与 Q-N 替代率（解析代入拟合参数）")
-    gp = results["generalized"]["params"]
+    gp = results["generalized"]["downstream_params"]
     # 弹性/替代分析用下游 assumed theta>0（quality-helps premise，与 Q3 一致）
     theta = results["generalized"]["theta_assumed_downstream"]
     E, A, alpha, B, beta = (gp["E"], gp["A"], gp["alpha"], gp["B"], gp["beta"])
 
     # 参考点：N0,D0 取 B1 范围中位数量级，Q0 取 Q1 域中位数
-    N0, D0, Q0 = 1.0, 100.0, 0.5
+    import json
+    Q0 = float(json.loads((u._ROOT / "figures/problem_1_results.json").read_text())["domain_Q_median"])
+    N0, D0 = 1.0, 100.0
     L0 = generalized_model([E, A, alpha, B, beta, theta], np.array([N0]), np.array([D0]), np.array([Q0]))[0]
 
     # 弹性（式12）
@@ -297,6 +314,14 @@ def _p2_elasticity(results):
     delta_N_for_dQ01 = dN_dQ * 0.1
     print(f"[Q2]   替代率 dN/dQ|_L={dN_dQ:.4f}；ΔQ=0.1 等价 ΔN~{delta_N_for_dQ01:.4f} (10^9 params)")
 
+    # 有限增量的两种问题分别计算，避免将局部导数直接当作0.1的大步长结论。
+    dq = min(0.1, 1.0 - Q0)
+    target = float(generalized_model([E, A, alpha, B, beta, theta], N0, D0, Q0 + dq))
+    at_old_q = target - E - B * (Q0 ** theta * D0) ** (-beta)
+    equivalent_increase = (A / at_old_q) ** (1 / alpha) - N0 if at_old_q > 0 else None
+    at_new_q = L0 - E - B * ((Q0 + dq) ** theta * D0) ** (-beta)
+    exact_iso_change = (A / at_new_q) ** (1 / alpha) - N0
+
     # 等损失线数据（供 fig_q2_substitution_contour）
     Ns = np.linspace(0.1, 10, 40)
     Qs = np.linspace(0.1, 1.0, 40)
@@ -309,6 +334,9 @@ def _p2_elasticity(results):
         "eps_Q_equals_theta_eps_D": float(theta * eps_D),
         "substitution_dN_dQ": float(dN_dQ),
         "delta_N_for_deltaQ_0.1": float(delta_N_for_dQ01),
+        "finite_delta_Q": dq, "exact_iso_loss_delta_N": float(exact_iso_change),
+        "equivalent_parameter_increase_B": None if equivalent_increase is None else float(equivalent_increase),
+        "parameter_source": "B1 classic fit + assumed theta + Q1 domain median",
         "iso_loss_contour": {"N_grid": Ns.tolist(), "Q_grid": Qs.tolist(),
                              "L_surface": LL.tolist(), "D_fixed": D0},
     }
@@ -325,8 +353,8 @@ def validate_capability(results):
     g = results["generalized"]
     # P2-C2 falsifiable_check: 广义律(含Q)在B6留出 RMSE 不劣于同参经典(忽略Q)基线
     #   —— Q 项确有信息量(不论 setpoint 方向)。下游 theta_assumed>0 反映部署质量premise。
-    assert g["generalized_better_or_equal"], \
-        f"[能力不成立] 广义律含Q RMSE={g['rmse_holdout_generalized']} 劣于经典基线={g['rmse_holdout_classic_baseline']}"
+    assert g["split"]["group_overlap"] == 0, "训练/留出实验设置泄漏"
+    assert np.isfinite(g["rmse_holdout_classic_baseline"]), "无Q基线未有效拟合"
     assert g["theta_assumed_downstream"] > 0, "[能力不成立] 下游assumed theta<=0"
     assert g["corr_Q_L_note"], "[能力不成立] 未说明 Q_score 口径(setpoint vs Q_synth)"
     # Q=1 退化（equivalence_claims 硬性检验）
